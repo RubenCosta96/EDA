@@ -17,28 +17,50 @@ dos meios de mobilidade eletrica, clientes e gestores;
 7. Listagem dos meios de mobilidade eletrica por ordem decrescente de autonomia;
 */
 
-int compare(int aut1, int aut2)
-{
- Vehicle *v1 = aut1;
- Vehicle *v2 = aut2;
- if (v1->autonomy < v2->autonomy)
-  return -1;
- else if (v1->autonomy > v2->autonomy)
-  return 1;
- else
-  return 0;
-}
+Manager *insertManager(Manager *head, int id, char name[], int numVehicles); // Creates a new manager
 
 int main()
 {
+  Vehicle *vehicles = NULL;
+  insertVehicle(vehicles, 1, "Joao", "Gunao", 50, 0, "u");
+  insertVehicle(vehicles, 1, "Pedro", "Gunao", 10, 0, "u");
+  insertVehicle(vehicles, 1, "Tata", "Gunao", 25, 0, "u");
+  insertVehicle(vehicles, 1, "dasd", "Gunao", 5, 0, "u");
+  insertVehicle(vehicles, 1, "titi", "Gunao", 60, 0, "u");
+  insertVehicle(vehicles, 1, "ttto", "Gunao", 100, 0, "u");
 
- Manager *managers = NULL;
+  /*
+    // Asks for data to create a manager
+    Manager *manager = malloc(sizeof(Manager));
+    int n = 0;
+    manager->id = n + 1;
+    printf("Your manager ID is: %d\n", manager->id);
 
- managers = insertManager(managers, 1, "Carlos", 0);
- managers = insertManager(managers, 2, "Pedro", 0);
- managers = insertManager(managers, 3, "Filipe", 0);
+    printf("Enter Manager Name: ");
+    scanf("%s", manager->name);
 
- // listManagers(managers);
+    printf("Enter Number of Vehicles: ");
+    scanf("%d", &manager->numVehicles);
 
- return 0;
+    // Prints manager data
+    printf("Manager ID: %d\n", manager->id);
+    printf("Manager Name: %s\n", manager->name);
+    printf("Number of Vehicles: %d\n", manager->numVehicles);
+
+    free(manager);
+  */
+  /*
+  // Call insertManager function
+  head = insertManager(head, reg.id, reg.name, reg.numVehicles);
+
+  // Print the linked list
+  Manager *current = head;
+  while (current != NULL)
+  {
+    printf("ID: %d, Name: %s, NumVehicles: %d\n", current->id, current->name, current->numVehicles);
+    current = current->next;
+  }
+  */
+
+  return 0;
 }

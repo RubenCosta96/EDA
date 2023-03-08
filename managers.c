@@ -48,6 +48,13 @@ void listManagers(Manager *head)
 // Change data from a manager
 int changeManagerData(Manager *head, int id)
 {
+ if (!existeMeio(head, id))
+ {
+		Manager *new = malloc(sizeof(struct listManagers));
+		if (new != NULL)
+		{
+		}
+ }
 }
 
 // Sort managers by variable selected from user input;

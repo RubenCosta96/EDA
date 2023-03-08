@@ -9,7 +9,6 @@ typedef struct listManagers
  int id;
  char name[50];
  int numVehicles;
- Vehicle *vehicles[50];
  struct listManagers *next;
 } Manager;
 

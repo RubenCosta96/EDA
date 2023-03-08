@@ -4,6 +4,17 @@
 
 #include "vehicles.h"
 
+// Sorts vehicles by autonomy
+int compare(int aut1, int aut2)
+{
+ if (aut1 < aut2)
+		return -1;
+ else if (aut1 > aut2)
+		return 1;
+ else
+		return 0;
+}
+
 // Verifies if the ID of the vehicles exists on the list
 int vehicleIdExists(Vehicle *head, int id)
 {
@@ -70,12 +81,10 @@ Vehicle *removeVehicle(Vehicle *head, int id)
 
 // Sort vehicles by descending order of autonomy
 
-Vehicle *sortVehiclesDescending(Vehicle *head, int autonomy, int (*compare)(int aut1, int aut2))
+Vehicle *sortVehiclesDescending(Vehicle *head, int (*compare)(int aut1, int aut2))
 {
- Vehicle *n = malloc(sizeof(struct listVehicles));
- Vehicle *aux;
- n->autonomy = autonomy;
- n->next = NULL;
+ Vehicle i, j;
+ Vehicle *aux = head;
 
  if (head == NULL || compare(autonomy, head->autonomy) < 0)
  {
