@@ -15,6 +15,15 @@ int compare(int aut1, int aut2)
 		return 0;
 }
 
+// Show list of vehicles
+void listVehicles(Vehicle *head)
+{
+ for (; head != NULL; head = head->next)
+ {
+		printf("%d %s %d %f %s\n", head->id, head->type, head->autonomy, head->cost, head->location);
+ }
+}
+
 // Verifies if the ID of the vehicles exists on the list
 int vehicleIdExists(Vehicle *head, int id)
 {
@@ -31,7 +40,7 @@ int vehicleIdExists(Vehicle *head, int id)
 }
 
 // Adds a new vehicle
-Vehicle *insertVehicle(Vehicle *head, int id, char name[], char type[], int autonomy, float cost, char location[])
+Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, float cost, char location[])
 {
  Vehicle *new = malloc(sizeof(struct listVehicles));
  if (new != NULL)
@@ -81,14 +90,33 @@ Vehicle *removeVehicle(Vehicle *head, int id)
 
 // Sort vehicles by descending order of autonomy
 
-Vehicle *sortVehiclesDescending(Vehicle *head, int (*compare)(int aut1, int aut2))
+void sortVehiclesByAutonomy(Vehicle *head)
 {
- Vehicle i, j;
- Vehicle *aux = head;
+ if (head == NULL)
+		return;
 
- if (head == NULL || compare(autonomy, head->autonomy) < 0)
+ // create a temporary linked list to hold the sorted nodes
+ Vehicle *sortedList = NULL;
+
+ while (head != NULL)
  {
-		n->next = head;
-		return n;
+		// remove the first node from the unsorted list
+		Vehicle *current = head;
+		head = current->next;
+
+		// find the appropriate position for the node in the sorted list
+		Vehicle **insertionPoint = &sortedList;
+		while (*insertionPoint != NULL && compare((*insertionPoint)->autonomy, current->autonomy) > 0)
+		{
+			insertionPoint = &((*insertionPoint)->next);
+		}
+
+		// insert the node into the sorted list
+		current->next = *insertionPoint;
+		*insertionPoint = current;
  }
+
+ // set the head of the original list to the head of the sorted list
+ head = sortedList;
+ listVehicles(sortedList);
 }

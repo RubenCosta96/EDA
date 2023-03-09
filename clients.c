@@ -4,12 +4,8 @@
 
 #include "clients.h"
 
-<<<<<<< HEAD
-Client* insertClient(Client* head, int id, char name[],int age,char NIF[],float balance,char address[], char email[], char pw[])
-=======
 // Verifies if the ID of the client exists on the list
 int clientIdExists(Client *head, int id)
->>>>>>> d68f201f96ee2992408f5938338425943f7c8b55
 {
  Client *current = head;
  while (current != NULL)
@@ -24,7 +20,7 @@ int clientIdExists(Client *head, int id)
 }
 
 // Insert a new client
-Client *insertClient(Client *head, int id, char name[], int age, char NIF[], float balance, char address[], int totalVehiclesRented)
+Client *insertClient(Client *head, int id, char name[], int age, char NIF[], float balance, char address[], char email[], char pw[])
 {
  Client *new = malloc(sizeof(struct listClients));
  if (new != NULL)
@@ -35,8 +31,8 @@ Client *insertClient(Client *head, int id, char name[], int age, char NIF[], flo
 		strcpy(new->NIF, NIF);
 		new->balance = balance;
 		strcpy(new->address, address);
-		strcpy(new->email,email);
-        strcpy(new->password,pw);
+		strcpy(new->email, email);
+		strcpy(new->password, pw);
 		new->next = head;
 		return (new);
  }

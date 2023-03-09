@@ -7,7 +7,7 @@ typedef struct listClients Client;
 typedef struct listVehicles
 {
  int id;
- char type[10];
+ char type[20];
  int autonomy;
  float cost;
  char location[20];
@@ -18,13 +18,16 @@ typedef struct listVehicles
 // Verifies if the ID of the vehicles exists on the list
 int vehicleIdExists(Vehicle *head, int id);
 
+// Lists vehicles
+void listVehicles(Vehicle *head);
+
 // Adds a new vehicle
-Vehicle *insertVehicle(Vehicle *head, int id, char name[], char type[], int autonomy, float cost, char location[]);
+Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, float cost, char location[]);
 
 // Remove an existing vehicle
 Vehicle *removeVehicle(Vehicle *head, int id);
 
 // Sort vehicles by descending order of autonomy
-Vehicle *sortVehiclesDescending(Vehicle *head, int autonomy, int (*compare)(int aut1, int aut2));
+void sortVehiclesByAutonomy(Vehicle *head);
 
 #endif

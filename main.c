@@ -6,47 +6,48 @@
 #include "managers.h"
 #include "vehicles.h"
 
-/*
-1. Definicao de uma estrutura de dados dinamica (a validar previamente com o docente), para a representacao
-dos meios de mobilidade eletrica, clientes e gestores;
-2. Armazenamento/leitura dos dados em ficheiro de texto (valores de simulacao) e binarios (preservar dados);
-3. Insercao de novos dados (cliente/gestor/meio de mobilidade eletrica); M -> DONE;
-4. Remocao de determinados dados (cliente/gestor/meio de mobilidade eletrica);
-5. Alteracao de determinados dados (cliente/gestor/meio de mobilidade eletrica);
-6. Registo do aluguer de um determinado meio de mobilidade eletrica;
-7. Listagem dos meios de mobilidade eletrica por ordem decrescente de autonomia;
-*/
-
-Manager *insertManager(Manager *head, int id, char name[], int numVehicles); // Creates a new manager
+Client *insertClient(Client *head, int id, char name[], int age, char NIF[], float balance, char address[], char email[], char pw[]);
 
 int main()
 {
- /*Manager* managers = NULL;
+  /*Manager* managers = NULL;
 
+   /*
+     // Asks for data to create a manager
+     Manager *manager = malloc(sizeof(Manager));
+     int n = 0;
+     manager->id = n + 1;
+     printf("Your manager ID is: %d\n", manager->id);
+
+     printf("Enter Manager Name: ");
+     scanf("%s", manager->name);
+
+*/
   /*
-    // Asks for data to create a manager
-    Manager *manager = malloc(sizeof(Manager));
-    int n = 0;
-    manager->id = n + 1;
-    printf("Your manager ID is: %d\n", manager->id);
+    // Insert client test
+    Client *clients = NULL;
+    clients = insertClient(clients, 1, "Joao", 18, "12345678", 10, "rua", "joao@gmail.com", "teste123");
 
-    printf("Enter Manager Name: ");
-    scanf("%s", manager->name);
+    if (clients != NULL)
+    {
+      printf("ID: %d\n Name: %s\n Age: %d\n NIF: %s\n Balance: %f\n Address: %s\n Email: %s\n Password: %s\n",
+             clients->id, clients->name, clients->age, clients->NIF, clients->balance, clients->address, clients->email, clients->password);
+    }
+    else
+    {
+      printf("Erro ao inserir cliente\n");
+    }
+  */
+  Vehicle *vehicles = NULL;
 
- return 0;*/
+  vehicles = insertVehicle(vehicles, 1, "troti1", 50, 0, "u");
+  vehicles = insertVehicle(vehicles, 1, "troti2", 10, 0, "u");
+  vehicles = insertVehicle(vehicles, 1, "troti3", 25, 0, "u");
+  vehicles = insertVehicle(vehicles, 1, "troti4", 5, 0, "u");
+  vehicles = insertVehicle(vehicles, 1, "troti5", 60, 0, "u");
+  vehicles = insertVehicle(vehicles, 1, "troti6", 100, 0, "u");
 
-Manager *manager = (Manager*) malloc(sizeof(Manager));  // allocate memory for a Manager struct
+  sortVehiclesByAutonomy(vehicles);
 
-  // get input from user
-  printf("Enter manager ID: ");
-  scanf("%d", &(manager->id));
-  printf("Enter manager name: ");
-  scanf("%s", manager->name);
-
-  // print the inputted data
-  printf("Manager ID: %d\n", manager->id);
-  printf("Manager name: %s\n", manager->name);
-
-  free(manager);  // free the allocated memory
   return 0;
 }

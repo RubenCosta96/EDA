@@ -13,7 +13,6 @@ typedef struct listClients
  char address[50];
  char email[30];
  char password[16];
- Vehicle *v;
  struct listClients *next;
 } Client;
 
@@ -21,7 +20,7 @@ typedef struct listClients
 int clientIdExists(Client *head, int id);
 
 // Insert a new client
-Client *insertClient(Client *head, int id, char name[], int age, char NIF[], float balance, char address[], int totalVehiclesRented);
+Client *insertClient(Client *head, int id, char name[], int age, char NIF[], float balance, char address[], char email[], char pw[]);
 
 // Remove an existing client
 Client *removeClient(Client *head, int id);
