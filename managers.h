@@ -8,8 +8,8 @@ typedef struct listManagers
 {
  int id;
  char name[50];
- int numVehicles;
- Vehicle *vehicles[50];
+ char email[30];
+ char password[16];
  struct listManagers *next;
 } Manager;
 

@@ -18,7 +18,7 @@ dos meios de mobilidade eletrica, clientes e gestores;
 */
 int main()
 {
- Manager* managers = NULL;
+ /*Manager* managers = NULL;
 
  managers = insertManager(managers, 1, "Carlos", 0);
  managers = insertManager(managers, 2, "Pedro", 0);
@@ -26,5 +26,20 @@ int main()
 
  // listManagers(managers);
 
- return 0;
+ return 0;*/
+
+Manager *manager = (Manager*) malloc(sizeof(Manager));  // allocate memory for a Manager struct
+
+  // get input from user
+  printf("Enter manager ID: ");
+  scanf("%d", &(manager->id));
+  printf("Enter manager name: ");
+  scanf("%s", manager->name);
+
+  // print the inputted data
+  printf("Manager ID: %d\n", manager->id);
+  printf("Manager name: %s\n", manager->name);
+
+  free(manager);  // free the allocated memory
+  return 0;
 }

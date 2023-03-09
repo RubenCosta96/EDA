@@ -4,7 +4,7 @@
 
 #include "clients.h"
 
-Client* insertClient(Client* head, int id, char name[],int age,char NIF[],float balance,char address[], int totalVehiclesRented)
+Client* insertClient(Client* head, int id, char name[],int age,char NIF[],float balance,char address[], char email[], char pw[])
 {
 	Client* new = malloc(sizeof(struct listClients));
 	if (new != NULL)
@@ -15,7 +15,8 @@ Client* insertClient(Client* head, int id, char name[],int age,char NIF[],float 
 		strcpy(new->NIF, NIF);
 		new->balance = balance;
 		strcpy(new->address, address);
-		new->totalVehiclesRented = totalVehiclesRented;
+		strcpy(new->email,email);
+        strcpy(new->password,pw);
 		new->next = head;
 		return (new);
 	}

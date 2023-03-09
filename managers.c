@@ -4,8 +4,21 @@
 #include "managers.h"
 
 
+// Login for manager
+Manager *loginManager(Manager *head, char email[], char pw[]){
+	Manager *login = head;
+
+	if(strcmp(login->email,email) && strcmp(login->password,pw) == 0){
+		Printf("Login successfull!");
+	} else if(strcmp(login->email,email) || strcmp(login->password,pw) != 0){
+		printf("Email ou password incorretos.");
+	}
+
+
+}
+
 //Insert a new manager
-Manager* insertManager(Manager *head, int id, char name[], int numVehicles)
+Manager* insertManager(Manager *head, int id, char name[], char email[], char pw[])
 {
 
  Manager* new = malloc(sizeof(struct listManagers));
@@ -13,18 +26,18 @@ Manager* insertManager(Manager *head, int id, char name[], int numVehicles)
  {
   new->id = id;
   strcpy(new->name,name);
-  new->numVehicles = numVehicles;
+  strcpy(new->email,email);
+  strcpy(new->password,pw);
   new->next = head;
   return(new);
  }
  else return(head);
 }
 
-
 //Show list of managers
 void listManagers(Manager *head){
 	while(head !=NULL){
-		printf("%d %s %d\n", head->id, head->name,head->numVehicles);
+		printf("%d %s %s\n", head->id, head->name,head->email);
 		head = head->next;
 	}
 }
@@ -32,7 +45,7 @@ void listManagers(Manager *head){
 
 
 //Sort managers by variable selected from user input;
-/*Manager* orderManagers(Manager* head) {
+/*Manager* orderManagers(Manager* head, ...) {
 	Manager* order = malloc(sizeof(struct listManagers));
 
 

@@ -11,7 +11,8 @@ typedef struct listClients
  char NIF[9];
  float balance;
  char address[50];
- int totalVehiclesRented;
+ char email[30];
+ char password[16];
  Vehicle *v;
  struct listClients *next;
 } Client;
