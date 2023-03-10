@@ -6,7 +6,7 @@ typedef struct listVehicles Vehicle;
 typedef struct listClients
 {
  int id;
- char name[30];
+ char name[50];
  int age;
  char NIF[9];
  float balance;
@@ -19,10 +19,19 @@ typedef struct listClients
 // Verifies if the ID of the client exists on the list
 int clientIdExists(Client *head, int id);
 
+// Show list of clients
+void listClients(Client *head);
+
 // Insert a new client
 Client *insertClient(Client *head, int id, char name[], int age, char NIF[], float balance, char address[], char email[], char pw[]);
 
 // Remove an existing client
 Client *removeClient(Client *head, int id);
+
+// Save managers in a txt
+int saveClients(Client *head);
+
+// Read vehicles from txt file
+Client *readClients();
 
 #endif

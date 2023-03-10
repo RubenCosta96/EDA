@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "vehicles.h"
+#define MAX_LINE 100
 
 // Sorts vehicles by autonomy
 int compare(int aut1, int aut2)
@@ -119,4 +120,48 @@ void sortVehiclesByAutonomy(Vehicle *head)
  // set the head of the original list to the head of the sorted list
  head = sortedList;
  listVehicles(sortedList);
+}
+
+// Save vehicles in a txt file
+int saveVehicles(Vehicle *head)
+{
+ FILE *fp;
+ fp = fopen("vehicles.txt", "w");
+ if (fp != NULL)
+ {
+		Vehicle *aux = head;
+		while (aux != NULL)
+		{
+			fprintf(fp, "%d,%s,%d,%f,%s;", aux->id, aux->type,
+											aux->autonomy, aux->cost, aux->location);
+			aux = aux->next;
+		}
+		fclose(fp);
+		return (1);
+ }
+ else
+		return (0);
+}
+
+// Read vehicles from txt file
+Vehicle *readVehicles()
+{
+ FILE *fp;
+ int id, autonomy;
+ float cost;
+ char type[15], location[20];
+
+ Vehicle *aux = NULL;
+ fp = fopen("vehicles.txt", "r");
+ if (fp != NULL)
+ {
+		char line[MAX_LINE];
+		while (fgets(line, sizeof(line), fp))
+		{
+			sscanf(line, "%d,%14[^,\n],%d,%f,%19[^\n]", &id, type, &autonomy, &cost, location);
+			aux = insertVehicle(aux, id, type, autonomy, cost, location);
+		}
+		fclose(fp);
+ }
+ return (aux);
 }

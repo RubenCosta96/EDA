@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "clients.h"
+#define MAX_LINE 100
 
 // Verifies if the ID of the client exists on the list
 int clientIdExists(Client *head, int id)
@@ -17,6 +18,16 @@ int clientIdExists(Client *head, int id)
 		current = current->next;
  }
  return 0;
+}
+
+// Show list of clients
+void listClients(Client *head)
+{
+ for (; head != NULL; head = head->next)
+ {
+		printf("%d %s %d %s %f %s %s %s\n", head->id, head->name, head->age,
+									head->NIF, head->balance, head->address, head->email, head->password);
+ }
 }
 
 // Insert a new client
@@ -69,4 +80,48 @@ Client *removeClient(Client *head, int id)
 			return (head);
 		}
  }
+}
+
+// Save managers in a txt
+int saveClients(Client *head)
+{
+ FILE *fp;
+ fp = fopen("clients.txt", "w");
+ if (fp != NULL)
+ {
+		Client *aux = head;
+		while (aux != NULL)
+		{
+			fprintf(fp, "%d,%s,%d,%s,%f,%s,%s,%s\n", aux->id, aux->name,
+											aux->age, aux->NIF, aux->balance, aux->address, aux->email, aux->password);
+			aux = aux->next;
+		}
+		fclose(fp);
+		return (1);
+ }
+ else
+		return (0);
+}
+
+// Read vehicles from txt file
+Client *readClients()
+{
+ FILE *fp;
+ int id, age;
+ float balance;
+ char name[50], NIF[9], address[50], email[30], password[16];
+
+ Client *aux = NULL;
+ fp = fopen("clients.txt", "r");
+ if (fp != NULL)
+ {
+		char line[MAX_LINE];
+		while (fgets(line, sizeof(line), fp))
+		{
+			sscanf(line, "%d,%49[^,\n],%d,%8[^,\n],%f,%49[^,\n],%29[^,\n],%15[^,\n]", &id, name, &age, NIF, &balance, address, email, password);
+			aux = insertClient(aux, id, name, age, NIF, balance, address, email, password);
+		}
+		fclose(fp);
+ }
+ return (aux);
 }

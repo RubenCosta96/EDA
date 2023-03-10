@@ -31,4 +31,10 @@ Manager *removeManager(Manager *head, int id);
 // Sort managers by variable selected from user input;
 Manager *orderManagers(Manager *head);
 
+// Save managers in a txt
+int saveManagers(Manager *head);
+
+// Read managers data saved in txt file
+Manager *readManagers();
+
 #endif

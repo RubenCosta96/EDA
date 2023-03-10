@@ -30,4 +30,10 @@ Vehicle *removeVehicle(Vehicle *head, int id);
 // Sort vehicles by descending order of autonomy
 void sortVehiclesByAutonomy(Vehicle *head);
 
+// Save managers in a txt
+int saveVehicles(Vehicle *head);
+
+// Read vehicles from txt file
+Vehicle *readVehicles();
+
 #endif
