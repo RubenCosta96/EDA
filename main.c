@@ -12,6 +12,9 @@ int main()
   Vehicle *vehicles = NULL;
   Client *clients = NULL;
   Manager *managers = NULL;
+
+  // clients = insertClient(clients, 7, "Leandro", 43, "253412312", 0, "Rua do fim", "leandrofim@gmail.com", "teste123");
+  // saveClients(clients);
   vehicles = readVehicles();
   clients = readClients();
   managers = readManagers();

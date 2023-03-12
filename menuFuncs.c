@@ -8,11 +8,10 @@
 void enterToContinue()
 {
  printf("Press enter to continue...");
- fflush(stdout); // flush the output buffer to ensure the message is displayed
+ fflush(stdout);
 
  while (getchar() != '\n')
  {
-  // read characters from stdin until a newline character is encountered
  }
 
  return 0;
@@ -36,8 +35,11 @@ void clientOrManagerLogin()
   void clientLogin(Client * client);
   break;
  case 2:
-  // Manager
+  void managerLogin(Manager * manager);
   break;
+ case 0:
+  printf("Exiting...");
+  enterToContinue();
  default:
   break;
  }
@@ -53,11 +55,14 @@ void clientOrManagerRegistration()
  switch (opt)
  {
  case 1:
-  // Client
+  void clientReg(Client * head);
   break;
  case 2:
-  // Manager
+  void clientReg(Client * head);
   break;
+ case 0:
+  printf("Exiting");
+  void enterToContinue();
  default:
   break;
  }
@@ -93,21 +98,28 @@ void clientLogin(Client *client)
 void clientReg(Client *head)
 {
  Client *aux = head;
- aux->id += 1;
- printf("Your ID is: %d\n", aux->id);
+ Client *newClient = NULL;
+ int id, age;
+ char name[50], NIF[9], address[50], email[30], pw[16];
+ float balance;
+
+ id = aux->id + 1;
+
+ printf("Your ID is: %d\n", &id);
  printf("Name: ");
- scanf("%49[^/n]", aux->name);
+ scanf("%49[^/n]", name);
  printf("Age: ");
- scanf("%d", aux->age);
+ scanf("%d", &age);
  printf("NIF: ");
- scanf("%8[^/n]", aux->NIF);
- aux->balance = 0;
+ scanf("%8[^/n]", NIF);
+ balance = 0;
  printf("Address: ");
- scanf("%49[^/n]", aux->address);
+ scanf("%49[^/n]", address);
  printf("Email: ");
- scanf("%29[^/n]", aux->email);
+ scanf("%29[^/n]", email);
  printf("Password: ");
- scanf("%16[^/n]", aux->password);
+ scanf("%16[^/n]", pw);
+ newClient = insertClient(aux, id, name, age, NIF, balance, address, email, pw);
 }
 
 void managerLogin(Manager *manager)
@@ -135,6 +147,22 @@ void managerLogin(Manager *manager)
  }
 }
 
-void managerReg()
+void managerReg(Manager *head)
 {
+ Manager *aux = head;
+ Manager *newManager = NULL;
+ int id, age;
+ char name[50], address[50], email[30], pw[16];
+ float balance;
+
+ id = aux->id + 1;
+
+ printf("Your ID is: %d\n", &id);
+ printf("Name: ");
+ scanf("%49[^/n]", name);
+ printf("Email: ");
+ scanf("%29[^/n]", email);
+ printf("Password: ");
+ scanf("%16[^/n]", pw);
+ newManager = insertManager(aux, id, name, email, pw);
 }

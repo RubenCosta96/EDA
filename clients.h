@@ -1,12 +1,13 @@
 #ifndef CLIENTS
 #define CLIENTS
+#define MAX_NAME_LENGTH 100
 
 typedef struct listVehicles Vehicle;
 
 typedef struct listClients
 {
  int id;
- char name[50];
+ char name[MAX_NAME_LENGTH];
  int age;
  char NIF[9];
  float balance;

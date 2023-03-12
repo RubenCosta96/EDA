@@ -122,6 +122,19 @@ void sortVehiclesByAutonomy(Vehicle *head)
  listVehicles(sortedList);
 }
 
+void rentVehicle(Vehicle *head, int id, int clientID)
+{
+ Vehicle *vehicle = head;
+
+ for (; vehicle != NULL; vehicle = vehicle->next)
+ {
+		if (vehicle->id == id)
+		{
+			// vehicle->rentedBy == clientID;
+		}
+ }
+}
+
 // Save vehicles in a txt file
 int saveVehicles(Vehicle *head)
 {
@@ -180,7 +193,7 @@ int saveVehiclesBinary(Vehicle *head)
 		Vehicle *aux = head;
 		while (aux != NULL)
 		{
-			fwrite(aux, sizeof(Vehicle), &aux->id, fp);
+			fwrite(aux, sizeof(Vehicle), aux->id, fp);
 			aux = aux->next;
 		}
 		fclose(fp);

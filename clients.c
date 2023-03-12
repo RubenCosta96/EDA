@@ -92,7 +92,7 @@ int saveClients(Client *head)
 		Client *aux = head;
 		while (aux != NULL)
 		{
-			fprintf(fp, "%d,%s,%d,%s,%f,%s,%s,%s\n", aux->id, aux->name,
+			fprintf(fp, "%d,%s,%d,%s,%.2f,%s,%s,%s\n", aux->id, aux->name,
 											aux->age, aux->NIF, aux->balance, aux->address, aux->email, aux->password);
 			aux = aux->next;
 		}
@@ -118,7 +118,7 @@ Client *readClients()
 		char line[MAX_LINE];
 		while (fgets(line, sizeof(line), fp))
 		{
-			sscanf(line, "%d,%49[^,\n],%d,%8[^,\n],%f,%49[^,\n],%29[^,\n],%15[^,\n]", &id, name, &age, NIF, &balance, address, email, password);
+			sscanf(line, "%d,%99[^,\n],%d,%8[^,\n],%f,%49[^,\n],%29[^,\n],%15[^,\n]", &id, name, &age, NIF, &balance, address, email, password);
 			aux = insertClient(aux, id, name, age, NIF, balance, address, email, password);
 		}
 		fclose(fp);

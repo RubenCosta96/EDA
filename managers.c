@@ -63,7 +63,7 @@ void listManagers(Manager *head)
 }
 
 // Change data from a manager
-int changeManagerData(Manager *head, int id)
+/*int changeManagerData(Manager *head, int id)
 {
  Manager *aux = head;
  while (aux->id != NULL)
@@ -74,7 +74,7 @@ int changeManagerData(Manager *head, int id)
 		aux = aux->next;
  }
  return 0;
-}
+}*/
 // Sort managers by variable selected from user input;
 /*Manager* orderManagers(Manager* head, ...) {
  Manager* order = malloc(sizeof(struct listManagers));

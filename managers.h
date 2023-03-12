@@ -1,13 +1,14 @@
 #include <stdio.h>
 #ifndef MANAGERS
 #define MANAGERS
+#define MAX_NAME_LENGTH 100
 
 typedef struct listVehicles Vehicle;
 
 typedef struct listManagers
 {
  int id;
- char name[50];
+ char name[MAX_NAME_LENGTH];
  char email[30];
  char password[16];
  struct listManagers *next;
