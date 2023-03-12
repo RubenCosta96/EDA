@@ -165,3 +165,56 @@ Vehicle *readVehicles()
  }
  return (aux);
 }
+
+// Save vehicles in a binary file
+int saveVehiclesBinary(Vehicle *head)
+{
+ FILE *fp;
+ fp = fopen("vehiclesBinary.bin", "wb");
+ if (fp == NULL)
+ {
+		printf("Erro ao abrir o ficheiro.\n");
+ }
+ else if (fp != NULL)
+ {
+		Vehicle *aux = head;
+		while (aux != NULL)
+		{
+			fwrite(aux, sizeof(Vehicle), &aux->id, fp);
+			aux = aux->next;
+		}
+		fclose(fp);
+		return (1);
+ }
+ else
+		return (0);
+}
+
+// Read vehicles from binary file
+Vehicle *readVehiclesBinary()
+{
+ FILE *fp;
+ int numVehicles = 0;
+ Vehicle *aux = NULL;
+
+ fp = fopen("vehiclesBinary.bin", "rb");
+ if (fp == NULL)
+ {
+		printf("Erro ao abrir o ficheiro.");
+		return NULL;
+ }
+ while (!feof(fp))
+ {
+		Vehicle car;
+		size_t bytes_read = fread(&car, sizeof(Vehicle), 1, fp);
+		if (bytes_read == 1)
+		{
+			aux = insertVehicle(aux, car.id, car.type, car.autonomy, car.cost, car.location);
+			numVehicles++;
+		}
+ }
+ fclose(fp);
+
+ printf("Read %d vehicles from file.\n", numVehicles);
+ return (aux);
+}

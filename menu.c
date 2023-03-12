@@ -1,24 +1,26 @@
 #include <stdio.h>
+#include "menuFuncs.h"
 
 // Menu to choose option login/registration
-void loginOrReg(int opt);
+void loginOrReg(int opt)
 {
  int opt;
 
- printf("Choose an option:\n");
- printf("1 - Register\n");
- printf("2 - Login\n");
+ system("type menu.txt" || "cat menu.txt");
  scanf("%d", &opt);
 
  switch (opt)
  {
  case 1:
-  printf("Registration:\n");
-  // Registration code
+  printf("Login:\n");
+  void clientOrManagerLogin();
   break;
  case 2:
-  printf("Login:\n");
-  // Login code
+  printf("Registration\n");
+  void clientOrManagerRegistration();
+  break;
+ case 0:
+  void enterToContinue();
   break;
  default:
   printf("Invalid option.\n");
