@@ -1,8 +1,6 @@
 /HelloWorld
 /.vscode/
-/Makefile
 /*.o
 /clients.txt
 /managers.txt
 /vehicles.txt
-/MENU1.txt
