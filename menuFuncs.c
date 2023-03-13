@@ -4,26 +4,57 @@
 
 #include "clients.h"
 #include "managers.h"
+#include "menuFuncs.h"
+#define MAX_LENGTH_NAME 50
+#define MAX_LENGTH_ADDRESS 50
+#define MAX_LENGTH_EMAIL 50
+
+// Menu to choose option login/registration
+void loginOrReg(Client **client, Manager **manager)
+{
+ int opt;
+
+ system("type menu1.txt || cat menu1.txt");
+ fflush(stdout);
+ scanf("%d", &opt);
+
+ switch (opt)
+ {
+ case 1:
+  printf("Login:\n");
+  fflush(stdout);
+  // clientOrManagerLogin(client, manager);
+  break;
+ case 2:
+  printf("Registration\n");
+  fflush(stdout);
+  clientOrManagerRegistration(client, manager);
+  break;
+ case 0:
+  break;
+ default:
+  printf("Invalid option.\n");
+  break;
+ }
+}
 
 void enterToContinue()
-{
- printf("Press enter to continue...");
- fflush(stdout); // flush the output buffer to ensure the message is displayed
+{ /*
+  printf("Press enter to continue...");
+  fflush(stdout); // flush the output buffer to ensure the message is displayed
 
- while (getchar() != '\n')
- {
-  // read characters from stdin until a newline character is encountered
- }
-
- return 0;
+  while (getchar() != '\n')
+  {
+   // read characters from stdin until a newline character is encountered
+  }*/
 }
 
 void clearConsole()
 {
- system("@cls || clear");
+ // system("@cls || clear");
 }
 
-void clientOrManagerLogin()
+void clientOrManagerLogin(Client **client, Manager **manager)
 {
  int opt;
 
@@ -33,30 +64,32 @@ void clientOrManagerLogin()
  switch (opt)
  {
  case 1:
-  void clientLogin(Client * client);
+  clientLogin(client);
   break;
  case 2:
-  // Manager
+  managerLogin(manager);
   break;
  default:
   break;
  }
 }
 
-void clientOrManagerRegistration()
+void clientOrManagerRegistration(Client **client, Manager **manager)
 {
  int opt;
 
- printf("Are you a manager or a client?\n");
+ printf("Are you a manager or a client?\n 1-Client / 2- Manager\n");
+ fflush(stdout);
  scanf("%d", &opt);
 
  switch (opt)
  {
  case 1:
-  // Client
+  clientReg(client);
+
   break;
  case 2:
-  // Manager
+  // managerReg(manager);
   break;
  default:
   break;
@@ -64,9 +97,9 @@ void clientOrManagerRegistration()
 }
 
 // Tenho de dar return a algo para verificar que o login foi feito com succeso?
-void clientLogin(Client *client)
+void clientLogin(Client **client)
 {
- if (client == NULL)
+ if ((*client) == NULL)
  {
   printf("Invalid client\n");
   return;
@@ -79,9 +112,9 @@ void clientLogin(Client *client)
  scanf("%s", email);
  printf("Password: ");
  scanf("%s", pw);
- if (strcmp(client->email, email) == 0 && strcmp(client->password, pw) == 0)
+ if (strcmp((*client)->email, email) == 0 && strcmp((*client)->password, pw) == 0)
  {
-  printf("Welcome %s", client->name);
+  printf("Welcome %s", (*client)->name);
  }
  else
  {
@@ -90,29 +123,9 @@ void clientLogin(Client *client)
  }
 }
 
-void clientReg(Client *head)
+void managerLogin(Manager **manager)
 {
- Client *aux = head;
- aux->id += 1;
- printf("Your ID is: %d\n", aux->id);
- printf("Name: ");
- scanf("%49[^/n]", aux->name);
- printf("Age: ");
- scanf("%d", aux->age);
- printf("NIF: ");
- scanf("%8[^/n]", aux->NIF);
- aux->balance = 0;
- printf("Address: ");
- scanf("%49[^/n]", aux->address);
- printf("Email: ");
- scanf("%29[^/n]", aux->email);
- printf("Password: ");
- scanf("%16[^/n]", aux->password);
-}
-
-void managerLogin(Manager *manager)
-{
- if (manager == NULL)
+ if (*manager == NULL)
  {
   printf("Invalid client.\n");
   return;
@@ -125,9 +138,9 @@ void managerLogin(Manager *manager)
  scanf("%s", email);
  printf("Password: ");
  scanf("%s", pw);
- if (strcmp(manager->email, email) == 0 && strcmp(manager->password, pw) == 0)
+ if (strcmp((*manager)->email, email) == 0 && strcmp((*manager)->password, pw) == 0)
  {
-  printf("Welcome %s", manager->name);
+  printf("Welcome %s", (*manager)->name);
  }
  else
  {
@@ -135,6 +148,6 @@ void managerLogin(Manager *manager)
  }
 }
 
-void managerReg()
+void managerReg(Manager *manager)
 {
 }

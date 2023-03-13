@@ -1,5 +1,6 @@
 #ifndef CLIENTS
 #define CLIENTS
+extern int totClients;
 
 typedef struct listVehicles Vehicle;
 
@@ -18,6 +19,9 @@ typedef struct listClients
 
 // Verifies if the ID of the client exists on the list
 int clientIdExists(Client *head, int id);
+
+// Registers a new client
+void clientReg(Client **head);
 
 // Show list of clients
 void listClients(Client *head);

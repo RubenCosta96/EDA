@@ -1,8 +1,11 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "managers.h"
-#define MAX_LINE 100
+#define MAX_LINE 250
+
+int totManagers = 0;
 
 // Verifies if the ID of the manager exists on the list
 int managerIdExists(Manager *head, int id)
@@ -46,6 +49,7 @@ Manager *insertManager(Manager *head, int id, char name[], char email[], char pw
 		strcpy(new->email, email);
 		strcpy(new->password, pw);
 		new->next = head;
+		totManagers++;
 		return (new);
  }
  else
@@ -66,7 +70,7 @@ void listManagers(Manager *head)
 int changeManagerData(Manager *head, int id)
 {
  Manager *aux = head;
- while (aux->id != NULL)
+ while (aux != NULL)
  {
 		if (aux->id == id)
 		{
@@ -124,7 +128,7 @@ int saveManagers(Manager *head)
 		Manager *aux = head;
 		while (aux != NULL)
 		{
-			fprintf(fp, "%d,%s,%s,%s;\n", aux->id, aux->name,
+			fprintf(fp, "%d,%s,%s,%s\n", aux->id, aux->name,
 											aux->email, aux->password);
 			aux = aux->next;
 		}
@@ -148,7 +152,7 @@ Manager *readManagers()
 		char line[MAX_LINE];
 		while (fgets(line, sizeof(line), fp))
 		{
-			sscanf(line, "%d,%39[^,\n],%49[^,\n],%15[^,\n]", &id, name, email, password);
+			sscanf(line, "%d,%[^,],%[^,],%[^,]", &id, name, email, password);
 			aux = insertManager(aux, id, name, email, password);
 		}
 		fclose(fp);

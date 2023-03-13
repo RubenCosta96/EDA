@@ -1,5 +1,6 @@
 #ifndef VEHICLE
 #define VEHICLE
+extern int totVehicles;
 
 typedef struct listManagers Manager;
 typedef struct listClients Client;

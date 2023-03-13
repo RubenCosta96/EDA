@@ -3,7 +3,12 @@
 #include <string.h>
 
 #include "clients.h"
-#define MAX_LINE 100
+#define MAX_LINE 250
+#define MAX_LENGTH_NAME 50
+#define MAX_LENGTH_ADDRESS 50
+#define MAX_LENGTH_EMAIL 50
+
+int totClients = 0;
 
 // Verifies if the ID of the client exists on the list
 int clientIdExists(Client *head, int id)
@@ -45,10 +50,41 @@ Client *insertClient(Client *head, int id, char name[], int age, char NIF[], flo
 		strcpy(new->email, email);
 		strcpy(new->password, pw);
 		new->next = head;
+		totClients++;
 		return (new);
  }
  else
 		return (head);
+}
+
+// Registers a client
+void clientReg(Client **head)
+{
+ int age;
+ char name[MAX_LENGTH_NAME], NIF[9], address[MAX_LENGTH_ADDRESS], email[MAX_LENGTH_EMAIL], password[16];
+ float balance;
+
+ printf("Your ID is: %d\n", totClients + 1);
+ printf("Name: ");
+ fflush(stdout); // Use on windows
+ scanf("%s", name);
+ printf("Age: ");
+ fflush(stdout); // Use on windows
+ scanf("%d", &age);
+ printf("NIF: ");
+ fflush(stdout); // Use on windows
+ scanf("%s", NIF);
+ balance = 0;
+ printf("Address: ");
+ fflush(stdout); // Use on windows
+ scanf("%s", address);
+ printf("Email: ");
+ fflush(stdout); // Use on windows
+ scanf("%s", email);
+ printf("Password: ");
+ fflush(stdout); // Use on windows
+ scanf("%s", password);
+ *head = insertClient(*head, totClients + 1, name, age, NIF, balance, address, email, password);
 }
 
 // Remove an existing client
@@ -90,10 +126,12 @@ int saveClients(Client *head)
  if (fp != NULL)
  {
 		Client *aux = head;
+
 		while (aux != NULL)
 		{
-			fprintf(fp, "%d,%s,%d,%s,%f,%s,%s,%s\n", aux->id, aux->name,
+			fprintf(fp, "%d,%s,%d,%s,%.2f,%s,%s,%s\0", aux->id, aux->name,
 											aux->age, aux->NIF, aux->balance, aux->address, aux->email, aux->password);
+
 			aux = aux->next;
 		}
 		fclose(fp);
@@ -118,7 +156,7 @@ Client *readClients()
 		char line[MAX_LINE];
 		while (fgets(line, sizeof(line), fp))
 		{
-			sscanf(line, "%d,%49[^,\n],%d,%8[^,\n],%f,%49[^,\n],%29[^,\n],%15[^,\n]", &id, name, &age, NIF, &balance, address, email, password);
+			sscanf(line, "%d,%[^,],%d,%[^,],%f,%[^,],%[^,],%[^,]", &id, name, &age, NIF, &balance, address, email, password);
 			aux = insertClient(aux, id, name, age, NIF, balance, address, email, password);
 		}
 		fclose(fp);

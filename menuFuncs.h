@@ -4,6 +4,9 @@
 typedef struct listManagers Manager;
 typedef struct listClients Client;
 
+// Initialize menu
+void loginOrReg(Client **client, Manager **manager);
+
 // Enter to continue
 void enterToContinue();
 
@@ -11,21 +14,18 @@ void enterToContinue();
 void clearConsole();
 
 // Menu to decide if you want to login as a user or manager;
-void clientOrManagerLogin();
+void clientOrManagerLogin(Client **client, Manager **manager);
 
 // Menu to decide if you want to register as a user or manager;
-void clientOrManagerRegistration();
+void clientOrManagerRegistration(Client **client, Manager **manager);
 
 // Client Login
-void clientLogin(Client *client);
-
-// Client Registration
-void clientReg(Client *head);
+void clientLogin(Client **client);
 
 // Manager Login
-void managerLogin(Manager *manager);
+void managerLogin(Manager **manager);
 
 // Manager Registration
-void managerReg(Manager);
+void managerReg(Manager *manager);
 
 #endif

@@ -3,7 +3,9 @@
 #include <string.h>
 
 #include "vehicles.h"
-#define MAX_LINE 100
+#define MAX_LINE 250
+
+int totVehicles = 0;
 
 // Sorts vehicles by autonomy
 int compare(int aut1, int aut2)
@@ -52,6 +54,7 @@ Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, float c
 		new->cost = cost;
 		strcpy(new->location, location);
 		new->next = head;
+		totVehicles++;
 		return (new);
  }
  else
@@ -132,7 +135,7 @@ int saveVehicles(Vehicle *head)
 		Vehicle *aux = head;
 		while (aux != NULL)
 		{
-			fprintf(fp, "%d,%s,%d,%f,%s;", aux->id, aux->type,
+			fprintf(fp, "%d,%s,%d,%f,%s\n", aux->id, aux->type,
 											aux->autonomy, aux->cost, aux->location);
 			aux = aux->next;
 		}
@@ -158,7 +161,7 @@ Vehicle *readVehicles()
 		char line[MAX_LINE];
 		while (fgets(line, sizeof(line), fp))
 		{
-			sscanf(line, "%d,%14[^,\n],%d,%f,%19[^\n]", &id, type, &autonomy, &cost, location);
+			sscanf(line, "%d,%[^,],%d,%f,%[^\n]", &id, type, &autonomy, &cost, location);
 			aux = insertVehicle(aux, id, type, autonomy, cost, location);
 		}
 		fclose(fp);
@@ -180,7 +183,7 @@ int saveVehiclesBinary(Vehicle *head)
 		Vehicle *aux = head;
 		while (aux != NULL)
 		{
-			fwrite(aux, sizeof(Vehicle), &aux->id, fp);
+			fwrite(aux, sizeof(Vehicle), 1, fp);
 			aux = aux->next;
 		}
 		fclose(fp);

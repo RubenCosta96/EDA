@@ -1,6 +1,6 @@
-#include <stdio.h>
 #ifndef MANAGERS
 #define MANAGERS
+extern int totManagers;
 
 typedef struct listVehicles Vehicle;
 
