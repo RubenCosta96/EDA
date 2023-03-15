@@ -1,0 +1,12 @@
+┌───────────────────┐
+│  Manager options  │
+│                   │
+│ 1 - Add vehicle   │
+│ 2 - Check history │
+│ 3 - Change vehicle│
+│ 4 - Change data   │
+│ 5 - Remove user   │
+│ 6 - Remove vehicle│
+│ 0 - Logout        │
+└───────────────────┘
+-> 

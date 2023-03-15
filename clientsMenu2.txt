@@ -1,0 +1,12 @@
+┌───────────────────┐
+│  Change data      │
+│                   │
+│ 1 - Name          │
+│ 2 - Age           │
+│ 3 - NIF           │
+│ 4 - Address       │
+│ 5 - Email         │
+│ 6 - Password      │
+│ 0 - Exit          │
+└───────────────────┘
+-> 

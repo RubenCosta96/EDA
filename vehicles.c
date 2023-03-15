@@ -62,17 +62,16 @@ Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, float c
 }
 
 // Remove an existing vehicle
-Vehicle *removeVehicle(Vehicle *head, int id)
+void removeVehicle(Vehicle **head, int id)
 {
- Vehicle *previous = head, *current = head, *aux;
+ Vehicle *previous = *head, *current = *head;
 
  if (current == NULL)
-		return NULL;
+		return;
  else if (current->id == id)
  {
-		aux = current->next;
+		*head = current->next;
 		free(current);
-		return (aux);
  }
  else
  {
@@ -82,12 +81,14 @@ Vehicle *removeVehicle(Vehicle *head, int id)
 			current = current->next;
 		}
 		if (current == NULL)
-			return (head);
+		{
+			printf("Invalid ID!");
+			return;
+		}
 		else
 		{
 			previous->next = current->next;
 			free(current);
-			return (head);
 		}
  }
 }

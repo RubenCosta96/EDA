@@ -4,6 +4,9 @@
 
 #include "managers.h"
 #define MAX_LINE 250
+#define MAX_LENGTH_NAME 50
+#define MAX_LENGTH_ADDRESS 50
+#define MAX_LENGTH_EMAIL 50
 
 int totManagers = 0;
 
@@ -66,54 +69,107 @@ void listManagers(Manager *head)
  }
 }
 
-// Change data from a manager
-int changeManagerData(Manager *head, int id)
+Manager *changeManagerData(Manager *head, char email[])
 {
  Manager *aux = head;
+ int opt;
+ char newName[MAX_LENGTH_NAME];
+ char newEmail[MAX_LENGTH_EMAIL];
+ char newPassword[16];
+ int emailFound = 0;
+
+ system("type managersMenu2.txt || cat managersMenu2.txt");
+
  while (aux != NULL)
  {
-		if (aux->id == id)
+		if (strcmp(aux->email, email) == 0)
 		{
+			emailFound = 1;
+			do
+			{
+				printf("Enter option: ");
+				fflush(stdout);
+				scanf("%d", &opt);
+				printf("\n");
+
+				switch (opt)
+				{
+				case 1:
+					printf("Enter new name: ");
+					fflush(stdout);
+					fgets(newName, MAX_LENGTH_NAME, stdin);
+					newName[strcspn(newName, "\n")] = '\0';
+					strcpy(aux->name, newName);
+					saveManagers(head);
+					break;
+				case 2:
+					printf("Enter new email: ");
+					fflush(stdout);
+					fgets(newEmail, MAX_LENGTH_EMAIL, stdin);
+					newEmail[strcspn(newEmail, "\n")] = '\0';
+					strcpy(aux->email, newEmail);
+					break;
+				case 3:
+					printf("Enter new password: ");
+					fflush(stdout);
+					fgets(newPassword, 16, stdin);
+					newPassword[strcspn(newPassword, "\n")] = '\0';
+					strcpy(aux->password, newPassword);
+					break;
+				case 0:
+					break;
+				default:
+					printf("Invalid option. Please select again.\n");
+					fflush(stdout);
+					break;
+				}
+				while ((getchar()) != '\n');
+
+			} while (opt != 0);
+			break;														
 		}
-		aux = aux->next;
+
+		else
+		{
+			aux = aux->next;
+		}
  }
- return 0;
+ if (!emailFound)
+ {
+		printf("Email not found.\n");
+ }
+ return head;
 }
-// Sort managers by variable selected from user input;
-/*Manager* orderManagers(Manager* head, ...) {
- Manager* order = malloc(sizeof(struct listManagers));
-
-
-}
-*/
 
 // Remove a manager from the list
-Manager *removeManager(Manager *head, int id)
+void removeManager(Manager **head, int id)
 {
- Manager *previous = head, *current = head, *aux;
+ Manager *previous = *head, *current = *head;
 
  if (current == NULL)
-		return NULL;
+		return;
  else if (current->id == id)
  {
-		aux = current->next;
+		*head = current->next;
 		free(current);
-		return (aux);
  }
  else
  {
 		while ((current != NULL) && (current->id != id))
 		{
+
 			previous = current;
 			current = current->next;
 		}
 		if (current == NULL)
-			return (head);
+		{
+			printf("Invalid ID!");
+			return;
+		}
 		else
 		{
 			previous->next = current->next;
 			free(current);
-			return (head);
 		}
  }
 }
@@ -128,6 +184,7 @@ int saveManagers(Manager *head)
 		Manager *aux = head;
 		while (aux != NULL)
 		{
+
 			fprintf(fp, "%d,%s,%s,%s\n", aux->id, aux->name,
 											aux->email, aux->password);
 			aux = aux->next;
@@ -146,16 +203,32 @@ Manager *readManagers()
  int id;
  char name[40], email[50], password[16];
  Manager *aux = NULL;
+
  fp = fopen("managers.txt", "r");
  if (fp != NULL)
  {
 		char line[MAX_LINE];
 		while (fgets(line, sizeof(line), fp))
 		{
-			sscanf(line, "%d,%[^,],%[^,],%[^,]", &id, name, email, password);
+			sscanf(line, "%d,%[^,],%[^,],%[^,\n]", &id, name, email, password);
 			aux = insertManager(aux, id, name, email, password);
 		}
 		fclose(fp);
  }
  return (aux);
+}
+
+int getMaxManagerId(Manager *head)
+{
+ int maxId = 0;
+ Manager *current = head;
+ while (current != NULL)
+ {
+		if (current->id > maxId)
+		{
+			maxId = current->id;
+		}
+		current = current->next;
+ }
+ return maxId;
 }

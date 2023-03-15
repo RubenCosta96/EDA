@@ -19,27 +19,19 @@ int main()
   clients = readClients();
   managers = readManagers();
 
-  // Menu
-  // clientReg(&clients);
+  managers = changeManagerData(managers, "teste");
 
-  loginOrReg(&clients, &managers);
+  // managers = insertManager(managers, 8, "Nando", "nando@gmail.com", "nando123");
+  // listManagers(managers);
+  //  Menu
+  // loginOrReg(&clients, &managers);
+  // listManagers(managers);
 
-  printf("totClients = %d\n", totClients);
+  // saveManagers(managers);
+
+  /*printf("totClients = %d\n", totClients);
   printf("totManagers = %d\n", totManagers);
-  printf("totVehicles = %d\n", totClients);
-
-  printf("Clients:\n");
-  listClients(clients);
-  printf("Managers:\n");
-  listManagers(managers);
-  printf("Vehicles:\n");
-
-  listVehicles(vehicles);
-
-  // Save before exiting to data set
-  saveClients(clients);
-  saveManagers(managers);
-  saveVehicles(vehicles);
+  printf("totVehicles = %d\n", totClients);*/
 
   return 0;
 }

@@ -26,6 +26,6 @@ void clientLogin(Client **client);
 void managerLogin(Manager **manager);
 
 // Manager Registration
-void managerReg(Manager *manager);
+void managerReg(Manager **manager);
 
 #endif

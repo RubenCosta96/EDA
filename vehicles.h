@@ -16,25 +16,25 @@ typedef struct listVehicles
  struct listVehicles *next;
 } Vehicle;
 
-// Verifies if the ID of the vehicles exists on the list
+// Verifies if the ID of the vehicles exists on the list (CHECK AGAIN)
 int vehicleIdExists(Vehicle *head, int id);
 
-// Lists vehicles
+// Lists vehicles (DONE)
 void listVehicles(Vehicle *head);
 
-// Adds a new vehicle
+// Adds a new vehicle (CHECK AGAIN)
 Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, float cost, char location[]);
 
-// Remove an existing vehicle
-Vehicle *removeVehicle(Vehicle *head, int id);
+// Remove an existing vehicle (DONE)
+void removeVehicle(Vehicle **head, int id);
 
-// Sort vehicles by descending order of autonomy
+// Sort vehicles by descending order of autonomy (CHECK AGAIN)
 void sortVehiclesByAutonomy(Vehicle *head);
 
-// Save managers in a txt
+// Save managers in a txt (DONE)
 int saveVehicles(Vehicle *head);
 
-// Read vehicles from txt file
+// Read vehicles from txt file (DONE)
 Vehicle *readVehicles();
 
 #endif

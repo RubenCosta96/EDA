@@ -23,10 +23,10 @@ Manager *insertManager(Manager *head, int id, char name[], char email[], char pw
 void listManagers(Manager *head);
 
 // Change data from a manager
-int changeManagerData(Manager *head, int id);
+Manager *changeManagerData(Manager *head, char email[]);
 
 // Remove a manager from the list
-Manager *removeManager(Manager *head, int id);
+void removeManager(Manager **head, int id);
 
 // Sort managers by variable selected from user input;
 Manager *orderManagers(Manager *head);
@@ -36,5 +36,8 @@ int saveManagers(Manager *head);
 
 // Read managers data saved in txt file
 Manager *readManagers();
+
+// Gets managers max ID
+int getMaxManagerId(Manager *head);
 
 #endif
