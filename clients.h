@@ -32,6 +32,9 @@ Client *insertClient(Client *head, int id, char name[], int age, char NIF[], flo
 // Remove an existing client (DONE)
 void removeClient(Client **head, int id);
 
+// Adds a certain balance to the client (DONE)
+void addFundsClient(Client **head,int id, float balance);
+
 // Save managers in a txt (DONE)
 int saveClients(Client *head);
 

@@ -16,19 +16,17 @@ void loginOrReg(Client **client, Manager **manager)
 
   do
   {
-    system("type menu1.txt || cat menu1.txt");
+    system("cat menu1.txt");
     fflush(stdout);
     scanf("%d", &opt);
 
     switch (opt)
     {
     case 1:
-      printf("Login:\n");
       fflush(stdout);
       clientOrManagerLogin(client, manager);
       break;
     case 2:
-      printf("Registration\n");
       fflush(stdout);
       clientOrManagerRegistration(client, manager);
       break;
@@ -42,14 +40,11 @@ void loginOrReg(Client **client, Manager **manager)
 }
 
 void enterToContinue()
-{ /*
+{ 
   printf("Press enter to continue...");
-  fflush(stdout); // flush the output buffer to ensure the message is displayed
+  fflush(stdout);
 
-  while (getchar() != '\n')
-  {
-   // read characters from stdin until a newline character is encountered
-  }*/
+  while (getchar() != '\n');
 }
 
 void clearConsole()
@@ -63,7 +58,7 @@ void clientOrManagerLogin(Client **client, Manager **manager)
 
   do
   {
-    system("type menu2.txt || cat menu2.txt");
+    system("cat menu2.txt");
     fflush(stdout);
     scanf("%d", &opt);
 
@@ -117,11 +112,19 @@ void clientOrManagerRegistration(Client **client, Manager **manager)
 // Client login
 void clientLogin(Client **client)
 {
-  char email[30], password[16];
+  char email[50], password[16];
+
   printf("Email: ");
-  scanf("%29s", email);
+  getchar();
+  fflush(stdin);
+  fgets(email,sizeof(email),stdin);
+  email[strlen(email) -1] = '\0';
+
   printf("Password: ");
-  scanf("%15s", password);
+  fflush(stdin);
+  fgets(password,sizeof(password),stdin);
+  password[strlen(password) -1] = '\0';
+
 
   Client *current = *client;
   while (current != NULL)
@@ -129,6 +132,7 @@ void clientLogin(Client **client)
     if (strcmp(current->email, email) == 0 && strcmp(current->password, password) == 0)
     {
       printf("Welcome, %s!\n", current->name);
+
       return;
     }
     current = current->next;

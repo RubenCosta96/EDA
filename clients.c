@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "clients.h"
+#include "menuFuncs.h"
 #define MAX_LINE 250
 #define MAX_LENGTH_NAME 50
 #define MAX_LENGTH_ADDRESS 50
@@ -30,7 +31,7 @@ void listClients(Client *head)
 {
  while (head != NULL)
  {
-		printf("%d %s %d %s %f %s %s %s\n", head->id, head->name, head->age,
+		printf("%d %s %d %s %.2f %s %s %s\n", head->id, head->name, head->age,
 									head->NIF, head->balance, head->address, head->email, head->password);
 		head = head->next;
  }
@@ -95,7 +96,7 @@ void removeClient(Client **head, int id)
 
  if (current == NULL)
 		return;
- else if (current->id == id)
+ if (current->id == id)
  {
 		*head = current->next;
 		free(current);
@@ -118,6 +119,27 @@ void removeClient(Client **head, int id)
 			free(current);
 		}
  }
+}
+
+void addFundsClient(Client **head,int id, float balance){
+	Client *current = *head;
+
+while (current!=NULL){
+	
+	if(current->id ==id){
+		if(balance > 0){
+			current->balance += balance;
+			printf("%.2f added to your balance.\nYou currently have %.2f€.\n",balance, current->balance);
+			return;
+			}
+			else{
+				printf("Invalid amount.\n");
+				enterToContinue();
+				return;
+			}
+		}
+		current = current->next;
+	}
 }
 
 // Save managers in a txt
@@ -159,12 +181,8 @@ Client *readClients()
 		while (fgets(line, sizeof(line), fp))
 		{
 
-			sscanf(line, "%d,%[^,],%d,%[^,],%f,%[^,],%[^,],%[^,\n]", &id, name, &age, NIF, &balance, address, email, password);
-			// sscanf(line, "%d,%[^,],%d,%[^,],", &id, name, &age, nif);
-			// printf("Name: %s\n", name);
-			// printf("ID: %d\n", id);
-			// printf("Age: %d\n", age);
-			// printf("%s\n %f\n %s\n", nif, balance, address);
+			sscanf(line, "%d,%[^,],%d,%[^,],%f,%[^,],%[^,],%[^,\r\n]", &id, name, &age, NIF, &balance, address, email, password);
+			
 
 			aux = insertClient(aux, id, name, age, NIF, balance, address, email, password);
 		}

@@ -95,23 +95,26 @@ Manager *changeManagerData(Manager *head, char email[])
 				switch (opt)
 				{
 				case 1:
+					while ((getchar()) != '\n')
+						;
 					printf("Enter new name: ");
-					fflush(stdout);
 					fgets(newName, MAX_LENGTH_NAME, stdin);
 					newName[strcspn(newName, "\n")] = '\0';
 					strcpy(aux->name, newName);
 					saveManagers(head);
 					break;
 				case 2:
+					while ((getchar()) != '\n')
+						;
 					printf("Enter new email: ");
-					fflush(stdout);
 					fgets(newEmail, MAX_LENGTH_EMAIL, stdin);
 					newEmail[strcspn(newEmail, "\n")] = '\0';
 					strcpy(aux->email, newEmail);
 					break;
 				case 3:
+					while ((getchar()) != '\n')
+						;
 					printf("Enter new password: ");
-					fflush(stdout);
 					fgets(newPassword, 16, stdin);
 					newPassword[strcspn(newPassword, "\n")] = '\0';
 					strcpy(aux->password, newPassword);
@@ -123,10 +126,9 @@ Manager *changeManagerData(Manager *head, char email[])
 					fflush(stdout);
 					break;
 				}
-				while ((getchar()) != '\n');
 
 			} while (opt != 0);
-			break;														
+			break;													
 		}
 
 		else
