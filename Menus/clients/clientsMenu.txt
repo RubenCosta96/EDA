@@ -5,6 +5,7 @@
 │ 2 - Add funds     │
 │ 3 - Cancel rental │
 │ 4 - Change data   │
+│ 5 - Delete account│
 │ 0 - Exit          │
 └───────────────────┘
 -> 

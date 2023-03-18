@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+// TEST
+#include <time.h>
+
 #include "clients.h"
 #include "clients.c"
 #include "managers.h"
@@ -23,23 +26,12 @@ int main()
   clients = readClients();
   managers = readManagers();
 
-  //managers = changeManagerData(managers, "teste");
+  // Menu
+  loginOrReg(&clients, &managers, &vehicles);
 
-  // managers = insertManager(managers, 8, "Nando", "nando@gmail.com", "nando123");
-  // listManagers(managers);
-  //  Menu
-  //loginOrReg(&clients, &managers);
-  // listManagers(managers);
-
-  addFundsClient(&clients,1,50);
-  listClients(clients);
+  saveManagers(managers);
   saveClients(clients);
-
-  // saveManagers(managers);
-
-  /*printf("totClients = %d\n", totClients);
-  printf("totManagers = %d\n", totManagers);
-  printf("totVehicles = %d\n", totClients);*/
+  saveVehicles(vehicles);
 
   return 0;
 }
