@@ -10,7 +10,13 @@
 #define MAX_LENGTH_ADDRESS 50
 #define MAX_LENGTH_EMAIL 50
 
-// Menu to choose option login/registration
+/**
+ * @brief Menu that allows the user either to choose if he wants to "Login" or "Register".
+ *
+ * @param client
+ * @param manager
+ * @param vehicle
+ */
 void loginOrReg(Client **client, Manager **manager, Vehicle **vehicle)
 {
   int opt;
@@ -40,21 +46,36 @@ void loginOrReg(Client **client, Manager **manager, Vehicle **vehicle)
   }
 }
 
+/**
+ * @brief Function to display a message that only goes to the next screen after the key "ENTER" is pressed.
+ *
+ */
 void enterToContinue()
 {
   getchar();
-  printf("Press enter to continue...");
+  printf("\nPress enter to continue...");
   fflush(stdout);
 
   while (getchar() != '\n')
     ;
 }
 
+/**
+ * @brief Function to clear the terminal
+ *
+ */
 void clearConsole()
 {
   system("clear || cls");
 }
 
+/**
+ * @brief Function that allows the user to decide if he's logging in as a "Client" or a "Manager".
+ *
+ * @param client
+ * @param manager
+ * @param vehicle
+ */
 void clientOrManagerLogin(Client **client, Manager **manager, Vehicle **vehicle)
 {
   int opt;
@@ -85,33 +106,46 @@ void clientOrManagerLogin(Client **client, Manager **manager, Vehicle **vehicle)
   }
 }
 
+/**
+ * @brief Function that allows the user to decide if he's registering as a "Client" or a "Manager".
+ *
+ * @param client
+ * @param manager
+ * @param vehicle
+ */
 void clientOrManagerRegistration(Client **client, Manager **manager, Vehicle **vehicle)
 {
   int opt;
 
-  do
+  clearConsole();
+  system("cat ./Menus/general/menuReg.txt");
+  scanf("%d", &opt);
+  switch (opt)
   {
-    clearConsole();
-    system("cat ./Menus/general/menuReg.txt");
-    scanf("%d", &opt);
-    switch (opt)
-    {
-    case 1:
-      clientReg(client);
-      break;
-    case 2:
-      managerReg(manager);
-      break;
-    case 0:
-      break;
-    default:
-      printf("Invalid Option!\n");
-      break;
-    }
-  } while (opt != 1 && opt != 2 && opt != 0);
+  case 1:
+    clientReg(client);
+    break;
+  case 2:
+    managerReg(manager);
+    break;
+  case 0:
+    loginOrReg(client, manager, vehicle);
+    return;
+  default:
+    printf("Invalid Option!\n");
+    enterToContinue();
+    clientOrManagerRegistration(client, manager, vehicle);
+    break;
+  }
 }
 
-// Client login
+/**
+ * @brief Function that allows a client to login.
+ *
+ * @param client
+ * @param vehicle
+ * @param manager
+ */
 void clientLogin(Client **client, Vehicle **vehicle, Manager **manager)
 {
   char email[MAX_LENGTH_EMAIL], password[16];
@@ -136,6 +170,13 @@ void clientLogin(Client **client, Vehicle **vehicle, Manager **manager)
   clientLogin(client, vehicle, manager);
 }
 
+/**
+ * @brief Function that allows the manager to login.
+ *
+ * @param manager
+ * @param vehicle
+ * @param client
+ */
 void managerLogin(Manager **manager, Vehicle **vehicle, Client **client)
 {
   char email[MAX_LENGTH_EMAIL], password[16];
@@ -160,6 +201,14 @@ void managerLogin(Manager **manager, Vehicle **vehicle, Client **client)
   managerLogin(manager, vehicle, client);
 }
 
+/**
+ * @brief Function that prints the menu of the manager and recieves the option he wishes to execute.
+ *
+ * @param head
+ * @param vehicle
+ * @param client
+ * @param m
+ */
 void managerMenu(Manager **head, Vehicle **vehicle, Client **client, Manager *m)
 {
   int opt;
@@ -264,26 +313,4 @@ void managerMenu(Manager **head, Vehicle **vehicle, Client **client, Manager *m)
     break;
   }
   managerMenu(head, vehicle, client, m);
-}
-
-void managerReg(Manager **head)
-{
-  int id;
-  char name[MAX_LENGTH_NAME], email[MAX_LENGTH_EMAIL], password[16];
-  int maxID = getMaxManagerId(*head) + 1;
-
-  printf("Your ID is: %d\n", maxID);
-  printf("Name: ");
-  fflush(stdout); // Use on windows
-  scanf("%s", name);
-  printf("Email: ");
-  fflush(stdout); // Use on windows
-  scanf("%s", email);
-  printf("Password: ");
-  fflush(stdout); // Use on windows
-  scanf("%s", password);
-
-  *head = insertManager(*head, maxID, name, email, password);
-  saveManagers(*head);
-  clearConsole();
 }

@@ -3,9 +3,17 @@
 #include <string.h>
 
 #include "vehicles.h"
+#include "menuFuncs.h"
+#include "clients.h"
 #define MAX_LINE 250
 
-// Sorts vehicles by autonomy
+/**
+ * @brief Function that recieves values of the autonomy from 2 vehicles and compares them.
+ *
+ * @param aut1
+ * @param aut2
+ * @return int
+ */
 int compare(int aut1, int aut2)
 {
 	if (aut1 < aut2)
@@ -16,7 +24,12 @@ int compare(int aut1, int aut2)
 		return 0;
 }
 
-// Get clients max ID
+/**
+ * @brief Gets the highest value of the IDs of the vehicles registered
+ *
+ * @param head
+ * @return int
+ */
 int getMaxVehicleId(Vehicle *head)
 {
 	int maxId = 0;
@@ -32,7 +45,11 @@ int getMaxVehicleId(Vehicle *head)
 	return maxId;
 }
 
-// Show list of vehicles
+/**
+ * @brief Prints on the terminal the list of vehicles registered
+ *
+ * @param v
+ */
 void listVehicles(Vehicle **v)
 {
 	Vehicle *head = *v;
@@ -43,6 +60,13 @@ void listVehicles(Vehicle **v)
 	}
 }
 
+/**
+ * @brief Prints on the terminal the list of vehicles that are rented by the client that's logged in.
+ *
+ * @param vehicle
+ * @param clientID
+ * @return int
+ */
 int listVehiclesRentedByClient(Vehicle **vehicle, int clientID)
 {
 	Vehicle *head = *vehicle;
@@ -59,6 +83,12 @@ int listVehiclesRentedByClient(Vehicle **vehicle, int clientID)
 	return (rentedVehicles);
 }
 
+/**
+ * @brief Prints on the terminal the list of vehicles that are available to be rented.
+ *
+ * @param vehicle
+ * @return int
+ */
 int listVehiclesNotRented(Vehicle **vehicle)
 {
 	Vehicle *head = *vehicle;
@@ -90,7 +120,18 @@ int vehicleIdExists(Vehicle *head, int id)
 	return 0;
 }
 
-// Adds a new vehicle
+/**
+ * @brief Function to insert a new vehicle into the already existing linked list of vehicles
+ *
+ * @param head
+ * @param id
+ * @param type
+ * @param autonomy
+ * @param cost
+ * @param rentedBy
+ * @param location
+ * @return Vehicle*
+ */
 Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, float cost, int rentedBy, char location[])
 {
 	Vehicle *new = malloc(sizeof(struct listVehicles));
@@ -109,7 +150,11 @@ Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, float c
 		return (head);
 }
 
-// Registers a vehicle
+/**
+ * @brief Function that will recieve the inputs of the user to register a new vehicle
+ *
+ * @param head
+ */
 void vehicleReg(Vehicle **head)
 {
 	char type[20], location[MAX_LENGTH_LOCATION];
@@ -143,6 +188,12 @@ void vehicleReg(Vehicle **head)
 	*head = insertVehicle(*head, maxID, type, autonomy, cost, rentedBy, location);
 }
 
+/**
+ * @brief Function that allows the manager to change any of the fields of the selected vehicle's data.
+ *
+ * @param head
+ * @param id
+ */
 void changeVehicleData(Vehicle **head, int id)
 {
 	Vehicle *aux = *head;
@@ -213,7 +264,7 @@ void changeVehicleData(Vehicle **head, int id)
 				fflush(stdout);
 				break;
 			}
-		} while (opt > 0 || opt < 5);
+		} while (opt != 0);
 	}
 	else
 	{
@@ -221,7 +272,12 @@ void changeVehicleData(Vehicle **head, int id)
 	}
 }
 
-// Remove an existing vehicle
+/**
+ * @brief Removes a vehicle from the linked list.
+ *
+ * @param head
+ * @param id
+ */
 void removeVehicle(Vehicle **head, int id)
 {
 	Vehicle *previous = *head, *current = *head;
@@ -253,8 +309,11 @@ void removeVehicle(Vehicle **head, int id)
 	}
 }
 
-// Sort vehicles by descending order of autonomy
-
+/**
+ * @brief Sorts all the vehicles in descending order of their respective autonomy, presenting a list.
+ *
+ * @param head
+ */
 void sortVehiclesByAutonomy(Vehicle **head)
 {
 	Vehicle *aux = *head;
@@ -286,6 +345,14 @@ void sortVehiclesByAutonomy(Vehicle **head)
 	*head = sortedList;
 }
 
+/**
+ * @brief Function that allows a vehicle to be rented by a client
+ *
+ * @param head
+ * @param vehicleID
+ * @param c
+ * @return int
+ */
 int rentVehicle(Vehicle **head, int vehicleID, Client *c)
 {
 
@@ -322,6 +389,12 @@ int rentVehicle(Vehicle **head, int vehicleID, Client *c)
 	return c->balance;
 }
 
+/**
+ * @brief Function that allows a client to cancel a rental that was made.
+ *
+ * @param head
+ * @param vehicleID
+ */
 void cancelRental(Vehicle **head, int vehicleID)
 {
 	Vehicle *currentV = *head;
@@ -356,7 +429,12 @@ void cancelRental(Vehicle **head, int vehicleID)
 	}
 }
 
-// Save vehicles in a txt file
+/**
+ * @brief Saves all the data of the vehicles in a .txt file
+ *
+ * @param head
+ * @return int
+ */
 int saveVehicles(Vehicle *head)
 {
 	FILE *fp;
@@ -377,7 +455,11 @@ int saveVehicles(Vehicle *head)
 		return (0);
 }
 
-// Read vehicles from txt file
+/**
+ * @brief Reads the data present on the .txt file that has all the vehicles data saved.
+ *
+ * @return Vehicle*
+ */
 Vehicle *readVehicles()
 {
 	FILE *fp;
@@ -401,7 +483,12 @@ Vehicle *readVehicles()
 	return (aux);
 }
 
-// Save vehicles in a binary file
+/**
+ * @brief Saves all the data of the vehicles in a binary file
+ *
+ * @param head
+ * @return int
+ */
 int saveVehiclesBinary(Vehicle *head)
 {
 	FILE *fp;
@@ -425,7 +512,11 @@ int saveVehiclesBinary(Vehicle *head)
 		return (0);
 }
 
-// Read vehicles from binary file
+/**
+ * @brief Reads the data present on the binary file that has all the vehicles data saved.
+ *
+ * @return Vehicle*
+ */
 Vehicle *readVehiclesBinary()
 {
 	FILE *fp;
@@ -440,11 +531,11 @@ Vehicle *readVehiclesBinary()
 	}
 	while (!feof(fp))
 	{
-		Vehicle car;
-		size_t bytes_read = fread(&car, sizeof(Vehicle), 1, fp);
+		Vehicle vehicle;
+		size_t bytes_read = fread(&vehicle, sizeof(Vehicle), 1, fp);
 		if (bytes_read == 1)
 		{
-			aux = insertVehicle(aux, car.id, car.type, car.autonomy, car.cost, car.rentedBy, car.location);
+			aux = insertVehicle(aux, vehicle.id, vehicle.type, vehicle.autonomy, vehicle.cost, vehicle.rentedBy, vehicle.location);
 		}
 	}
 	fclose(fp);

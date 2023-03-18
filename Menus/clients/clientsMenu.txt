@@ -6,6 +6,7 @@
 │ 3 - Cancel rental │
 │ 4 - Change data   │
 │ 5 - Delete account│
+│ 6 - Check my data │
 │ 0 - Exit          │
 └───────────────────┘
 -> 

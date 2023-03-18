@@ -1,6 +1,5 @@
 #ifndef MANAGERS
 #define MANAGERS
-extern int totManagers;
 
 typedef struct listVehicles Vehicle;
 
@@ -22,6 +21,9 @@ int getMaxManagerId(Manager *head);
 // Inserts a new manager
 Manager *insertManager(Manager *head, int id, char name[], char email[], char pw[]);
 
+// Manager Registration
+void managerReg(Manager **head);
+
 // Lists all the managers
 void listManagers(Manager **head);
 
@@ -39,5 +41,11 @@ int saveManagers(Manager *head);
 
 // Read managers data saved in txt file
 Manager *readManagers();
+
+// Save managers in a bin file
+int saveManagersBinary(Manager *head);
+
+// Read managers data saved in bin file
+Manager *readManagersBinary();
 
 #endif

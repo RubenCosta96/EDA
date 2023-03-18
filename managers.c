@@ -3,12 +3,11 @@
 #include <string.h>
 
 #include "managers.h"
+#include "menuFuncs.h"
 #define MAX_LINE 250
 #define MAX_LENGTH_NAME 50
 #define MAX_LENGTH_ADDRESS 50
 #define MAX_LENGTH_EMAIL 50
-
-int totManagers = 0;
 
 // Verifies if the ID of the manager exists on the list
 int managerIdExists(Manager *head, int id)
@@ -25,7 +24,14 @@ int managerIdExists(Manager *head, int id)
 	return 0;
 }
 
-// Login for manager
+/**
+ * @brief Functions that allows the manager to login.
+ *
+ * @param head
+ * @param email
+ * @param pw
+ * @return Manager*
+ */
 Manager *loginManager(Manager *head, char email[], char pw[])
 {
 	Manager *login = head;
@@ -40,7 +46,16 @@ Manager *loginManager(Manager *head, char email[], char pw[])
 	}
 }
 
-// Insert a new manager
+/**
+ * @brief Function to insert a new manager into the already existing linked list of manager.
+ *
+ * @param head
+ * @param id
+ * @param name
+ * @param email
+ * @param pw
+ * @return Manager*
+ */
 Manager *insertManager(Manager *head, int id, char name[], char email[], char pw[])
 {
 
@@ -52,14 +67,43 @@ Manager *insertManager(Manager *head, int id, char name[], char email[], char pw
 		strcpy(new->email, email);
 		strcpy(new->password, pw);
 		new->next = head;
-		totManagers++;
 		return (new);
 	}
 	else
 		return (head);
 }
 
-// Show list of managers
+/**
+ * @brief Function that will recieve the inputs of the user to register a new manager
+ *
+ * @param head
+ */
+void managerReg(Manager **head)
+{
+	int id;
+	char name[MAX_LENGTH_NAME], email[MAX_LENGTH_EMAIL], password[16];
+	int maxID = getMaxManagerId(*head) + 1;
+
+	printf("Your ID is: %d\n", maxID);
+	printf("Name: ");
+	getchar();
+	scanf("%[^\n]", name);
+	printf("Email: ");
+	getchar();
+	scanf("%[^\n]", email);
+	printf("Password: ");
+	getchar();
+	scanf("%[^\n]", password);
+
+	*head = insertManager(*head, maxID, name, email, password);
+	clearConsole();
+}
+
+/**
+ * @brief Prints on the terminal the list of managers registered
+ *
+ * @param manager
+ */
 void listManagers(Manager **manager)
 {
 	Manager *head = *manager;
@@ -70,6 +114,12 @@ void listManagers(Manager **manager)
 	}
 }
 
+/**
+ * @brief Function that allows the manager to change any of the fields of his data
+ *
+ * @param m
+ * @return void*
+ */
 void *changeManagerData(Manager *m)
 {
 	int opt;
@@ -123,7 +173,12 @@ void *changeManagerData(Manager *m)
 	} while (opt != 0);
 }
 
-// Remove a manager from the list
+/**
+ * @brief Removes an existing manager from the linked list
+ *
+ * @param head
+ * @param id
+ */
 void removeManager(Manager **head, int id)
 {
 	Manager *previous = *head, *current = *head;
@@ -156,7 +211,12 @@ void removeManager(Manager **head, int id)
 	}
 }
 
-// Save managers in a txt
+/**
+ * @brief Saves all the data of the managers in a .txt file
+ *
+ * @param head
+ * @return int
+ */
 int saveManagers(Manager *head)
 {
 	FILE *fp;
@@ -178,7 +238,11 @@ int saveManagers(Manager *head)
 		return (0);
 }
 
-// Read managers data saved in txt file
+/**
+ * @brief Reads the data present on the .txt file that has all the managers data saved.
+ *
+ * @return Manager*
+ */
 Manager *readManagers()
 {
 	FILE *fp;
@@ -200,6 +264,12 @@ Manager *readManagers()
 	return (aux);
 }
 
+/**
+ * @brief Gets the highest value of the IDs of the managers registered.
+ *
+ * @param head
+ * @return int
+ */
 int getMaxManagerId(Manager *head)
 {
 	int maxId = 0;
@@ -213,4 +283,63 @@ int getMaxManagerId(Manager *head)
 		current = current->next;
 	}
 	return maxId;
+}
+
+/**
+ * @brief Saves all the data of the managers in a binary file
+ *
+ * @param head
+ * @return int
+ */
+int saveManagersBinary(Manager *head)
+{
+	FILE *fp;
+	fp = fopen("managerBinary.bin", "wb");
+	if (fp == NULL)
+	{
+		printf("Erro ao abrir o ficheiro.\n");
+	}
+	else if (fp != NULL)
+	{
+		Manager *aux = head;
+		while (aux != NULL)
+		{
+			fwrite(aux, sizeof(Manager), 1, fp);
+			aux = aux->next;
+		}
+		fclose(fp);
+		return (1);
+	}
+	else
+		return (0);
+}
+
+/**
+ * @brief Reads the data present on the binary file that has all the clients data saved.
+ *
+ * @return Vehicle*
+ */
+Manager *readManagersBinary()
+{
+	FILE *fp;
+
+	Manager *aux = NULL;
+
+	fp = fopen("managerBinary.bin", "rb");
+	if (fp == NULL)
+	{
+		printf("Erro ao abrir o ficheiro.");
+		return NULL;
+	}
+	while (!feof(fp))
+	{
+		Manager manager;
+		size_t bytes_read = fread(&manager, sizeof(Manager), 1, fp);
+		if (bytes_read == 1)
+		{
+			aux = insertManager(aux, manager.id, manager.name, manager.email, manager.password);
+		}
+	}
+	fclose(fp);
+	return (aux);
 }

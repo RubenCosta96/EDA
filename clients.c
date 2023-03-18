@@ -11,8 +11,6 @@
 #define MAX_LENGTH_ADDRESS 50
 #define MAX_LENGTH_EMAIL 50
 
-int totClients = 0;
-
 // Verifies if the ID of the client exists on the list
 int clientIdExists(Client *head, int id)
 {
@@ -28,7 +26,12 @@ int clientIdExists(Client *head, int id)
 	return 0;
 }
 
-// Get clients max ID
+/**
+ * @brief Gets the highest value of the IDs of the clients registered
+ *
+ * @param head
+ * @return int
+ */
 int getMaxClientId(Client *head)
 {
 	int maxId = 0;
@@ -44,7 +47,11 @@ int getMaxClientId(Client *head)
 	return maxId;
 }
 
-// Show list of clients
+/**
+ * @brief Prints on the terminal the list of clients registered
+ *
+ * @param client
+ */
 void listClients(Client **client)
 {
 	Client *head = *client;
@@ -56,7 +63,20 @@ void listClients(Client **client)
 	}
 }
 
-// Insert a new client
+/**
+ * @brief Function to insert a new client into the already existing linked list of clients
+ *
+ * @param head
+ * @param id
+ * @param name
+ * @param age
+ * @param NIF
+ * @param balance
+ * @param address
+ * @param email
+ * @param pw
+ * @return Client*
+ */
 Client *insertClient(Client *head, int id, char name[], int age, char NIF[], float balance, char address[], char email[], char pw[])
 {
 	Client *new = malloc(sizeof(struct listClients));
@@ -71,14 +91,17 @@ Client *insertClient(Client *head, int id, char name[], int age, char NIF[], flo
 		strcpy(new->email, email);
 		strcpy(new->password, pw);
 		new->next = head;
-		totClients++;
 		return (new);
 	}
 	else
 		return (head);
 }
 
-// Registers a client
+/**
+ * @brief Function that will recieve the inputs of the user to register a new client
+ *
+ * @param head
+ */
 void clientReg(Client **head)
 {
 	int age;
@@ -88,28 +111,34 @@ void clientReg(Client **head)
 
 	printf("Your ID is: %d\n", maxID);
 	printf("Name: ");
-	fflush(stdout); // Use on windows
-	scanf("%s", name);
+	getchar();
+	scanf("%[^\n]", name);
 	printf("Age: ");
-	fflush(stdout); // Use on windows
+	getchar();
 	scanf("%d", &age);
 	printf("NIF: ");
-	fflush(stdout); // Use on windows
-	scanf("%s", NIF);
+	getchar();
+	scanf("%[^\n]", NIF);
 	balance = 0;
 	printf("Address: ");
-	fflush(stdout); // Use on windows
-	scanf("%s", address);
+	getchar();
+	scanf("%[^\n]", address);
 	printf("Email: ");
-	fflush(stdout); // Use on windows
-	scanf("%s", email);
+	getchar();
+	scanf("%[^\n]", email);
 	printf("Password: ");
+	getchar();
 	fflush(stdout); // Use on windows
-	scanf("%s", password);
+	scanf("%[^\n]", password);
 	*head = insertClient(*head, maxID, name, age, NIF, balance, address, email, password);
 }
 
-// Remove an existing client
+/**
+ * @brief Removes an existing client from the linked list
+ *
+ * @param head
+ * @param id
+ */
 void removeClient(Client **head, int id)
 {
 	Client *previous = *head, *current = *head;
@@ -141,6 +170,12 @@ void removeClient(Client **head, int id)
 	}
 }
 
+/**
+ * @brief Function that recieves input from the user to add funds the respective user's balance.
+ *
+ * @param c
+ * @param balance
+ */
 void addFundsClient(Client *c, float balance)
 {
 
@@ -152,18 +187,25 @@ void addFundsClient(Client *c, float balance)
 	}
 	c->balance += balance;
 	printf("%.2f added to your balance.\nYou currently have %.2f€.\n", balance, c->balance);
-	getchar();
 	return;
 }
 
+/**
+ * @brief Function that presents to ther user the options that are available to the client after login
+ *
+ * @param head
+ * @param vehicle
+ * @param c
+ * @param manager
+ */
 void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager)
 {
 	int opt;
 	float balance = 0;
-	Client *current = *head;
 
 	clearConsole();
 	printf("Welcome, %s!\n", c->name);
+	printf("Current balance: %.2f €\n", c->balance);
 	system("cat ./Menus/clients/clientsMenu.txt");
 	fflush(stdout);
 	scanf("%d", &opt);
@@ -193,6 +235,7 @@ void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager)
 		break;
 	case 2:
 		fflush(stdout);
+		clearConsole();
 		printf("What is the value of funds you want to add?\n");
 		printf("Value: ");
 		scanf("%f", &balance);
@@ -200,6 +243,7 @@ void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager)
 		break;
 	case 3:
 		fflush(stdout);
+		clearConsole();
 		int rentedVehicles = listVehiclesRentedByClient(vehicle, c->id);
 		if (rentedVehicles == 0)
 		{
@@ -207,7 +251,7 @@ void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager)
 		}
 		else
 		{
-			printf("Which vehicle do you want to cancel your rent?\nID: ");
+			printf("Which vehicle do you want to cancel your rental?\nID: ");
 			int vehicleID;
 			scanf("%d", &vehicleID);
 			cancelRental(vehicle, vehicleID);
@@ -215,7 +259,7 @@ void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager)
 		break;
 	case 4:
 		fflush(stdout);
-		current = changeClientData(current);
+		c = changeClientData(c);
 		break;
 	case 5:
 		fflush(stdout);
@@ -224,6 +268,10 @@ void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager)
 		enterToContinue();
 		loginOrReg(head, manager, vehicle);
 		return;
+		break;
+	case 6:
+		clearConsole();
+		checkUserData(c);
 		break;
 	case 0:
 		loginOrReg(head, manager, vehicle);
@@ -237,22 +285,28 @@ void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager)
 	clientMenu(head, vehicle, c, manager);
 }
 
-void *changeClientData(Client *c)
+/**
+ * @brief Function that allows the client to change any of the fields of his data
+ *
+ * @param c
+ * @return Client*
+ */
+Client *changeClientData(Client *c)
 {
 	int opt;
 	char newName[MAX_LENGTH_NAME], newEmail[MAX_LENGTH_EMAIL], newPassword[16], newAddress[MAX_LENGTH_ADDRESS];
 	char newNIF[10];
 	int newAge;
 
-	clearConsole();
-	system("cat ./Menus/clients/clientsMenu2.txt");
-
 	do
 	{
-		printf("Enter option: ");
+		clearConsole();
+		system("cat ./Menus/clients/clientsMenu2.txt");
+		printf("Current data:\n");
+		checkUserData(c);
+		printf("\nEnter option: ");
 		fflush(stdout);
 		scanf("%d", &opt);
-		printf("\n");
 
 		switch (opt)
 		{
@@ -260,8 +314,8 @@ void *changeClientData(Client *c)
 			while ((getchar()) != '\n')
 				;
 			printf("Enter new name: ");
-			fgets(newName, MAX_LENGTH_NAME, stdin);
-			newName[strcspn(newName, "\n")] = '\0';
+			scanf("%[^\n]", newName);
+
 			strcpy(c->name, newName);
 			break;
 		case 2:
@@ -275,32 +329,29 @@ void *changeClientData(Client *c)
 			while ((getchar()) != '\n')
 				;
 			printf("Enter new NIF: ");
-			fgets(newNIF, 10, stdin);
-			newNIF[strlen(newNIF) - 1] = '\0';
+			scanf("%[^\n]", newNIF);
+
 			strcpy(c->NIF, newNIF);
 			break;
 		case 4:
 			while ((getchar()) != '\n')
 				;
 			printf("Enter new address: ");
-			fgets(newAddress, strlen(newAddress), stdin);
-			newAddress[strlen(newAddress) - 1] = '\0';
+			scanf("%[^\n]", newAddress);
 			strcpy(c->address, newAddress);
 			break;
 		case 5:
 			while ((getchar()) != '\n')
 				;
 			printf("Enter new email: ");
-			fgets(newEmail, MAX_LENGTH_EMAIL, stdin);
-			newEmail[strcspn(newEmail, "\n")] = '\0';
+			scanf("%[^\n]", newEmail);
 			strcpy(c->email, newEmail);
 			break;
 		case 6:
 			while ((getchar()) != '\n')
 				;
 			printf("Enter new password: ");
-			fgets(newPassword, 16, stdin);
-			newPassword[strcspn(newPassword, "\n")] = '\0';
+			scanf("%[^\n]", newAddress);
 			strcpy(c->password, newPassword);
 			break;
 		case 0:
@@ -310,11 +361,30 @@ void *changeClientData(Client *c)
 			fflush(stdout);
 			break;
 		}
-
-	} while (opt < 0 || opt > 6);
+	} while (opt != 0);
+	return c;
 }
 
-// Save managers in a txt
+/**
+ * @brief Prints on the terminal the info of the user that's logged in.
+ *
+ * @param c
+ */
+void checkUserData(Client *c)
+{
+	printf("Name: %s\n", c->name);
+	printf("Age: %d\n", c->age);
+	printf("NIF: %s\n", c->NIF);
+	printf("Address: %s\n", c->address);
+	printf("Email: %s\n", c->email);
+}
+
+/**
+ * @brief Saves all the data of the clients in a .txt file
+ *
+ * @param head
+ * @return int
+ */
 int saveClients(Client *head)
 {
 	FILE *fp;
@@ -337,7 +407,11 @@ int saveClients(Client *head)
 		return (0);
 }
 
-// Read vehicles from txt file
+/**
+ * @brief Reads the data present on the .txt file that has all the clients data saved.
+ *
+ * @return Client*
+ */
 Client *readClients()
 {
 	FILE *fp;
@@ -359,5 +433,64 @@ Client *readClients()
 		}
 		fclose(fp);
 	}
+	return (aux);
+}
+
+/**
+ * @brief Saves all the data of the cilents in a binary file
+ *
+ * @param head
+ * @return int
+ */
+int saveClientsBinary(Client *head)
+{
+	FILE *fp;
+	fp = fopen("clientBinary.bin", "wb");
+	if (fp == NULL)
+	{
+		printf("Erro ao abrir o ficheiro.\n");
+	}
+	else if (fp != NULL)
+	{
+		Client *aux = head;
+		while (aux != NULL)
+		{
+			fwrite(aux, sizeof(Client), 1, fp);
+			aux = aux->next;
+		}
+		fclose(fp);
+		return (1);
+	}
+	else
+		return (0);
+}
+
+/**
+ * @brief Reads the data present on the binary file that has all the clients data saved.
+ *
+ * @return Client*
+ */
+Client *readClientsBinary()
+{
+	FILE *fp;
+
+	Client *aux = NULL;
+
+	fp = fopen("clientBinary.bin", "rb");
+	if (fp == NULL)
+	{
+		printf("Erro ao abrir o ficheiro.");
+		return NULL;
+	}
+	while (!feof(fp))
+	{
+		Client client;
+		size_t bytes_read = fread(&client, sizeof(Client), 1, fp);
+		if (bytes_read == 1)
+		{
+			aux = insertClient(aux, client.id, client.name, client.age, client.NIF, client.balance, client.address, client.email, client.password);
+		}
+	}
+	fclose(fp);
 	return (aux);
 }

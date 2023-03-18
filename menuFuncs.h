@@ -20,15 +20,12 @@ void clientOrManagerLogin(Client **client, Manager **manager, Vehicle **vehicle)
 void clientOrManagerRegistration(Client **client, Manager **manager, Vehicle **vehicle);
 
 // Client Login
-void clientLogin(Client **client,Vehicle **vehicle,Manager **manager);
+void clientLogin(Client **client, Vehicle **vehicle, Manager **manager);
 
 // Manager Login
 void managerLogin(Manager **manager, Vehicle **vehicle, Client **client);
 
 // Manager Menu
 void managerMenu(Manager **head, Vehicle **vehicle, Client **client, Manager *m);
-
-// Manager Registration
-void managerReg(Manager **manager);
 
 #endif

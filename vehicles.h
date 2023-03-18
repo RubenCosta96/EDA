@@ -55,10 +55,16 @@ void sortVehiclesByAutonomy(Vehicle **head);
 // Rent vehicle function
 int rentVehicle(Vehicle **head, int vehicleID, Client *c);
 
-// Save managers in a txt (DONE)
+// Save vehicles in a txt (DONE)
 int saveVehicles(Vehicle *head);
 
 // Read vehicles from txt file (DONE)
 Vehicle *readVehicles();
+
+// Save managers in a binary file (DONE)
+int saveVehiclesBinary(Vehicle *head);
+
+// Read vehicles from a binary file (DONE)
+Vehicle *readVehiclesBinary();
 
 #endif

@@ -41,13 +41,22 @@ void addFundsClient(Client *c, float balance);
 // Presents client principal menu
 void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager);
 
-// Presents list of options for the client to change the data that he wishes to update
-void *changeClientData(Client *c);
+// Prints the active user data
+void checkUserData(Client *c);
 
-// Save managers in a txt (DONE)
+// Presents list of options for the client to change the data that he wishes to update
+Client *changeClientData(Client *c);
+
+// Save clients in a txt (DONE)
 int saveClients(Client *head);
 
-// Read vehicles from txt file (DONE)
+// Read clients from txt file (DONE)
 Client *readClients();
+
+// Save clients in a bin file
+int saveClientsBinary(Client *head);
+
+// Read clients data saved in bin file
+Client *readClientsBinary();
 
 #endif

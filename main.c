@@ -6,13 +6,9 @@
 #include <time.h>
 
 #include "clients.h"
-#include "clients.c"
 #include "managers.h"
-#include "managers.c"
 #include "vehicles.h"
-#include "vehicles.c"
 #include "menuFuncs.h"
-#include "menuFuncs.c"
 
 int main()
 {
@@ -22,16 +18,16 @@ int main()
   Manager *managers = NULL;
 
   // Read data from data sets
-  vehicles = readVehicles();
-  clients = readClients();
-  managers = readManagers();
+  vehicles = readVehiclesBinary();
+  clients = readClientsBinary();
+  managers = readManagersBinary();
 
   // Menu
   loginOrReg(&clients, &managers, &vehicles);
 
-  saveManagers(managers);
-  saveClients(clients);
-  saveVehicles(vehicles);
+  saveVehiclesBinary(vehicles);
+  saveClientsBinary(clients);
+  saveManagersBinary(managers);
 
   return 0;
 }
