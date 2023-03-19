@@ -11,21 +11,6 @@
 #define MAX_LENGTH_ADDRESS 50
 #define MAX_LENGTH_EMAIL 50
 
-// Verifies if the ID of the client exists on the list
-int clientIdExists(Client *head, int id)
-{
-	Client *current = head;
-	while (current != NULL)
-	{
-		if (current->id == id)
-		{
-			return 1;
-		}
-		current = current->next;
-	}
-	return 0;
-}
-
 /**
  * @brief Gets the highest value of the IDs of the clients registered
  *
@@ -55,7 +40,7 @@ int getMaxClientId(Client *head)
 void listClients(Client **client)
 {
 	Client *head = *client;
-	printf("ID\tName\tAge\tNIF\t\tBalance\t\tAddress\t\t\tEmail\t\tPassword\n");
+	printf("ID\tName\t\tAge\tNIF\t\tBalance\t\tAddress\t\t\tEmail\t\t\t\tPassword\n");
 	for (; head != NULL; head = head->next)
 	{
 		printf("%d\t%s\t%d\t%s\t%.2f\t\t%s\t%s\t\t%s\n", head->id, head->name, head->age,
@@ -105,7 +90,7 @@ Client *insertClient(Client *head, int id, char name[], int age, char NIF[], flo
 void clientReg(Client **head)
 {
 	int age;
-	char name[MAX_LENGTH_NAME], NIF[9], address[MAX_LENGTH_ADDRESS], email[MAX_LENGTH_EMAIL], password[16];
+	char name[MAX_LENGTH_NAME], NIF[10], address[MAX_LENGTH_ADDRESS], email[MAX_LENGTH_EMAIL], password[16];
 	float balance;
 	int maxID = getMaxClientId(*head) + 1;
 
@@ -118,7 +103,7 @@ void clientReg(Client **head)
 	scanf("%d", &age);
 	printf("NIF: ");
 	getchar();
-	scanf("%[^\n]", NIF);
+	scanf("%9[^\n]", NIF);
 	balance = 0;
 	printf("Address: ");
 	getchar();
@@ -388,7 +373,7 @@ void checkUserData(Client *c)
 int saveClients(Client *head)
 {
 	FILE *fp;
-	fp = fopen("clients1.txt", "w");
+	fp = fopen("clients.txt", "w");
 	if (fp != NULL)
 	{
 		Client *aux = head;

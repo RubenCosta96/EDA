@@ -53,7 +53,7 @@ int getMaxVehicleId(Vehicle *head)
 void listVehicles(Vehicle **v)
 {
 	Vehicle *head = *v;
-	printf("ID\tType\tAutonomy\tCost\tRented By\tLocation\n");
+	printf("ID\tType\t\tAutonomy\tCost\tRented By\tLocation\n");
 	for (; head != NULL; head = head->next)
 	{
 		printf("%d\t%s\t%d\t\t%.2f\t%d\t\t%s\n", head->id, head->type, head->autonomy, head->cost, head->rentedBy, head->location);
@@ -93,10 +93,10 @@ int listVehiclesNotRented(Vehicle **vehicle)
 {
 	Vehicle *head = *vehicle;
 	int freeVehicles = 0;
-	printf("ID\tType\tAutonomy\tCost\t\tLocation\n");
+	printf("ID\tType\t\tAutonomy\tCost\t\tLocation\n");
 	for (; head != NULL; head = head->next)
 	{
-		if (head->rentedBy < 0)
+		if (head->rentedBy <= 0)
 		{
 			printf("%d\t%s\t%d\t\t%.2f\t\t%s\n", head->id, head->type, head->autonomy, head->cost, head->location);
 			freeVehicles++;
@@ -182,7 +182,6 @@ void vehicleReg(Vehicle **head)
 	rentedBy = 0;
 
 	printf("Cost: ");
-	fflush(stdout);
 	scanf("%f", &cost);
 
 	*head = insertVehicle(*head, maxID, type, autonomy, cost, rentedBy, location);
@@ -374,7 +373,7 @@ int rentVehicle(Vehicle **head, int vehicleID, Client *c)
 		printf("Not enough balance.\n");
 		return -1;
 	}
-	else if (currentV->rentedBy != -1)
+	else if (currentV->rentedBy != 0)
 	{
 		printf("Vehicle is currently rented");
 		return -1;
@@ -425,7 +424,7 @@ void cancelRental(Vehicle **head, int vehicleID)
 			return;
 		}
 		currentV->autonomy -= distance;
-		currentV->rentedBy = -1;
+		currentV->rentedBy = 0;
 	}
 }
 
@@ -438,7 +437,7 @@ void cancelRental(Vehicle **head, int vehicleID)
 int saveVehicles(Vehicle *head)
 {
 	FILE *fp;
-	fp = fopen("vehicles1.txt", "w");
+	fp = fopen("vehicles.txt", "w");
 	if (fp != NULL)
 	{
 		Vehicle *aux = head;

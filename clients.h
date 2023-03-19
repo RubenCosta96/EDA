@@ -17,9 +17,6 @@ typedef struct listClients
      struct listClients *next;
 } Client;
 
-// Verifies if the ID of the client exists on the list(CHECK AGAIN)
-int clientIdExists(Client *head, int id);
-
 // Get clients max ID
 int getMaxClientId(Client *head);
 

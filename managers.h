@@ -12,9 +12,6 @@ typedef struct listManagers
      struct listManagers *next;
 } Manager;
 
-// Verifies if the ID of the manager exists on the list
-int managerIdExists(Manager *head, int id);
-
 // Gets managers max ID
 int getMaxManagerId(Manager *head);
 

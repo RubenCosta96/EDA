@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// TEST
-#include <time.h>
-
 #include "clients.h"
 #include "managers.h"
 #include "vehicles.h"
@@ -25,6 +22,7 @@ int main()
   // Menu
   loginOrReg(&clients, &managers, &vehicles);
 
+  // Save data
   saveVehiclesBinary(vehicles);
   saveClientsBinary(clients);
   saveManagersBinary(managers);

@@ -9,21 +9,6 @@
 #define MAX_LENGTH_ADDRESS 50
 #define MAX_LENGTH_EMAIL 50
 
-// Verifies if the ID of the manager exists on the list
-int managerIdExists(Manager *head, int id)
-{
-	Manager *current = head;
-	while (current != NULL)
-	{
-		if (current->id == id)
-		{
-			return 1;
-		}
-		current = current->next;
-	}
-	return 0;
-}
-
 /**
  * @brief Functions that allows the manager to login.
  *
@@ -220,7 +205,7 @@ void removeManager(Manager **head, int id)
 int saveManagers(Manager *head)
 {
 	FILE *fp;
-	fp = fopen("managers1.txt", "w");
+	fp = fopen("managers.txt", "w");
 	if (fp != NULL)
 	{
 		Manager *aux = head;

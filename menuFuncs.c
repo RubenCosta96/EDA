@@ -124,9 +124,11 @@ void clientOrManagerRegistration(Client **client, Manager **manager, Vehicle **v
   {
   case 1:
     clientReg(client);
+    loginOrReg(client, manager, vehicle);
     break;
   case 2:
     managerReg(manager);
+    loginOrReg(client, manager, vehicle);
     break;
   case 0:
     loginOrReg(client, manager, vehicle);

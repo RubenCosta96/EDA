@@ -1,4 +1,0 @@
-1,Ruben,26,254423123,60.00,Rua de sre,ruben@gmail.com,pass123
-2,ricardo,28,254343123,11.00,Rua degre ,ricardo,1234
-3,filipe,29,15533123,17.00,Rua de dasd,filipe@gmail.com,pass1234
-4,pedro,30,154423123,1.00,Rua de sao tiago,pedro@gmail.com,pass4321
