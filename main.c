@@ -15,23 +15,17 @@ int main()
   Manager *managers = NULL;
 
   // Read data from data sets
-  vehicles = readVehicles();
-  clients = readClients();
-  managers = readManagers();
+  vehicles = readVehiclesBinary();
+  clients = readClientsBinary();
+  managers = readManagersBinary();
 
-  managers = changeManagerData(managers, "teste");
+  // Menu
+  loginOrReg(&clients, &managers, &vehicles);
 
-  // managers = insertManager(managers, 8, "Nando", "nando@gmail.com", "nando123");
-  // listManagers(managers);
-  //  Menu
-  // loginOrReg(&clients, &managers);
-  // listManagers(managers);
-
-  // saveManagers(managers);
-
-  /*printf("totClients = %d\n", totClients);
-  printf("totManagers = %d\n", totManagers);
-  printf("totVehicles = %d\n", totClients);*/
+  // Save data
+  saveVehiclesBinary(vehicles);
+  saveClientsBinary(clients);
+  saveManagersBinary(managers);
 
   return 0;
 }

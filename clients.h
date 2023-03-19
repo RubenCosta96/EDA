@@ -1,30 +1,30 @@
 #ifndef CLIENTS
 #define CLIENTS
-extern int totClients;
 
 typedef struct listVehicles Vehicle;
+typedef struct listManagers Manager;
 
 typedef struct listClients
 {
- int id;
- char name[50];
- int age;
- char NIF[9];
- float balance;
- char address[50];
- char email[30];
- char password[16];
- struct listClients *next;
+     int id;
+     char name[50];
+     int age;
+     char NIF[10];
+     float balance;
+     char address[50];
+     char email[30];
+     char password[16];
+     struct listClients *next;
 } Client;
 
-// Verifies if the ID of the client exists on the list(CHECK AGAIN)
-int clientIdExists(Client *head, int id);
+// Get clients max ID
+int getMaxClientId(Client *head);
 
 // Registers a new client (CHECK AGAIN)
 void clientReg(Client **head);
 
 // Show list of clients (DONE)
-void listClients(Client *head);
+void listClients(Client **head);
 
 // Insert a new client (CHECK AGAIN)
 Client *insertClient(Client *head, int id, char name[], int age, char NIF[], float balance, char address[], char email[], char pw[]);
@@ -32,10 +32,28 @@ Client *insertClient(Client *head, int id, char name[], int age, char NIF[], flo
 // Remove an existing client (DONE)
 void removeClient(Client **head, int id);
 
-// Save managers in a txt (DONE)
+// Adds a certain balance to the client (HALF DONE) #Change ID to email maybe?
+void addFundsClient(Client *c, float balance);
+
+// Presents client principal menu
+void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager);
+
+// Prints the active user data
+void checkUserData(Client *c);
+
+// Presents list of options for the client to change the data that he wishes to update
+Client *changeClientData(Client *c);
+
+// Save clients in a txt (DONE)
 int saveClients(Client *head);
 
-// Read vehicles from txt file (DONE)
+// Read clients from txt file (DONE)
 Client *readClients();
+
+// Save clients in a bin file
+int saveClientsBinary(Client *head);
+
+// Read clients data saved in bin file
+Client *readClientsBinary();
 
 #endif
