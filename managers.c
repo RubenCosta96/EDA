@@ -270,6 +270,7 @@ int getMaxManagerId(Manager *head)
 	return maxId;
 }
 
+
 /**
  * @brief Saves all the data of the managers in a binary file
  *
