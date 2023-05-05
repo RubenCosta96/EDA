@@ -368,7 +368,7 @@ int rentVehicle(Vehicle **head, int vehicleID, Client *c)
 		return -1;
 	}
 	// Verifies if there is enough balance
-	if (c->balance - currentV->cost < 0)
+	else if (c->balance - currentV->cost < 0)
 	{
 		printf("Not enough balance.\n");
 		return -1;

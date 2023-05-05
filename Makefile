@@ -1,5 +1,5 @@
 app: main.o clients.o vehicles.o managers.o menuFuncs.o
-	gcc -o app main.o clients.o vehicles.o managers.o menuFuncs.o -fno-exceptions
+	gcc -o app main.o clients.o vehicles.o managers.o menuFuncs.o
 
 main.o : main.c vehicles.h clients.h managers.h menuFuncs.h
 	gcc -c main.c

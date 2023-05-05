@@ -22,7 +22,7 @@ void loginOrReg(Client **client, Manager **manager, Vehicle **vehicle)
   int opt;
 
   clearConsole();
-  system("cat ./Menus/general/menu1.txt");
+  system("type /Menus/general/menu1.txt || cat /Menus/general/menu1.txt");
   scanf("%d", &opt);
 
   switch (opt)
