@@ -53,7 +53,7 @@ void removeVehicle(Vehicle **head, int id);
 void sortVehiclesByAutonomy(Vehicle **head);
 
 // Rent vehicle function
-int rentVehicle(Vehicle **head, int vehicleID, Client *c);
+int rentVehicle(Vehicle **head, int vehicleID, Client *c, History **hist);
 
 // Save vehicles in a txt (DONE)
 int saveVehicles(Vehicle *head);
