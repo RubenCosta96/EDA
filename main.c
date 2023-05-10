@@ -38,31 +38,37 @@ int main()
   // history = readHistory();
 
   /*
-    // Menu
-    loginOrReg(&clients, &managers, &vehicles);
+  createVertex(&graph, 1, "as.tres.palavras");
+  createVertex(&graph, 2, "next.outras.palavras");
+  createVertex(&graph, 3, "mais.tres.palavras");
+  createVertex(&graph, 4, "outras.tres.palavras");
+  createVertex(&graph, 5, "plus.tres.palavras");
+  createVertex(&graph, 6, "extra.tres.palavras");
+  createVertex(&graph, 7, "max.outras.palavras");
+  createEdge(graph, "next.outras.palavras", "as.tres.palavras", 2);
+  createEdge(graph, "next.outras.palavras", "plus.tres.palavras", 3);
 
-    // Save data
-    saveVehiclesBinary(vehicles);
-    saveClientsBinary(clients);
-    saveManagersBinary(managers);
-    */
+  listVertexes(&graph);
+  listAdjacents(graph, "next.outras.palavras");
+  */
 
-  history->init.tm_year = 11; // Year since 1900 (2021 - 1900)
-  history->init.tm_mon = 4;   // Month (May)
-  history->init.tm_mday = 5;  // Day of the month
-  history->init.tm_hour = 10; // Hour
-  history->init.tm_min = 30;  // Minute
-  history->init.tm_sec = 0;   // Second
+  // Menu
+  loginOrReg(&clients, &managers, &vehicles, &graph, &history);
 
-  history->end.tm_year = 11; // Year since 1900 (2021 - 1900)
-  history->end.tm_mon = 4;   // Month (May)
-  history->end.tm_mday = 6;  // Day of the month
-  history->end.tm_hour = 11; // Hour
-  history->end.tm_min = 45;  // Minute
-  history->end.tm_sec = 0;   // Second
+  // Save data
+  saveVehiclesBinary(vehicles);
+  saveClientsBinary(clients);
+  saveManagersBinary(managers);
 
-  history = insertHistory(history, 50, "Joao", 30, "Trotinete", 13, history->init, history->end);
-  // listHistory(history);
+  // Test values for history function test
+  // history->init.tm_year = 11; // Year since 1900 (2021 - 1900)
+  // history->init.tm_mon = 4;   // Month (May)
+  // history->init.tm_mday = 5;  // Day of the month
+  // history->init.tm_hour = 10; // Hour
+  // history->init.tm_min = 30;  // Minute
+  // history->init.tm_sec = 0;   // Second
+
+  listHistory(&history);
 
   return 0;
 }

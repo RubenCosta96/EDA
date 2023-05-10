@@ -8,13 +8,14 @@
 #include "menuFuncs.h"
 #include "graph.h"
 
-int createVertex(Graph **g, char *newVertex)
+int createVertex(Graph **g, int id, char *newVertex)
 {
-     Graph *new = malloc(sizeof(struct listVehicles));
+     Graph *new = malloc(sizeof(struct graph2));
+
      if (new != NULL)
      {
           strcpy(new->vertex, newVertex);
-          new->vehicles = NULL;
+          new->id = id;
           new->next = *g;
           *g = new;
           return 1;
@@ -59,18 +60,33 @@ void listAdjacents(Graph *g, char *vertex)
      Adjacent *aux;
      if (vertexExists(g, vertex))
      {
+          printf("Connection: %s", vertex);
           while (strcmp(g->vertex, vertex) != 0)
                g = g->next;
           aux = g->adjacents;
+
           while (aux != NULL)
           {
-               printf("%s %.2f\n", aux->vertex, aux->weight);
+               // printf("%s %.2f\n", aux->vertex, aux->weight);
+
+               printf(" -> %s", aux->vertex);
                aux = aux->next;
           }
      }
 }
 
-int insertVehicle(Graph *g, char geocode[], int vehicleID)
+void listVertexes(Graph **graph)
+{
+     printf("ID\tCode\t\t\tLocation\n");
+     Graph *head = *graph;
+     for (; head != NULL; head = head->next)
+     {
+          printf("%d\t%s\tN/A", head->id, head->vertex);
+          printf("\n");
+     }
+}
+
+int addVehicleLoc(Graph *g, char geocode[], int vehicleID)
 {
      while ((g != NULL) && (strcmp(g->vertex, geocode) != 0))
           g = g->next;
@@ -84,4 +100,19 @@ int insertVehicle(Graph *g, char geocode[], int vehicleID)
           g->vehicles = new;
           return (1);
      }
+}
+
+int getMaxVertexId(Graph *head)
+{
+     int maxId = 0;
+     Graph *current = head;
+     while (current != NULL)
+     {
+          if (current->id > maxId)
+          {
+               maxId = current->id;
+          }
+          current = current->next;
+     }
+     return maxId;
 }

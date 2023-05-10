@@ -19,7 +19,9 @@ typedef struct history
 } History;
 
 History *insertHistory(History *head, int clientID, char clientName[], int vehicleID, char vehicleType[],
-                       float cost, struct tm init, struct tm end);
+                       float cost, struct tm init);
+
+void cancelRentHist(History **history, int vehicleID, int clientID);
 
 void listHistory(History **history);
 

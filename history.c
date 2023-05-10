@@ -10,10 +10,8 @@
 #define MAX_LENGTH_EMAIL 50
 
 History *insertHistory(History *head, int clientID, char clientName[], int vehicleID, char vehicleType[],
-                       float cost, struct tm init, struct tm end)
-
+                       float cost, struct tm init)
 {
-
      History *new = malloc(sizeof(struct history));
      if (new != NULL)
      {
@@ -23,8 +21,7 @@ History *insertHistory(History *head, int clientID, char clientName[], int vehic
           strcpy(new->vehicleType, vehicleType);
           new->cost = cost;
           new->init = init;
-          new->end = end;
-
+          new->init.tm_year += 1900;
           new->next = head;
           return (new);
      }
@@ -38,12 +35,29 @@ void listHistory(History **history)
      printf("Client ID\tClient Name\tVehicle ID\tVehicle Type\tTotal Cost\tStart of rental\t\tEnd of rental\t\n");
      for (; head != NULL; head = head->next)
      {
-          printf("%d\t\t%s\t\t%d\t%s\t\t%.2f\t%d/%d/%d %d:%d:%d\t%d/%d/%d %d:%d:%d\n",
+          printf("%d\t\t%s\t%d\t\t%s\t%.2f\t\t%d/%d/%d %.2d:%.2d:%.2d\t%d/%d/%d %.2d:%.2d:%.2d\n",
                  head->clientID, head->clientName,
                  head->vehicleID, head->vehicleType, head->cost, head->init.tm_mday, head->init.tm_mon,
                  head->init.tm_year, head->init.tm_hour, head->init.tm_min, head->init.tm_sec,
                  head->end.tm_mday, head->end.tm_mon, head->end.tm_year, head->end.tm_hour,
                  head->end.tm_min, head->end.tm_sec);
+     }
+}
+
+void cancelRentHist(History **history, int vehicleID, int clientID)
+{
+     History *aux = *history;
+
+     while (aux != NULL)
+     {
+          if ((clientID == aux->clientID) && (vehicleID == aux->vehicleID))
+          {
+               time_t rawtime;
+               time(&rawtime);
+               aux->end = *localtime(&rawtime);
+               aux->end.tm_year += 1900;
+          }
+          aux = aux->next;
      }
 }
 
@@ -93,7 +107,7 @@ History *readHistory()
                       &end.tm_min, &end.tm_sec);
 
                aux = insertHistory(aux, clientID, clientName, vehicleID,
-                                   vehicleType, cost, init, end);
+                                   vehicleType, cost, init);
           }
           fclose(fp);
      }
@@ -143,7 +157,7 @@ History *readHistoryBinary()
           {
                aux = insertHistory(aux, history.clientID, history.clientName,
                                    history.vehicleID, history.vehicleType, history.cost,
-                                   history.init, history.end);
+                                   history.init);
           }
      }
      fclose(fp);

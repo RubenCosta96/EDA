@@ -3,6 +3,9 @@
 
 typedef struct listVehicles Vehicle;
 typedef struct listManagers Manager;
+typedef struct history History;
+typedef struct graph1 Adjacent;
+typedef struct graph2 Graph;
 
 typedef struct listClients
 {
@@ -36,7 +39,7 @@ void removeClient(Client **head, int id);
 void addFundsClient(Client *c, float balance);
 
 // Presents client principal menu
-void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager);
+void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager, Graph **g, History **hist);
 
 // Prints the active user data
 void checkUserData(Client *c);

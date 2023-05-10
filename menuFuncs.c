@@ -6,6 +6,8 @@
 #include "clients.h"
 #include "managers.h"
 #include "menuFuncs.h"
+#include "graph.h"
+#include "history.h"
 #define MAX_LENGTH_NAME 50
 #define MAX_LENGTH_ADDRESS 50
 #define MAX_LENGTH_EMAIL 50
@@ -17,23 +19,23 @@
  * @param manager
  * @param vehicle
  */
-void loginOrReg(Client **client, Manager **manager, Vehicle **vehicle)
+void loginOrReg(Client **client, Manager **manager, Vehicle **vehicle, Graph **g, History **hist)
 {
   int opt;
 
   clearConsole();
-  system("type /Menus/general/menu1.txt || cat /Menus/general/menu1.txt");
+  system("cat ./Menus/general/menu1.txt");
   scanf("%d", &opt);
 
   switch (opt)
   {
   case 1:
     fflush(stdout);
-    clientOrManagerLogin(client, manager, vehicle);
+    clientOrManagerLogin(client, manager, vehicle, g, hist);
     break;
   case 2:
     fflush(stdout);
-    clientOrManagerRegistration(client, manager, vehicle);
+    clientOrManagerRegistration(client, manager, vehicle, g, hist);
     break;
   case 0:
     return;
@@ -41,7 +43,7 @@ void loginOrReg(Client **client, Manager **manager, Vehicle **vehicle)
   default:
     printf("Invalid option.\n");
     enterToContinue();
-    loginOrReg(client, manager, vehicle);
+    loginOrReg(client, manager, vehicle, g, hist);
     break;
   }
 }
@@ -76,7 +78,7 @@ void clearConsole()
  * @param manager
  * @param vehicle
  */
-void clientOrManagerLogin(Client **client, Manager **manager, Vehicle **vehicle)
+void clientOrManagerLogin(Client **client, Manager **manager, Vehicle **vehicle, Graph **g, History **hist)
 {
   int opt;
 
@@ -89,19 +91,19 @@ void clientOrManagerLogin(Client **client, Manager **manager, Vehicle **vehicle)
   {
   case 1:
     fflush(stdout);
-    clientLogin(client, vehicle, manager);
+    clientLogin(client, vehicle, manager, g, hist);
     break;
   case 2:
     fflush(stdout);
-    managerLogin(manager, vehicle, client);
+    managerLogin(manager, vehicle, client, g, hist);
     break;
   case 0:
-    loginOrReg(client, manager, vehicle);
+    loginOrReg(client, manager, vehicle, g, hist);
     return;
   default:
     printf("Invalid Option!\n");
     enterToContinue();
-    clientOrManagerLogin(client, manager, vehicle);
+    clientOrManagerLogin(client, manager, vehicle, g, hist);
     break;
   }
 }
@@ -113,7 +115,7 @@ void clientOrManagerLogin(Client **client, Manager **manager, Vehicle **vehicle)
  * @param manager
  * @param vehicle
  */
-void clientOrManagerRegistration(Client **client, Manager **manager, Vehicle **vehicle)
+void clientOrManagerRegistration(Client **client, Manager **manager, Vehicle **vehicle, Graph **g, History **hist)
 {
   int opt;
 
@@ -124,19 +126,19 @@ void clientOrManagerRegistration(Client **client, Manager **manager, Vehicle **v
   {
   case 1:
     clientReg(client);
-    loginOrReg(client, manager, vehicle);
+    loginOrReg(client, manager, vehicle, g, hist);
     break;
   case 2:
     managerReg(manager);
-    loginOrReg(client, manager, vehicle);
+    loginOrReg(client, manager, vehicle, g, hist);
     break;
   case 0:
-    loginOrReg(client, manager, vehicle);
+    loginOrReg(client, manager, vehicle, g, hist);
     return;
   default:
     printf("Invalid Option!\n");
     enterToContinue();
-    clientOrManagerRegistration(client, manager, vehicle);
+    clientOrManagerRegistration(client, manager, vehicle, g, hist);
     break;
   }
 }
@@ -148,7 +150,7 @@ void clientOrManagerRegistration(Client **client, Manager **manager, Vehicle **v
  * @param vehicle
  * @param manager
  */
-void clientLogin(Client **client, Vehicle **vehicle, Manager **manager)
+void clientLogin(Client **client, Vehicle **vehicle, Manager **manager, Graph **g, History **hist)
 {
   char email[MAX_LENGTH_EMAIL], password[16];
 
@@ -163,13 +165,13 @@ void clientLogin(Client **client, Vehicle **vehicle, Manager **manager)
   {
     if (strcmp(current->email, email) == 0 && strcmp(current->password, password) == 0)
     {
-      clientMenu(client, vehicle, current, manager);
+      clientMenu(client, vehicle, current, manager, g, hist);
       return;
     }
     current = current->next;
   }
   printf("Invalid email or password.\n");
-  clientLogin(client, vehicle, manager);
+  clientLogin(client, vehicle, manager, g, hist);
 }
 
 /**
@@ -179,7 +181,7 @@ void clientLogin(Client **client, Vehicle **vehicle, Manager **manager)
  * @param vehicle
  * @param client
  */
-void managerLogin(Manager **manager, Vehicle **vehicle, Client **client)
+void managerLogin(Manager **manager, Vehicle **vehicle, Client **client, Graph **g, History **hist)
 {
   char email[MAX_LENGTH_EMAIL], password[16];
 
@@ -194,13 +196,13 @@ void managerLogin(Manager **manager, Vehicle **vehicle, Client **client)
   {
     if (strcmp(current->email, email) == 0 && strcmp(current->password, password) == 0)
     {
-      managerMenu(manager, vehicle, client, current);
+      managerMenu(manager, vehicle, client, current, g, hist);
       return;
     }
     current = current->next;
   }
   printf("Invalid email or password.\n");
-  managerLogin(manager, vehicle, client);
+  managerLogin(manager, vehicle, client, g, hist);
 }
 
 /**
@@ -211,7 +213,7 @@ void managerLogin(Manager **manager, Vehicle **vehicle, Client **client)
  * @param client
  * @param m
  */
-void managerMenu(Manager **head, Vehicle **vehicle, Client **client, Manager *m)
+void managerMenu(Manager **head, Vehicle **vehicle, Client **client, Manager *m, Graph **g, History **hist)
 {
   int opt;
   Manager *current = *head;
@@ -234,7 +236,10 @@ void managerMenu(Manager **head, Vehicle **vehicle, Client **client, Manager *m)
     break;
   case 2:
     // Check history
-    // TO DO
+    clearConsole();
+    fflush(stdout);
+    listHistory(hist);
+    enterToContinue();
     break;
   case 3:
     // Change vehicle
@@ -303,16 +308,32 @@ void managerMenu(Manager **head, Vehicle **vehicle, Client **client, Manager *m)
     printf("Account removed with success.\n");
     enterToContinue();
     clearConsole();
-    loginOrReg(client, head, vehicle);
+    loginOrReg(client, head, vehicle, g, hist);
     return;
+    break;
+  case 11:
+    // List locations available with geocode and ID
+    fflush(stdout);
+    clearConsole();
+    listVertexes(g);
+    enterToContinue();
+    break;
+  case 12:
+    fflush(stdout);
+    clearConsole();
+    char newLocation[SIZE];
+    printf("Name of new location: ");
+    scanf("%s", newLocation);
+    int maxID = getMaxVertexId(*g) + 1;
+    createVertex(g, maxID, newLocation);
     break;
   case 0:
     clearConsole();
-    loginOrReg(client, head, vehicle);
+    loginOrReg(client, head, vehicle, g, hist);
     return;
     break;
   default:
     break;
   }
-  managerMenu(head, vehicle, client, m);
+  managerMenu(head, vehicle, client, m, g, hist);
 }

@@ -15,6 +15,8 @@ typedef struct graph1
 
 typedef struct graph2
 {
+     int id;
+     char geocode[SIZE];
      char vertex[SIZE];
      Adjacent *adjacents;
      Vehicle *vehicles;
@@ -22,12 +24,18 @@ typedef struct graph2
 } Graph;
 
 // Creates a new vertex
-int createVertex(Graph **g, char *newVertex);
+int createVertex(Graph **g, int id, char *newVertex);
 
 int vertexExists(Graph *g, char vertex[]);
 
 int createEdge(Graph *g, char vOrigin[], char vDestination[], float weight);
 
 void listAdjacents(Graph *g, char *vertex);
+
+void listVertexes(Graph **graph);
+
+int addVehicleLoc(Graph *g, char geocode[], int vehicleID);
+
+int getMaxVertexId(Graph *head);
 
 #endif
