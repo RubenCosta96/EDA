@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "vehicles.h"
 #include "menuFuncs.h"
 #include "clients.h"
+#include "history.h"
+#include "graph.h"
 #define MAX_LINE 250
 
 /**
@@ -101,6 +104,10 @@ int listVehiclesNotRented(Vehicle **vehicle)
 			printf("%d\t%s\t%d\t\t%.2f\t\t%s\n", head->id, head->type, head->autonomy, head->cost, head->location);
 			freeVehicles++;
 		}
+	}
+	if (freeVehicles == 0)
+	{
+		clearConsole();
 	}
 	return freeVehicles;
 }
@@ -352,10 +359,12 @@ void sortVehiclesByAutonomy(Vehicle **head)
  * @param c
  * @return int
  */
-int rentVehicle(Vehicle **head, int vehicleID, Client *c)
+int rentVehicle(Vehicle **head, int vehicleID, Client *c, History **hist)
 {
-
 	Vehicle *currentV = *head;
+	History *newHist = *hist;
+	time_t rawtime;
+	time(&rawtime);
 
 	while (currentV != NULL && currentV->id != vehicleID)
 	{
@@ -368,7 +377,7 @@ int rentVehicle(Vehicle **head, int vehicleID, Client *c)
 		return -1;
 	}
 	// Verifies if there is enough balance
-	if (c->balance - currentV->cost < 0)
+	else if (c->balance - currentV->cost < 0)
 	{
 		printf("Not enough balance.\n");
 		return -1;
@@ -382,6 +391,8 @@ int rentVehicle(Vehicle **head, int vehicleID, Client *c)
 	{
 		currentV->rentedBy = c->id;
 		c->balance -= currentV->cost;
+		*hist = insertHistory(*hist, c->id, c->name, vehicleID, currentV->type,
+							  currentV->cost, *localtime(&rawtime));
 		printf("Vehicle rented.\n");
 	}
 
@@ -444,7 +455,7 @@ int saveVehicles(Vehicle *head)
 		while (aux != NULL)
 		{
 			fprintf(fp, "%d,%s,%d,%.2f,%d,%s\n", aux->id, aux->type,
-				   aux->autonomy, aux->cost, aux->rentedBy, aux->location);
+					aux->autonomy, aux->cost, aux->rentedBy, aux->location);
 			aux = aux->next;
 		}
 		fclose(fp);

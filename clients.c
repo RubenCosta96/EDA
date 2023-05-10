@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "clients.h"
 #include "managers.h"
 #include "vehicles.h"
 #include "menuFuncs.h"
+#include "history.h"
+#include "graph.h"
 #define MAX_LINE 250
 #define MAX_LENGTH_NAME 50
 #define MAX_LENGTH_ADDRESS 50
@@ -44,7 +47,7 @@ void listClients(Client **client)
 	for (; head != NULL; head = head->next)
 	{
 		printf("%d\t%s\t%d\t%s\t%.2f\t\t%s\t%s\t\t%s\n", head->id, head->name, head->age,
-			  head->NIF, head->balance, head->address, head->email, head->password);
+			   head->NIF, head->balance, head->address, head->email, head->password);
 	}
 }
 
@@ -183,7 +186,7 @@ void addFundsClient(Client *c, float balance)
  * @param c
  * @param manager
  */
-void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager)
+void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager, Graph **g, History **hist)
 {
 	int opt;
 	float balance = 0;
@@ -202,16 +205,17 @@ void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager)
 		// Rent vehicle function;
 		clearConsole();
 		int freeVehicles;
-		printf("Rental options:\n");
 		freeVehicles = listVehiclesNotRented(vehicle);
 		if (freeVehicles > 0)
 		{
 			printf("Which vehicle do you wish to rent?\nID: ");
 			int vehicleID;
 			scanf("%d", &vehicleID);
-			float newBalance = rentVehicle(vehicle, vehicleID, c);
+			float newBalance = rentVehicle(vehicle, vehicleID, c, hist);
 			if (newBalance >= 0)
+			{
 				c->balance = newBalance;
+			}
 		}
 		else
 		{
@@ -240,6 +244,7 @@ void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager)
 			int vehicleID;
 			scanf("%d", &vehicleID);
 			cancelRental(vehicle, vehicleID);
+			cancelRentHist(hist, vehicleID, c->id);
 		}
 		break;
 	case 4:
@@ -251,7 +256,7 @@ void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager)
 		removeClient(head, c->id);
 		printf("Account removed with success.\n");
 		enterToContinue();
-		loginOrReg(head, manager, vehicle);
+		loginOrReg(head, manager, vehicle, g, hist);
 		return;
 		break;
 	case 6:
@@ -259,7 +264,7 @@ void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager)
 		checkUserData(c);
 		break;
 	case 0:
-		loginOrReg(head, manager, vehicle);
+		loginOrReg(head, manager, vehicle, g, hist);
 		return;
 		break;
 	default:
@@ -267,7 +272,7 @@ void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager)
 		break;
 	}
 	enterToContinue();
-	clientMenu(head, vehicle, c, manager);
+	clientMenu(head, vehicle, c, manager, g, hist);
 }
 
 /**
@@ -381,7 +386,7 @@ int saveClients(Client *head)
 		while (aux != NULL)
 		{
 			fprintf(fp, "%d,%s,%d,%s,%.2f,%s,%s,%s\n", aux->id, aux->name,
-				   aux->age, aux->NIF, aux->balance, aux->address, aux->email, aux->password);
+					aux->age, aux->NIF, aux->balance, aux->address, aux->email, aux->password);
 
 			aux = aux->next;
 		}
