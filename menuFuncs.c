@@ -230,7 +230,7 @@ void managerMenu(Manager **head, Vehicle **vehicle, Client **client, Manager *m,
     // Add vehicle
     clearConsole();
     printf("Vehicle to add:\n");
-    vehicleReg(vehicle);
+    vehicleReg(vehicle,g);
     getchar();
     enterToContinue();
     break;

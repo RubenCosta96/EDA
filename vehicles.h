@@ -26,7 +26,7 @@ int getMaxVehicleId(Vehicle *head);
 int vehicleIdExists(Vehicle *head, int id);
 
 // Registers a vehicle
-void vehicleReg(Vehicle **head);
+void vehicleReg(Vehicle **head,Graph **g);
 
 // Change data of vehicles (Only accessible by managers)
 void changeVehicleData(Vehicle **head, int id);
