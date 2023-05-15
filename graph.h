@@ -16,6 +16,7 @@ typedef struct graph1
 typedef struct graph2
 {
      int id;
+     int location[SIZE];
      char geocode[SIZE];
      char vertex[SIZE];
      Adjacent *adjacents;

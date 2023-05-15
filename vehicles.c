@@ -162,10 +162,11 @@ Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, float c
  *
  * @param head
  */
-void vehicleReg(Vehicle **head)
+void vehicleReg(Vehicle **head, Graph **g)
 {
-	char type[20], location[MAX_LENGTH_LOCATION];
-	int autonomy, rentedBy;
+	Graph *new = *g;
+	char type[20], location[MAX_LENGTH_LOCATION], geocode[MAX_LENGTH];
+	int autonomy, rentedBy, locationID;
 	float cost;
 	int maxID = getMaxVehicleId(*head) + 1;
 
@@ -182,9 +183,18 @@ void vehicleReg(Vehicle **head)
 	while ((getchar()) != '\n')
 		;
 
-	printf("Location: ");
-	fgets(location, sizeof(location), stdin);
-	location[strcspn(location, "\n")] = 0;
+	printf("In which location is your vehicle?\n");
+	listVertexes(&g);
+	scanf("%d", &locationID);
+	while (new != NULL)
+	{
+		if (new->id == locationID)
+		{
+			strcpy(location, new->location);
+			strcpy(geocode, new->geocode);
+		}
+		new = new->next;
+	}
 
 	rentedBy = 0;
 
