@@ -81,7 +81,7 @@ void listVertexes(Graph **graph)
      Graph *head = *graph;
      for (; head != NULL; head = head->next)
      {
-          printf("%d\t%s\tN/A", head->id, head->vertex);
+          printf("%d\t%s\t%s", head->id, head->vertex, head->location);
           printf("\n");
      }
 }

@@ -13,13 +13,14 @@ typedef struct history
      int clientID, vehicleID;
      float cost;
      char clientName[MAX_LENGTH_NAME], vehicleType[MAX_LENGTH_NAME];
+     char initLocation[MAX_LENGTH], finalLocation[MAX_LENGTH];
      struct tm init;
      struct tm end;
      struct history *next;
 } History;
 
 History *insertHistory(History *head, int clientID, char clientName[], int vehicleID, char vehicleType[],
-                       float cost, struct tm init);
+                       float cost, char initialLocation[], struct tm init);
 
 void cancelRentHist(History **history, int vehicleID, int clientID);
 

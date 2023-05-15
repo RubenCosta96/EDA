@@ -10,7 +10,7 @@
 #define MAX_LENGTH_EMAIL 50
 
 History *insertHistory(History *head, int clientID, char clientName[], int vehicleID, char vehicleType[],
-                       float cost, struct tm init)
+                       float cost, char initLocation[], struct tm init)
 {
      History *new = malloc(sizeof(struct history));
      if (new != NULL)
@@ -19,6 +19,8 @@ History *insertHistory(History *head, int clientID, char clientName[], int vehic
           strcpy(new->clientName, clientName);
           new->vehicleID = vehicleID;
           strcpy(new->vehicleType, vehicleType);
+          strcpy(new->initLocation, initLocation);
+          *new->finalLocation = "Vehicle in use."; // Precisa de * ???
           new->cost = cost;
           new->init = init;
           new->init.tm_year += 1900;

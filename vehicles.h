@@ -1,6 +1,7 @@
 #ifndef VEHICLE
 #define VEHICLE
 #define MAX_LENGTH_LOCATION 60
+#define MAX_LENGTH 50
 
 typedef struct listManagers Manager;
 typedef struct listClients Client;
@@ -26,7 +27,7 @@ int getMaxVehicleId(Vehicle *head);
 int vehicleIdExists(Vehicle *head, int id);
 
 // Registers a vehicle
-void vehicleReg(Vehicle **head,Graph **g);
+void vehicleReg(Vehicle **head, Graph **g);
 
 // Change data of vehicles (Only accessible by managers)
 void changeVehicleData(Vehicle **head, int id);
