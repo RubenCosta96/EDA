@@ -102,6 +102,24 @@ int addVehicleLoc(Graph *g, char geocode[], int vehicleID)
      }
 }
 
+int getBestRoute(Graph **g, int startLocID, int endLocID)
+{
+     Graph *route = g;
+     int routeCost = 0;
+
+     while (g != NULL)
+     {
+          if (startLocID == route->id)
+          {
+               routeCost += route->adjacents->weight;
+               route->adjacents = route->adjacents->next;
+          }
+          route = route->next;
+     }
+
+     return routeCost;
+}
+
 int getMaxVertexId(Graph *head)
 {
      int maxId = 0;

@@ -96,7 +96,7 @@ int listVehiclesNotRented(Vehicle **vehicle)
 {
 	Vehicle *head = *vehicle;
 	int freeVehicles = 0;
-	printf("ID\tType\t\tAutonomy\tCost\t\tLocation\n");
+	printf("ID\tType\t\tAutonomy\tCost per minute\t\tLocation\n");
 	for (; head != NULL; head = head->next)
 	{
 		if (head->rentedBy <= 0)
@@ -139,7 +139,7 @@ int vehicleIdExists(Vehicle *head, int id)
  * @param location
  * @return Vehicle*
  */
-Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, float cost, int rentedBy, char location[])
+Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, int maxAutonomy, float battery, float cost, int rentedBy, char location[])
 {
 	Vehicle *new = malloc(sizeof(struct listVehicles));
 	if (new != NULL)
@@ -147,6 +147,7 @@ Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, float c
 		new->id = id;
 		strcpy(new->type, type);
 		new->autonomy = autonomy;
+		new->maxAutonomy = maxAutonomy;
 		new->cost = cost;
 		strcpy(new->location, location);
 		new->rentedBy = rentedBy;
@@ -166,8 +167,8 @@ void vehicleReg(Vehicle **head, Graph **g)
 {
 	Graph *new = *g;
 	char type[20], location[MAX_LENGTH_LOCATION], geocode[MAX_LENGTH];
-	int autonomy, rentedBy, locationID;
-	float cost;
+	int autonomy, maxAutonomy, rentedBy, locationID;
+	float cost, battery;
 	int maxID = getMaxVehicleId(*head) + 1;
 
 	printf("Vehicle ID: %d\n", maxID);
@@ -178,7 +179,12 @@ void vehicleReg(Vehicle **head, Graph **g)
 	fgets(type, sizeof(type), stdin);
 	type[strcspn(type, "\n")] = 0;
 
-	printf("Autonomy: ");
+	printf("Maximum autonomy: ");
+	scanf("%d", &maxAutonomy);
+	while ((getchar()) != '\n')
+		;
+
+	printf("Current Autonomy: ");
 	scanf("%d", &autonomy);
 	while ((getchar()) != '\n')
 		;
@@ -201,7 +207,7 @@ void vehicleReg(Vehicle **head, Graph **g)
 	printf("Cost: ");
 	scanf("%f", &cost);
 
-	*head = insertVehicle(*head, maxID, type, autonomy, cost, rentedBy, location);
+	*head = insertVehicle(*head, maxID, type, autonomy, maxAutonomy, battery, cost, rentedBy, location);
 }
 
 /**
@@ -402,7 +408,7 @@ int rentVehicle(Vehicle **head, int vehicleID, Client *c, History **hist)
 		currentV->rentedBy = c->id;
 		c->balance -= currentV->cost;
 		*hist = insertHistory(*hist, c->id, c->name, vehicleID, currentV->type,
-							  currentV->cost, *localtime(&rawtime));
+							  currentV->cost, currentV->location, *localtime(&rawtime));
 		printf("Vehicle rented.\n");
 	}
 
@@ -483,8 +489,8 @@ int saveVehicles(Vehicle *head)
 Vehicle *readVehicles()
 {
 	FILE *fp;
-	int id, autonomy;
-	float cost;
+	int id, autonomy, maxAutonomy;
+	float cost, battery;
 	char type[15], location[20];
 	int rentedBy;
 
@@ -495,8 +501,8 @@ Vehicle *readVehicles()
 		char line[MAX_LINE];
 		while (fgets(line, sizeof(line), fp))
 		{
-			sscanf(line, "%d,%[^,],%d,%f,%d,%[^\r\n]", &id, type, &autonomy, &cost, &rentedBy, location);
-			aux = insertVehicle(aux, id, type, autonomy, cost, rentedBy, location);
+			sscanf(line, "%d,%[^,],%d,%f,%f,%d,%[^\r\n]", &id, type, &autonomy, &battery, &cost, &rentedBy, location);
+			aux = insertVehicle(aux, id, type, autonomy, maxAutonomy, battery, cost, rentedBy, location);
 		}
 		fclose(fp);
 	}
@@ -555,7 +561,7 @@ Vehicle *readVehiclesBinary()
 		size_t bytes_read = fread(&vehicle, sizeof(Vehicle), 1, fp);
 		if (bytes_read == 1)
 		{
-			aux = insertVehicle(aux, vehicle.id, vehicle.type, vehicle.autonomy, vehicle.cost, vehicle.rentedBy, vehicle.location);
+			aux = insertVehicle(aux, vehicle.id, vehicle.type, vehicle.autonomy, vehicle.maxAutonomy, vehicle.battery, vehicle.cost, vehicle.rentedBy, vehicle.location);
 		}
 	}
 	fclose(fp);

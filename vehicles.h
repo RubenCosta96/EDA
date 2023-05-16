@@ -10,8 +10,8 @@ typedef struct listVehicles
 {
      int id;
      char type[20];
-     int autonomy;
-     float cost;
+     int autonomy, maxAutonomy;
+     float cost, battery;
      char location[MAX_LENGTH_LOCATION];
      int rentedBy;
      struct listVehicles *next;
@@ -45,7 +45,7 @@ void listVehicles(Vehicle **head);
 void cancelRental(Vehicle **head, int vehicleID);
 
 // Adds a new vehicle (CHECK AGAIN)
-Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, float cost, int rentedBy, char location[]);
+Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, int maxAutonomy, float battery, float cost, int rentedBy, char location[]);
 
 // Remove an existing vehicle (DONE)
 void removeVehicle(Vehicle **head, int id);

@@ -22,7 +22,7 @@ typedef struct history
 History *insertHistory(History *head, int clientID, char clientName[], int vehicleID, char vehicleType[],
                        float cost, char initialLocation[], struct tm init);
 
-void cancelRentHist(History **history, int vehicleID, int clientID);
+void cancelRentHist(History **history, Graph **g, int vehicleID, int clientID, int locationID);
 
 void listHistory(History **history);
 
