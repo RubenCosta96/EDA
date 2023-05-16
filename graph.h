@@ -37,6 +37,8 @@ void listVertexes(Graph **graph);
 
 int addVehicleLoc(Graph *g, char geocode[], int vehicleID);
 
+int getBestRoute(Graph **g, int startLocID, int endLocID);
+
 int getMaxVertexId(Graph *head);
 
 #endif

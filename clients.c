@@ -241,10 +241,13 @@ void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager, 
 		else
 		{
 			printf("Which vehicle do you want to cancel your rental?\nID: ");
-			int vehicleID;
+			int vehicleID, locationID;
 			scanf("%d", &vehicleID);
+			printf("What is the final location of your trip?\n");
+			listVertexes(g);
+			scanf("%d", locationID);
 			cancelRental(vehicle, vehicleID);
-			cancelRentHist(hist, vehicleID, c->id);
+			cancelRentHist(hist, g, vehicleID, c->id, locationID);
 		}
 		break;
 	case 4:
