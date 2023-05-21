@@ -251,7 +251,7 @@ void managerMenu(Manager **head, Vehicle **vehicle, Client **client, Manager *m,
     int vehicleID;
     scanf("%d", &vehicleID);
     clearConsole();
-    changeVehicleData(vehicle, vehicleID);
+    changeVehicleData(vehicle,g, vehicleID);
     break;
   case 4:
     // Change data

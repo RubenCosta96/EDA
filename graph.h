@@ -16,13 +16,18 @@ typedef struct graph1
 typedef struct graph2
 {
      int id;
-     int location[SIZE];
      char geocode[SIZE];
      char vertex[SIZE];
+     float minCost;
      Adjacent *adjacents;
      Vehicle *vehicles;
      struct graph2 *next;
 } Graph;
+
+typedef struct route{
+     char vertex[MAX_LENGTH];
+     float weight;
+}Route;
 
 // Creates a new vertex
 int createVertex(Graph **g, int id, char *newVertex);
@@ -35,10 +40,24 @@ void listAdjacents(Graph *g, char *vertex);
 
 void listVertexes(Graph **graph);
 
+int convertLocationID(Graph **g,int locationID);
+
 int addVehicleLoc(Graph *g, char geocode[], int vehicleID);
 
 int getBestRoute(Graph **g, int startLocID, int endLocID);
 
 int getMaxVertexId(Graph *head);
+
+Graph *insertGraph(Graph *head, int id,char vertex[SIZE],char geocode[SIZE],float minCost);
+
+Graph* findMinWeightVertex(Graph* graph);
+
+Graph *readGraphBinary();
+
+int saveGraphBinary(Graph *head);
+
+int saveGraph(Graph *head);
+
+Graph *readGraph();
 
 #endif

@@ -196,7 +196,7 @@ void vehicleReg(Vehicle **head, Graph **g)
 	{
 		if (new->id == locationID)
 		{
-			strcpy(location, new->location);
+			strcpy(location, new->vertex);
 			strcpy(geocode, new->geocode);
 		}
 		new = new->next;
@@ -216,12 +216,12 @@ void vehicleReg(Vehicle **head, Graph **g)
  * @param head
  * @param id
  */
-void changeVehicleData(Vehicle **head, int id)
+void changeVehicleData(Vehicle **head,Graph **g, int id)
 {
 	Vehicle *aux = *head;
-	int opt;
-	char newType[20], newLocation[MAX_LENGTH_LOCATION];
-	int newAutonomy, newRentedBy;
+	int opt, newLocation;
+	char newType[20];
+	int newAutonomy, newRentedBy, newLocationID;
 	float newCost;
 
 	while (aux != NULL && aux->id != id)
@@ -267,9 +267,9 @@ void changeVehicleData(Vehicle **head, int id)
 				while ((getchar()) != '\n')
 					;
 				printf("Enter new location: ");
-				fgets(newLocation, 20, stdin);
-				newLocation[strcspn(newLocation, "\n")] = '\0';
-				strcpy(aux->location, newLocation);
+				listVertexes(&g);
+				scanf("%d",&newLocation);
+				aux->id = convertLocationID(g,newLocation);// receber localização converter para ID
 				break;
 			case 5:
 				while ((getchar()) != '\n')

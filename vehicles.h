@@ -30,7 +30,7 @@ int vehicleIdExists(Vehicle *head, int id);
 void vehicleReg(Vehicle **head, Graph **g);
 
 // Change data of vehicles (Only accessible by managers)
-void changeVehicleData(Vehicle **head, int id);
+void changeVehicleData(Vehicle **head,Graph **g, int id);
 
 // Lists vehicles not rented
 int listVehiclesNotRented(Vehicle **head);
