@@ -37,7 +37,7 @@ int main()
   managers = readManagersBinary();
   // history = readHistory();
 
-  /*
+  
   createVertex(&graph, 1, "as.tres.palavras");
   createVertex(&graph, 2, "next.outras.palavras");
   createVertex(&graph, 3, "mais.tres.palavras");
@@ -50,8 +50,15 @@ int main()
 
   listVertexes(&graph);
   listAdjacents(graph, "next.outras.palavras");
-  */
 
+  printf("\n\n");
+  printf("24/05/2023:\n");
+
+  
+
+
+  
+ /* Tirar de comentar
   // Menu
   loginOrReg(&clients, &managers, &vehicles, &graph, &history);
 
@@ -69,6 +76,9 @@ int main()
   // history->init.tm_sec = 0;   // Second
 
   listHistory(&history);
+  Até aqui*/
+
+
 
   return 0;
-}
+} 

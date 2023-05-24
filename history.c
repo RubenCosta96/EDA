@@ -116,7 +116,7 @@ History *readHistory()
           char line[MAX_LINE];
           while (fgets(line, sizeof(line), fp))
           {
-               sscanf(line, "%d,%[^,],%d,%[^,],%f,%d/%d/%d %d:%d:%d,%d/%d/%d %d:%d:%d\n",
+               sscanf(line, "%d,%[^,],%d,%[^,],%f,%[^,],%[^,],%d/%d/%d %d:%d:%d,%d/%d/%d %d:%d:%d\n",
                       &clientID, clientName, &vehicleID, vehicleType, &cost, initLoc, finalLoc, &init.tm_mday, &init.tm_mon,
                       &init.tm_year, &init.tm_hour, &init.tm_min, &init.tm_sec,
                       &end.tm_mday, &end.tm_mon, &end.tm_year, &end.tm_hour,

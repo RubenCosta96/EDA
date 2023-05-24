@@ -5,6 +5,8 @@
 
 typedef struct listManagers Manager;
 typedef struct listClients Client;
+typedef struct graph2 Graph;
+typedef struct history History;
 
 typedef struct listVehicles
 {

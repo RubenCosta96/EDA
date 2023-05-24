@@ -73,8 +73,10 @@ void listAdjacents(Graph *g, char *vertex)
                // printf("%s %.2f\n", aux->vertex, aux->weight);
 
                printf(" -> %s", aux->vertex);
+               
                aux = aux->next;
           }
+          printf("\n");
      }
 }
 
@@ -107,7 +109,7 @@ int addVehicleLoc(Graph *g, char geocode[], int vehicleID)
 
 int getBestRoute(Graph **g, int startLocID, int endLocID)
 {
-     Graph *route = g;
+     Graph *route = *g;
      int routeCost = 0;
 
      while (g != NULL)
@@ -124,26 +126,32 @@ int getBestRoute(Graph **g, int startLocID, int endLocID)
 }
 
 
+/*
 //Alterar?
-void initializeGraph(Graph* graph, char* sourceVertex) {
-    while (graph != NULL) {
-        if (strcmp(graph->vertex, sourceVertex) == 0) {
-            graph->adjacents->weight = 0.0;
-            graph->minCost = 0.0;
+void initializeGraph(Graph** graph, char* sourceVertex) {
+     Graph *aux = *graph;
+    while (aux != NULL) {
+        if (strcmp(aux->vertex, sourceVertex) == 0) {
+            aux->adjacents->weight = 0.0;
+            aux->minCost = 0.0;
         } else {
-            graph->adjacents->weight = INFINITY;
-            graph->minCost = INFINITY;
+            aux->adjacents->weight = INFINITY;
+            aux->minCost = INFINITY;
         }
-        graph = graph->next;
+        aux = aux->next;
     }
 }
+*/
 
+/*
 //Alterar?
-void dijkstra(Graph* graph, char* sourceVertex) {
-    initializeGraph(graph, sourceVertex);
+void dijkstra(Graph** graph, char* sourceVertex) {
 
-    while (graph != NULL) {
-        Graph* currentVertex = findMinWeightVertex(graph);
+     Graph *aux = *graph;
+    initializeGraph(aux, sourceVertex);
+
+    while (aux != NULL) {
+        Graph* currentVertex = findMinWeightVertex(aux);
         Adjacent* adj = currentVertex->adjacents;
 
         while (adj != NULL) {
@@ -158,9 +166,10 @@ void dijkstra(Graph* graph, char* sourceVertex) {
             adj = adj->next;
         }
 
-        graph = graph->next;
+        aux = aux->next;
     }
 }
+*/
 
 Graph* findMinWeightVertex(Graph* graph) {
     Graph* minVertex = NULL;
@@ -178,7 +187,7 @@ Graph* findMinWeightVertex(Graph* graph) {
 
 
 int convertLocationID(Graph **g,int locationID){
-     Graph *aux = g;
+     Graph *aux = *g;
      char locationFound[MAX_LENGTH_LOCATION];
 
      while(aux != NULL){
@@ -281,7 +290,7 @@ int saveGraph(Graph *head)
 		while (aux != NULL)
 		{
                //Change to graph info
-			fprintf(fp, "%d:%d\n", aux->id,aux->adjacents->weight);
+			fprintf(fp, "%d:%f\n", aux->id,aux->adjacents->weight);
 			aux = aux->next;
 		}
 		fclose(fp);

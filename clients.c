@@ -245,7 +245,7 @@ void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager, 
 			scanf("%d", &vehicleID);
 			printf("What is the final location of your trip?\n");
 			listVertexes(g);
-			scanf("%d", locationID);
+			scanf("%d", &locationID);
 			cancelRental(vehicle, vehicleID);
 			cancelRentHist(hist, g, vehicleID, c->id, locationID);
 		}
