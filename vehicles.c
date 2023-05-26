@@ -216,7 +216,7 @@ void vehicleReg(Vehicle **head, Graph **g)
  * @param head
  * @param id
  */
-void changeVehicleData(Vehicle **head,Graph **g, int id)
+void changeVehicleData(Vehicle **head, Graph **g, int id)
 {
 	Vehicle *aux = *head;
 	int opt, newLocation;
@@ -268,8 +268,8 @@ void changeVehicleData(Vehicle **head,Graph **g, int id)
 					;
 				printf("Enter new location: ");
 				listVertexes(g);
-				scanf("%d",&newLocation);
-				aux->id = convertLocationID(g,newLocation);// receber localização converter para ID
+				scanf("%d", &newLocation);
+				aux->id = convertIdToLocation(g, newLocation); // receber localização converter para ID
 				break;
 			case 5:
 				while ((getchar()) != '\n')

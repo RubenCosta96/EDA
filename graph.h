@@ -24,33 +24,50 @@ typedef struct graph2
      struct graph2 *next;
 } Graph;
 
-typedef struct route{
-     char vertex[MAX_LENGTH];
-     float weight;
-}Route;
+typedef struct
+{
+     float distance;
+     int previous;
+} PathData;
 
 // Creates a new vertex
-int createVertex(Graph **g, int id, char *newVertex);
+int createVertex(Graph **g, int id, char *newVertex, char *newGeocode);
 
-int vertexExists(Graph *g, char vertex[]);
+int vertexExists(Graph *g, char geocode[]);
 
 int createEdge(Graph *g, char vOrigin[], char vDestination[], float weight);
 
-void listAdjacents(Graph *g, char *vertex);
+void listAdjacents(Graph *g, char *geocode);
+
+// NEW--
+void initializeGraph(Graph **graph);
+
+int getIdByVertex(Graph *graph, char *vertex);
+
+int getIdByGeocode(Graph *graph, char *geocode);
+
+Graph *findMinWeightVertex(Graph *graph);
+
+float dijkstra(Graph *graph, char *initial, char *final);
+
+void printRoute(int *route, int finalIndex);
+// --
 
 void listVertexes(Graph **graph);
 
-int convertLocationID(Graph **g,int locationID);
+int convertVertexToID(Graph **g, char *vertex);
+
+int convertIdToLocation(Graph **g, int locationID);
+
+int convertCodeToVertex(Graph **g, char *geocode, char *respVertex);
 
 int addVehicleLoc(Graph *g, char geocode[], int vehicleID);
 
-int getBestRoute(Graph **g, int startLocID, int endLocID);
-
 int getMaxVertexId(Graph *head);
 
-Graph *insertGraph(Graph *head, int id,char vertex[SIZE],char geocode[SIZE],float minCost);
+Graph *insertGraph(Graph *head, int id, char vertex[SIZE], char geocode[SIZE], float minCost);
 
-Graph* findMinWeightVertex(Graph* graph);
+Graph *findMinWeightVertex(Graph *graph);
 
 Graph *readGraphBinary();
 

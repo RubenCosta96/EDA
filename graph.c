@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <float.h>
 
 #include "clients.h"
 #include "managers.h"
@@ -11,15 +12,17 @@
 #define INFINITY 99999
 #define MAX_LINE 250
 
-int createVertex(Graph **g, int id, char *newVertex)
+int createVertex(Graph **g, int id, char *newVertex, char *newGeocode)
 {
      Graph *new = malloc(sizeof(struct graph2));
 
      if (new != NULL)
      {
           strcpy(new->vertex, newVertex);
+          strcpy(new->geocode, newGeocode);
           new->id = id;
           new->next = *g;
+          new->adjacents = NULL;
           *g = new;
           return 1;
      }
@@ -27,11 +30,11 @@ int createVertex(Graph **g, int id, char *newVertex)
           return 0;
 }
 
-int vertexExists(Graph *g, char vertex[])
+int vertexExists(Graph *g, char geocode[])
 {
      while (g != NULL)
      {
-          if (strcmp(g->vertex, vertex) == 0)
+          if (strcmp(g->geocode, geocode) == 0)
                return 1;
           else
                g = g->next;
@@ -44,36 +47,46 @@ int createEdge(Graph *g, char vOrigin[], char vDestination[], float weight)
      Adjacent *new;
      if (vertexExists(g, vOrigin) && vertexExists(g, vDestination))
      {
-          while (strcmp(g->vertex, vOrigin) != 0)
+          while (strcmp(g->geocode, vOrigin) != 0)
                g = g->next;
 
-          new = malloc(sizeof(struct graph2));
+          new = malloc(sizeof(struct graph1));
           if (new != NULL)
           {
                strcpy(new->vertex, vDestination);
                new->weight = weight;
                new->next = g->adjacents;
                g->adjacents = new;
+               return 1;
           }
+          else
+               return 0;
      }
+     else
+          return 0;
 }
 
-void listAdjacents(Graph *g, char *vertex)
+void listAdjacents(Graph *g, char *geocode)
 {
+     Graph *aux1 = g;
      Adjacent *aux;
-     if (vertexExists(g, vertex))
+     if (vertexExists(g, geocode))
      {
-          printf("Connection: %s", vertex);
-          while (strcmp(g->vertex, vertex) != 0)
+          char respVertex[SIZE];
+          convertCodeToVertex(&g, geocode, respVertex);
+          printf("Connection: %s", respVertex);
+          while (strcmp(g->geocode, geocode) != 0)
+          {
                g = g->next;
+          }
           aux = g->adjacents;
 
           while (aux != NULL)
           {
-               // printf("%s %.2f\n", aux->vertex, aux->weight);
+               char respLoc[SIZE];
+               convertCodeToVertex(&aux1, aux->vertex, respLoc);
+               printf(" -> %s", respLoc);
 
-               printf(" -> %s", aux->vertex);
-               
                aux = aux->next;
           }
           printf("\n");
@@ -94,105 +107,239 @@ void listVertexes(Graph **graph)
 int addVehicleLoc(Graph *g, char geocode[], int vehicleID)
 {
      while ((g != NULL) && (strcmp(g->vertex, geocode) != 0))
+     {
           g = g->next;
-     if (g == NULL)
-          return (0);
-     else
-     {
-          Vehicle *new = malloc(sizeof(struct listVehicles));
-          new->id = vehicleID;
-          new->next = g->vehicles;
-          g->vehicles = new;
-          return (1);
-     }
-}
-
-int getBestRoute(Graph **g, int startLocID, int endLocID)
-{
-     Graph *route = *g;
-     int routeCost = 0;
-
-     while (g != NULL)
-     {
-          if (startLocID == route->id)
+          if (g == NULL)
+               return (0);
+          else
           {
-               routeCost += route->adjacents->weight;
-               route->adjacents = route->adjacents->next;
+               Vehicle *new = malloc(sizeof(struct listVehicles));
+               new->id = vehicleID;
+               new->next = g->vehicles;
+               g->vehicles = new;
+               strcpy(new->location, g->vertex);
+               printf("New Location: %s", new->location);
+               return (1);
           }
-          route = route->next;
+     }
+}
+
+void initializeGraph(Graph **graph)
+{
+     *graph = NULL;
+}
+
+int getIdByVertex(Graph *graph, char *vertex)
+{
+     Graph *currentNode = graph;
+
+     while (currentNode != NULL)
+     {
+          if (strcmp(currentNode->vertex, vertex) == 0)
+          {
+               return currentNode->id;
+          }
+          currentNode = currentNode->next;
+     }
+     return -1;
+}
+
+int getIdByGeocode(Graph *graph, char *geocode)
+{
+     Graph *currentNode = graph;
+
+     while (currentNode != NULL)
+     {
+          if (strcmp(currentNode->geocode, geocode) == 0)
+          {
+               return currentNode->id;
+          }
+          currentNode = currentNode->next;
+     }
+     return -1;
+}
+
+Graph *findMinWeightVertex(Graph *graph)
+{
+     float minWeight = FLT_MAX;
+     Graph *minVertex = NULL;
+     Graph *currentNode = graph;
+
+     // Traverse the graph vertices
+     while (currentNode != NULL)
+     {
+          Adjacent *adjacent = currentNode->adjacents;
+
+          // Check if the adjacent nodes exist
+          if (adjacent != NULL)
+          {
+               // Iterate over the adjacent nodes
+               while (adjacent != NULL)
+               {
+                    if (adjacent->weight < minWeight)
+                    {
+                         minWeight = adjacent->weight;
+                         minVertex = currentNode;
+                    }
+
+                    adjacent = adjacent->next;
+               }
+          }
+
+          currentNode = currentNode->next;
+     }
+     return minVertex;
+}
+
+float dijkstra(Graph *graph, char *initial, char *final)
+{
+     Graph *aux = graph;
+     Graph *aux1 = graph;
+     // Create distance and visited arrays
+     float distances[SIZE];
+     int visited[SIZE];
+     int route[SIZE];
+
+     // Initialize distances and visited arrays
+     for (int i = 0; i < SIZE; i++)
+     {
+          distances[i] = FLT_MAX;
+          visited[i] = 0;
+          route[i] = -1;
      }
 
-     return routeCost;
+     // Set the distance of the initial location to 0
+     int initialIndex = getIdByVertex(graph, initial);
+     distances[initialIndex] = 0;
+
+     // Dijkstra's algorithm
+     float totalDistance = 0.0;
+     while (1)
+     {
+          // Find the vertex with the minimum distance among unvisited vertices
+          Graph *minVertex = findMinWeightVertex(aux);
+
+          // If all vertices have been visited or the final location is reached, break the loop
+          if (minVertex == NULL || strcmp(minVertex->vertex, final) == 0)
+          {
+               break;
+          }
+
+          // Mark the current vertex as visited
+          visited[minVertex->id] = 1;
+
+          // Update distances of neighboring vertices
+          Adjacent *adjacent = minVertex->adjacents;
+          while (adjacent != NULL)
+          {
+
+               int adjacentIndex = getIdByGeocode(aux1, adjacent->vertex);
+               if (!visited[adjacentIndex])
+               {
+                    float newDistance = distances[minVertex->id] + adjacent->weight;
+                    if (newDistance < distances[adjacentIndex])
+                    {
+                         distances[adjacentIndex] = newDistance;
+                         totalDistance = adjacent->weight;
+                         route[adjacentIndex] = minVertex->id;
+                    }
+               }
+               adjacent = adjacent->next;
+          }
+
+          // Move to the next unvisited node
+          aux = minVertex->next;
+     }
+
+     // Return the minimum cost from the initial to the final location
+     printf("Lowest value: %.2f\n", totalDistance);
+
+     int finalIndex = getIdByVertex(graph, final);
+     printRoute(route, finalIndex);
+     return totalDistance;
 }
 
+void printRoute(int *route, int finalIndex)
+{
+     if (route[finalIndex] == -1)
+     {
+          printf("No route found.\n");
+          return;
+     }
 
-/*
-//Alterar?
-void initializeGraph(Graph** graph, char* sourceVertex) {
-     Graph *aux = *graph;
-    while (aux != NULL) {
-        if (strcmp(aux->vertex, sourceVertex) == 0) {
-            aux->adjacents->weight = 0.0;
-            aux->minCost = 0.0;
-        } else {
-            aux->adjacents->weight = INFINITY;
-            aux->minCost = INFINITY;
-        }
-        aux = aux->next;
-    }
-}
-*/
+     int index = finalIndex;
+     int routeSize = 1;
+     while (route[index] != -1)
+     {
+          routeSize++;
+          index = route[index];
+     }
 
-/*
-//Alterar?
-void dijkstra(Graph** graph, char* sourceVertex) {
+     int *reversedRoute = malloc(routeSize * sizeof(int));
+     reversedRoute[routeSize - 1] = finalIndex;
+     index = finalIndex;
+     for (int i = routeSize - 2; i >= 0; i--)
+     {
+          index = route[index];
+          reversedRoute[i] = index;
+     }
 
-     Graph *aux = *graph;
-    initializeGraph(aux, sourceVertex);
+     printf("Route: ");
+     for (int i = 0; i < routeSize; i++)
+     {
+          printf("%d ", reversedRoute[i]);
+     }
+     printf("\n");
 
-    while (aux != NULL) {
-        Graph* currentVertex = findMinWeightVertex(aux);
-        Adjacent* adj = currentVertex->adjacents;
-
-        while (adj != NULL) {
-            Graph* adjacentVertex = adj->next;
-            float weight = adj->weight;
-
-            if (currentVertex->adjacents->weight + weight < adjacentVertex->adjacents->weight) {
-                adjacentVertex->adjacents->weight = currentVertex->adjacents->weight + weight;
-                adjacentVertex->minCost = currentVertex->minCost + weight;  // Update minimum cost
-            }
-
-            adj = adj->next;
-        }
-
-        aux = aux->next;
-    }
-}
-*/
-
-Graph* findMinWeightVertex(Graph* graph) {
-    Graph* minVertex = NULL;
-    float minWeight = INFINITY;
-
-    while (graph != NULL) {
-        if (graph->adjacents->weight < minWeight) {
-            minVertex = graph;
-            minWeight = graph->adjacents->weight;
-        }
-        graph = graph->next;
-    }
-    return minVertex;
+     free(reversedRoute);
 }
 
+int convertVertexToID(Graph **g, char *vertex)
+{
+     Graph *aux = *g;
+     int locationFound;
 
-int convertLocationID(Graph **g,int locationID){
+     while (aux != NULL)
+     {
+          if (strcmp(aux->vertex, vertex) == 0)
+          {
+               locationFound = aux->id;
+               printf("Location Found: %d", locationFound);
+               return 1;
+          }
+          aux = aux->next;
+     }
+     return 0;
+}
+
+int convertIdToLocation(Graph **g, int locationID)
+{
      Graph *aux = *g;
      char locationFound[MAX_LENGTH_LOCATION];
 
-     while(aux != NULL){
-          if(aux->id == locationID){
-               strcpy(locationFound,aux->vertex);
+     while (aux != NULL)
+     {
+          if (aux->id == locationID)
+          {
+               strcpy(locationFound, aux->vertex);
+               return 1;
+          }
+          aux = aux->next;
+     }
+     return 0;
+}
+
+int convertCodeToVertex(Graph **g, char *geocode, char *respVertex)
+{
+     Graph *aux = *g;
+     char locationFound[MAX_LENGTH_LOCATION];
+
+     while (aux != NULL)
+     {
+          if (strcmp(aux->geocode, geocode) == 0)
+          {
+               strcpy(locationFound, aux->vertex);
+               strcpy(respVertex, locationFound);
                return 1;
           }
           aux = aux->next;
@@ -215,112 +362,112 @@ int getMaxVertexId(Graph *head)
      return maxId;
 }
 
-Graph *insertGraph(Graph *head, int id,char vertex[SIZE],char geocode[SIZE],float minCost)
+Graph *insertGraph(Graph *head, int id, char vertex[SIZE], char geocode[SIZE], float minCost)
 {
-	Graph *new = malloc(sizeof(struct graph2));
-	if (new != NULL)
-	{
-		new->id = id;
-		strcpy(new->vertex, vertex);
-		strcpy(new->geocode, geocode);
+     Graph *new = malloc(sizeof(struct graph2));
+     if (new != NULL)
+     {
+          new->id = id;
+          strcpy(new->vertex, vertex);
+          strcpy(new->geocode, geocode);
           new->minCost = minCost;
-		return (new);
-	}
-	else
-		return (head);
+          return (new);
+     }
+     else
+          return (head);
 }
 
 Graph *readGraphBinary()
 {
-	FILE *fp;
+     FILE *fp;
 
-	Graph *aux = NULL;
+     Graph *aux = NULL;
 
-	fp = fopen("graphBinary.bin", "rb");
-	if (fp == NULL)
-	{
-		printf("Erro ao abrir o ficheiro.");
-		return NULL;
-	}
-	while (!feof(fp))
-	{
-		Graph graph;
-		size_t bytes_read = fread(&graph, sizeof(Graph), 1, fp);
-		if (bytes_read == 1)
-		{
-               //change to insertGraph
-			//aux = insertVehicle(aux, graph.id, vehicle.type, vehicle.autonomy, vehicle.maxAutonomy, vehicle.battery, vehicle.cost, vehicle.rentedBy, vehicle.location);
-		}
-	}
-	fclose(fp);
-	return (aux);
+     fp = fopen("graphBinary.bin", "rb");
+     if (fp == NULL)
+     {
+          printf("Erro ao abrir o ficheiro.");
+          return NULL;
+     }
+     while (!feof(fp))
+     {
+          Graph graph;
+          size_t bytes_read = fread(&graph, sizeof(Graph), 1, fp);
+          if (bytes_read == 1)
+          {
+               // change to insertGraph
+               // aux = insertVehicle(aux, graph.id, vehicle.type, vehicle.autonomy, vehicle.maxAutonomy, vehicle.battery, vehicle.cost, vehicle.rentedBy, vehicle.location);
+          }
+     }
+     fclose(fp);
+     return (aux);
 }
 
 int saveGraphBinary(Graph *head)
 {
-	FILE *fp;
-	fp = fopen("graphBinary.bin", "wb");
-	if (fp == NULL)
-	{
-		printf("Erro ao abrir o ficheiro.\n");
-	}
-	else if (fp != NULL)
-	{
-		Graph *aux = head;
-		while (aux != NULL)
-		{
-               //Change to graph info
-			fwrite(aux, sizeof(Graph), 1, fp);
-			aux = aux->next;
-		}
-		fclose(fp);
-		return (1);
-	}
-	else
-		return (0);
+     FILE *fp;
+     fp = fopen("graphBinary.bin", "wb");
+     if (fp == NULL)
+     {
+          printf("Erro ao abrir o ficheiro.\n");
+     }
+     else if (fp != NULL)
+     {
+          Graph *aux = head;
+          while (aux != NULL)
+          {
+               // Change to graph info
+               fwrite(aux, sizeof(Graph), 1, fp);
+               aux = aux->next;
+          }
+          fclose(fp);
+          return (1);
+     }
+     else
+          return (0);
 }
 
 int saveGraph(Graph *head)
 {
-	FILE *fp;
-	fp = fopen("graph.txt", "w");
-	if (fp != NULL)
-	{
-		Graph *aux = head;
-		while (aux != NULL)
-		{
-               //Change to graph info
-			fprintf(fp, "%d:%f\n", aux->id,aux->adjacents->weight);
-			aux = aux->next;
-		}
-		fclose(fp);
-		return (1);
-	}
-	else
-		return (0);
+     FILE *fp;
+     fp = fopen("graph.txt", "w");
+     if (fp != NULL)
+     {
+          Graph *aux = head;
+          while (aux != NULL)
+          {
+               // Change to graph info
+               fprintf(fp, "%d:%f\n", aux->id, aux->adjacents->weight);
+               aux = aux->next;
+          }
+          fclose(fp);
+          return (1);
+     }
+     else
+          return (0);
 }
 
 Graph *readGraph()
 {
-	FILE *fp;
-	int id, autonomy, maxAutonomy;
-	float cost, battery;
-	char type[15], location[20];
-	int rentedBy;
+     FILE *fp;
+     int id, autonomy, maxAutonomy;
+     float cost, battery;
+     char type[15], location[20];
+     int rentedBy;
 
-	Graph *aux = NULL;
-	fp = fopen("graph.txt", "r");
-	if (fp != NULL)
-	{
-		char line[MAX_LINE];
-		while (fgets(line, sizeof(line), fp))
-		{
-               //Change to insertGraph
-			sscanf(line, "%d,%[^,],%d,%f,%f,%d,%[^\r\n]", &id, type, &autonomy, &battery, &cost, &rentedBy, location);
+     Graph *aux = NULL;
+     fp = fopen("graph.txt", "r");
+     if (fp != NULL)
+     {
+          char line[MAX_LINE];
+          while (fgets(line, sizeof(line), fp))
+          {
+               // Change to insertGraph
+               sscanf(line, "%d,%[^,],%d,%f,%f,%d,%[^\r\n]", &id, type, &autonomy, &battery, &cost, &rentedBy, location);
 
-			//aux = insertVehicle(aux, id, type, autonomy, maxAutonomy, battery, cost, rentedBy, location);
-		}
-		fclose(fp);
-	}
-	return (aux);
+               // aux = insertVehicle(aux, id, type, autonomy, maxAutonomy, battery, cost, rentedBy, location);
+          }
+          fclose(fp);
+     }
+     return (aux);
 }

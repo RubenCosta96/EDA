@@ -230,7 +230,7 @@ void managerMenu(Manager **head, Vehicle **vehicle, Client **client, Manager *m,
     // Add vehicle
     clearConsole();
     printf("Vehicle to add:\n");
-    vehicleReg(vehicle,g);
+    vehicleReg(vehicle, g);
     getchar();
     enterToContinue();
     break;
@@ -251,7 +251,7 @@ void managerMenu(Manager **head, Vehicle **vehicle, Client **client, Manager *m,
     int vehicleID;
     scanf("%d", &vehicleID);
     clearConsole();
-    changeVehicleData(vehicle,g, vehicleID);
+    changeVehicleData(vehicle, g, vehicleID);
     break;
   case 4:
     // Change data
@@ -325,7 +325,7 @@ void managerMenu(Manager **head, Vehicle **vehicle, Client **client, Manager *m,
     printf("Name of new location: ");
     scanf("%s", newLocation);
     int maxID = getMaxVertexId(*g) + 1;
-    createVertex(g, maxID, newLocation);
+    // createVertex(g, maxID, newLocation);
     break;
   case 0:
     clearConsole();
