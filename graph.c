@@ -199,6 +199,7 @@ float dijkstra(Graph *graph, char *initial, char *final)
      float distances[SIZE];
      int visited[SIZE];
      int route[SIZE];
+     float weight[SIZE];
 
      // Initialize distances and visited arrays
      for (int i = 0; i < SIZE; i++)
@@ -206,6 +207,7 @@ float dijkstra(Graph *graph, char *initial, char *final)
           distances[i] = FLT_MAX;
           visited[i] = 0;
           route[i] = -1;
+          weight[i] = 0;
      }
 
      // Set the distance of the initial location to 0
@@ -217,7 +219,20 @@ float dijkstra(Graph *graph, char *initial, char *final)
      while (1)
      {
           // Find the vertex with the minimum distance among unvisited vertices
-          Graph *minVertex = findMinWeightVertex(aux);
+          Graph *minVertex = NULL;
+          float minDistance = INFINITY;
+
+          // Iterate over all vertices
+          Graph *current = aux;
+          while (current != NULL)
+          {
+               if (!visited[current->id] && distances[current->id] < minDistance)
+               {
+                    minVertex = current;
+                    minDistance = distances[current->id];
+               }
+               current = current->next;
+          }
 
           // If all vertices have been visited or the final location is reached, break the loop
           if (minVertex == NULL || strcmp(minVertex->vertex, final) == 0)
@@ -234,64 +249,58 @@ float dijkstra(Graph *graph, char *initial, char *final)
           {
 
                int adjacentIndex = getIdByGeocode(aux1, adjacent->vertex);
-               if (!visited[adjacentIndex])
+               if (!visited[adjacentIndex] && distances[minVertex->id] != FLT_MAX &&
+                   distances[minVertex->id] + adjacent->weight < distances[adjacentIndex])
                {
-                    float newDistance = distances[minVertex->id] + adjacent->weight;
-                    if (newDistance < distances[adjacentIndex])
-                    {
-                         distances[adjacentIndex] = newDistance;
-                         totalDistance = adjacent->weight;
-                         route[adjacentIndex] = minVertex->id;
-                    }
+                    distances[adjacentIndex] = distances[minVertex->id] + adjacent->weight;
+                    route[adjacentIndex] = minVertex->id;
+                    weight[adjacentIndex] = adjacent->weight;
                }
                adjacent = adjacent->next;
           }
 
           // Move to the next unvisited node
-          aux = minVertex->next;
      }
-
+     aux = aux->next;
      // Return the minimum cost from the initial to the final location
-     printf("Lowest value: %.2f\n", totalDistance);
-
      int finalIndex = getIdByVertex(graph, final);
-     printRoute(route, finalIndex);
+     printRoute(route, weight, finalIndex);
      return totalDistance;
 }
 
-void printRoute(int *route, int finalIndex)
+int printRoute(int *route, float *weight, int finalIndex)
 {
+     float totalRoute = 0.0;
+
      if (route[finalIndex] == -1)
      {
           printf("No route found.\n");
-          return;
+          return -1;
      }
 
-     int index = finalIndex;
-     int routeSize = 1;
-     while (route[index] != -1)
+     int path[SIZE];
+     float pathWeights[SIZE];
+     int count = 0;
+     int currentIndex = finalIndex;
+
+     // Build the route path and path weights
+     while (currentIndex != -1)
      {
-          routeSize++;
-          index = route[index];
+          path[count] = currentIndex;
+          pathWeights[count] = weight[currentIndex];
+          count++;
+          currentIndex = route[currentIndex];
      }
 
-     int *reversedRoute = malloc(routeSize * sizeof(int));
-     reversedRoute[routeSize - 1] = finalIndex;
-     index = finalIndex;
-     for (int i = routeSize - 2; i >= 0; i--)
+     // Print the route and corresponding weights in reverse order
+     printf("Shortest route:\n");
+     for (int i = count - 1; i >= 0; i--)
      {
-          index = route[index];
-          reversedRoute[i] = index;
+          printf("Vertex: %d, Weight: %.2f\n", path[i], pathWeights[i]);
+          totalRoute += pathWeights[i];
      }
-
-     printf("Route: ");
-     for (int i = 0; i < routeSize; i++)
-     {
-          printf("%d ", reversedRoute[i]);
-     }
-     printf("\n");
-
-     free(reversedRoute);
+     printf("\n VALOR: %.2f", totalRoute);
+     return totalRoute;
 }
 
 int convertVertexToID(Graph **g, char *vertex)

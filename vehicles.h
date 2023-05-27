@@ -32,7 +32,7 @@ int vehicleIdExists(Vehicle *head, int id);
 void vehicleReg(Vehicle **head, Graph **g);
 
 // Change data of vehicles (Only accessible by managers)
-void changeVehicleData(Vehicle **head,Graph **g, int id);
+void changeVehicleData(Vehicle **head, Graph **g, int id);
 
 // Lists vehicles not rented
 int listVehiclesNotRented(Vehicle **head);
@@ -44,7 +44,7 @@ int listVehiclesRentedByClient(Vehicle **head, int vehicleID);
 void listVehicles(Vehicle **head);
 
 // Cancel Rental
-void cancelRental(Vehicle **head, int vehicleID);
+void cancelRental(Vehicle **head, Graph **g, int vehicleID);
 
 // Adds a new vehicle (CHECK AGAIN)
 Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, int maxAutonomy, float battery, float cost, int rentedBy, char location[]);

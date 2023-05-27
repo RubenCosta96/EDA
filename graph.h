@@ -50,7 +50,7 @@ Graph *findMinWeightVertex(Graph *graph);
 
 float dijkstra(Graph *graph, char *initial, char *final);
 
-void printRoute(int *route, int finalIndex);
+int printRoute(int *route, float *weight, int finalIndex);
 // --
 
 void listVertexes(Graph **graph);

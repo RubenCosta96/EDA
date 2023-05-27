@@ -421,7 +421,7 @@ int rentVehicle(Vehicle **head, int vehicleID, Client *c, History **hist)
  * @param head
  * @param vehicleID
  */
-void cancelRental(Vehicle **head, int vehicleID)
+void cancelRental(Vehicle **head, Graph **graph, int vehicleID)
 {
 	Vehicle *currentV = *head;
 
@@ -437,21 +437,18 @@ void cancelRental(Vehicle **head, int vehicleID)
 	}
 	else
 	{
-		printf("How many km did you drive?\n");
-		int distance;
-		scanf("%d", &distance);
-		if (distance < 0)
-		{
-			printf("Invalid distance.\n");
-			distance = 0;
-		}
-		if (distance > currentV->autonomy)
-		{
-			printf("Distance introduced is higher than autonomy.\n");
-			return;
-		}
-		currentV->autonomy -= distance;
-		currentV->rentedBy = 0;
+		int finalLocation;
+		char finalVertex;
+		printf("Where are you right now?");
+		listVertexes(graph);
+		scanf("%d", &finalLocation);
+		// finalVertex = convertIdToLocation(&graph, finalLocation);
+		// float distance = dijkstra(&graph, currentV->location, finalLocation);
+
+		// float totalCost = distance * currentV->cost;
+
+		// currentV->autonomy -= distance;
+		// currentV->battery -= ((100 * distance) / currentV->maxAutonomy);
 	}
 }
 

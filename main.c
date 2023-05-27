@@ -41,32 +41,34 @@ int main()
   initializeGraph(&graph);
 
   // Criação de valores simulação para os vértices
-  createVertex(&graph, 1, "Rua do Bombeiro", "as.tres.palavras");
-  createVertex(&graph, 2, "Avenida de Barcelos", "next.outras.palavras");
-  createVertex(&graph, 3, "Estádio de Barcelos", "mais.tres.palavras");
-  createVertex(&graph, 4, "Rotunda do Galo", "outras.tres.palavras");
-  createVertex(&graph, 5, "Campo da Feira", "plus.tres.palavras");
-  createVertex(&graph, 6, "IPCA", "extra.tres.palavras");
-  createVertex(&graph, 7, "Alcaides Faria", "max.outras.palavras");
+  createVertex(&graph, 1, "1", "1");
+  createVertex(&graph, 2, "2", "2");
+  createVertex(&graph, 3, "3", "3");
+  createVertex(&graph, 4, "4", "4");
+  createVertex(&graph, 5, "5", "5");
+  createVertex(&graph, 6, "6", "6");
+  createVertex(&graph, 7, "7", "7");
+  createVertex(&graph, 8, "8", "8");
+  createVertex(&graph, 9, "9", "9");
 
   // Criação de valores simulação para arestas
-  createEdge(graph, "next.outras.palavras", "as.tres.palavras", 2);
-  createEdge(graph, "as.tres.palavras", "mais.tres.palavras", 8);
-  createEdge(graph, "next.outras.palavras", "plus.tres.palavras", 3);
-  createEdge(graph, "next.outras.palavras", "extra.tres.palavras", 1);
-  createEdge(graph, "extra.tres.palavras", "max.outras.palavras", 5);
-  createEdge(graph, "extra.tres.palavras", "outras.tres.palavras", 8);
-  createEdge(graph, "max.outras.palavras", "outras.tres.palavras", 11);
-  createEdge(graph, "mais.tres.palavras", "outras.tres.palavras", 14);
-  createEdge(graph, "plus.tres.palavras", "outras.tres.palavras", 20);
-
-  listVertexes(&graph);
-  listAdjacents(graph, "next.outras.palavras");
+  createEdge(graph, "1", "2", 30);
+  createEdge(graph, "1", "3", 21);
+  createEdge(graph, "2", "4", 12);
+  createEdge(graph, "3", "5", 15);
+  createEdge(graph, "2", "3", 3);
+  createEdge(graph, "3", "4", 17);
+  createEdge(graph, "4", "7", 20);
+  createEdge(graph, "4", "6", 4);
+  createEdge(graph, "5", "6", 10);
+  createEdge(graph, "5", "7", 8);
+  createEdge(graph, "6", "8", 15);
+  createEdge(graph, "7", "8", 26);
 
   printf("\n\n");
   printf("25/05/2023:\n");
 
-  dijkstra(graph, "Avenida de Barcelos", "Rotunda do Galo");
+  dijkstra(graph, "1", "8");
 
   /* Tirar de comentar
    // Menu
