@@ -58,6 +58,9 @@ void sortVehiclesByAutonomy(Vehicle **head);
 // Rent vehicle function
 int rentVehicle(Vehicle **head, int vehicleID, Client *c, History **hist);
 
+// Find vehicles in a vertex
+void findVehicleInVertex(Vehicle **v, char *vertex, char *type);
+
 // Save vehicles in a txt (DONE)
 int saveVehicles(Vehicle *head);
 

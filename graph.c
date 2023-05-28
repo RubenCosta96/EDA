@@ -159,6 +159,22 @@ int getIdByGeocode(Graph *graph, char *geocode)
      return -1;
 }
 
+int getGeocodeByVertex(Graph **graph, char *vertex, char *geocode)
+{
+     Graph *aux = *graph;
+
+     while (aux != NULL)
+     {
+          if (strcmp(aux->vertex, vertex) == 0)
+          {
+               strcpy(geocode, aux->geocode);
+               return 1;
+          }
+          aux = aux->next;
+     }
+     return 0;
+}
+
 Graph *findMinWeightVertex(Graph *graph)
 {
      float minWeight = FLT_MAX;
@@ -191,12 +207,12 @@ Graph *findMinWeightVertex(Graph *graph)
      return minVertex;
 }
 
-float dijkstra(Graph *graph, char *initial, char *final)
+float dijkstra(Graph *graph, char *initial, char *final, float *distances)
 {
      Graph *aux = graph;
      Graph *aux1 = graph;
      // Create distance and visited arrays
-     float distances[SIZE];
+     // float distances[SIZE];
      int visited[SIZE];
      int route[SIZE];
      float weight[SIZE];
@@ -258,14 +274,12 @@ float dijkstra(Graph *graph, char *initial, char *final)
                }
                adjacent = adjacent->next;
           }
-
-          // Move to the next unvisited node
      }
+     // Move to the next unvisited node
      aux = aux->next;
      // Return the minimum cost from the initial to the final location
      int finalIndex = getIdByVertex(graph, final);
-     printRoute(route, weight, finalIndex);
-     return totalDistance;
+     // printRoute(route, weight, finalIndex);
 }
 
 int printRoute(int *route, float *weight, int finalIndex)
@@ -303,6 +317,32 @@ int printRoute(int *route, float *weight, int finalIndex)
      return totalRoute;
 }
 
+void locationsBelowDistance(Graph *graph, Vehicle *v, char *initial, float distance)
+{
+     Graph *gAux = graph;
+     Vehicle *vAux = v;
+     float dist[SIZE]; // Stores distances to find if there are vertex in the radius
+     char type[SIZE];  // Stores type of vehicles found in radius
+
+     for (int i = 0; i < 9; i++)
+     {
+          dist[i] = 9999.0;
+     }
+     printf("Vehicles in the radius of %.2f km are:\n", distance);
+     while (gAux != NULL)
+     {
+          dijkstra(graph, initial, gAux->vertex, dist);
+
+          if (dist[gAux->id] <= distance && dist[gAux->id] != 0)
+          {
+               printf("Location: %s, Distance: %.2f\n", gAux->vertex, dist[gAux->id]);
+               findVehicleInVertex(vAux, gAux->vertex, type);
+          }
+
+          gAux = gAux->next;
+     }
+}
+
 int convertVertexToID(Graph **g, char *vertex)
 {
      Graph *aux = *g;
@@ -321,16 +361,15 @@ int convertVertexToID(Graph **g, char *vertex)
      return 0;
 }
 
-int convertIdToLocation(Graph **g, int locationID)
+int convertIdToLocation(Graph **g, int locationID, char *location)
 {
      Graph *aux = *g;
-     char locationFound[MAX_LENGTH_LOCATION];
 
      while (aux != NULL)
      {
           if (aux->id == locationID)
           {
-               strcpy(locationFound, aux->vertex);
+               strcpy(location, aux->vertex);
                return 1;
           }
           aux = aux->next;
@@ -354,6 +393,26 @@ int convertCodeToVertex(Graph **g, char *geocode, char *respVertex)
           aux = aux->next;
      }
      return 0;
+}
+
+// Not working correctly, fix or change
+void pickUpVehicles(Graph *graph, char *initial, char *final, int truckCapacity)
+{
+     float distances[SIZE];
+     dijkstra(graph, initial, final, distances);
+
+     // Collects vehicles below 50% battery level
+     int collectedCount = 0;
+     Vehicle *currentVehicle = graph->vehicles;
+     while (currentVehicle != NULL && collectedCount < truckCapacity)
+     {
+          if (currentVehicle->battery < 0.5 * currentVehicle->maxAutonomy)
+          {
+               printf("Collecting Vehicle %d at Location %s\n", currentVehicle->id, currentVehicle->location);
+               collectedCount++;
+          }
+          currentVehicle = currentVehicle->next;
+     }
 }
 
 int getMaxVertexId(Graph *head)
@@ -436,7 +495,7 @@ int saveGraphBinary(Graph *head)
           return (0);
 }
 
-int saveGraph(Graph *head)
+int saveGraphEdges(Graph *head)
 {
      FILE *fp;
      fp = fopen("graph.txt", "w");
@@ -445,24 +504,31 @@ int saveGraph(Graph *head)
           Graph *aux = head;
           while (aux != NULL)
           {
-               // Change to graph info
-               fprintf(fp, "%d:%f\n", aux->id, aux->adjacents->weight);
+               fprintf(fp, "%d:", aux->id);
+               Adjacent *adj = aux->adjacents;
+               while (adj != NULL)
+               {
+                    fprintf(fp, " %d", aux->id);
+                    adj = adj->next;
+               }
+               fprintf(fp, "\n");
                aux = aux->next;
           }
           fclose(fp);
-          return (1);
+          return 1;
      }
      else
-          return (0);
+     {
+          return 0;
+     }
 }
 
-Graph *readGraph()
+Graph *readGraphEdges()
 {
      FILE *fp;
-     int id, autonomy, maxAutonomy;
-     float cost, battery;
-     char type[15], location[20];
-     int rentedBy;
+     int id;
+     float minCost;
+     char vertex[SIZE], geocode[SIZE];
 
      Graph *aux = NULL;
      fp = fopen("graph.txt", "r");
@@ -472,11 +538,61 @@ Graph *readGraph()
           while (fgets(line, sizeof(line), fp))
           {
                // Change to insertGraph
-               sscanf(line, "%d,%[^,],%d,%f,%f,%d,%[^\r\n]", &id, type, &autonomy, &battery, &cost, &rentedBy, location);
-
-               // aux = insertVehicle(aux, id, type, autonomy, maxAutonomy, battery, cost, rentedBy, location);
+               sscanf(line, "%d,%[^,],%[^,],%f,%[^\r\n]", &id, vertex, geocode, &minCost);
+               aux = insertGraph(aux, id, vertex, geocode, minCost);
           }
           fclose(fp);
      }
      return (aux);
+}
+
+Graph *readGraph()
+{
+     FILE *fp;
+     int id;
+     float minCost;
+     char vertex[SIZE], geocode[SIZE];
+
+     Graph *aux = NULL;
+     fp = fopen("graph.txt", "r");
+     if (fp != NULL)
+     {
+          char line[MAX_LINE];
+          while (fgets(line, sizeof(line), fp))
+          {
+               // Change to insertGraph
+               sscanf(line, "%d,%[^,],%[^,],%f,%[^\r\n]", &id, vertex, geocode, &minCost);
+               aux = insertGraph(aux, id, vertex, geocode, minCost);
+          }
+          fclose(fp);
+     }
+     return (aux);
+}
+
+int saveGraph(Graph *head)
+{
+     FILE *fp;
+     fp = fopen("graph.txt", "w");
+     if (fp != NULL)
+     {
+          Graph *aux = head;
+          while (aux != NULL)
+          {
+               fprintf(fp, "%d:", aux->id);
+               Adjacent *adj = aux->adjacents;
+               while (adj != NULL)
+               {
+                    fprintf(fp, " %d", aux->id);
+                    adj = adj->next;
+               }
+               fprintf(fp, "\n");
+               aux = aux->next;
+          }
+          fclose(fp);
+          return 1;
+     }
+     else
+     {
+          return 0;
+     }
 }

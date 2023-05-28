@@ -33,7 +33,7 @@ int main()
   }
 
   // Read data from data sets
-  vehicles = readVehiclesBinary();
+  vehicles = readVehicles();
   clients = readClientsBinary();
   managers = readManagersBinary();
   // history = readHistory();
@@ -41,54 +41,57 @@ int main()
   initializeGraph(&graph);
 
   // Criação de valores simulação para os vértices
-  createVertex(&graph, 1, "1", "1");
-  createVertex(&graph, 2, "2", "2");
-  createVertex(&graph, 3, "3", "3");
-  createVertex(&graph, 4, "4", "4");
-  createVertex(&graph, 5, "5", "5");
-  createVertex(&graph, 6, "6", "6");
-  createVertex(&graph, 7, "7", "7");
-  createVertex(&graph, 8, "8", "8");
-  createVertex(&graph, 9, "9", "9");
+  createVertex(&graph, 1, "Vertex1", "geo1");
+  createVertex(&graph, 2, "Vertex2", "geo2");
+  createVertex(&graph, 3, "Vertex3", "geo3");
+  createVertex(&graph, 4, "Vertex4", "geo4");
+  createVertex(&graph, 5, "Vertex5", "geo5");
+  createVertex(&graph, 6, "Vertex6", "geo6");
+  createVertex(&graph, 7, "Vertex7", "geo7");
+  createVertex(&graph, 8, "Vertex8", "geo8");
+  createVertex(&graph, 9, "Vertex9", "geo9");
 
   // Criação de valores simulação para arestas
-  createEdge(graph, "1", "2", 30);
-  createEdge(graph, "1", "3", 21);
-  createEdge(graph, "2", "4", 12);
-  createEdge(graph, "3", "5", 15);
-  createEdge(graph, "2", "3", 3);
-  createEdge(graph, "3", "4", 17);
-  createEdge(graph, "4", "7", 20);
-  createEdge(graph, "4", "6", 4);
-  createEdge(graph, "5", "6", 10);
-  createEdge(graph, "5", "7", 8);
-  createEdge(graph, "6", "8", 15);
-  createEdge(graph, "7", "8", 26);
+  createEdge(graph, "geo1", "geo2", 17);
+  createEdge(graph, "geo1", "geo3", 21);
+  createEdge(graph, "geo2", "geo4", 12);
+  createEdge(graph, "geo3", "geo5", 15);
+  createEdge(graph, "geo2", "geo3", 3);
+  createEdge(graph, "geo3", "geo4", 17);
+  createEdge(graph, "geo4", "geo7", 20);
+  createEdge(graph, "geo4", "geo6", 4);
+  createEdge(graph, "geo5", "geo6", 10);
+  createEdge(graph, "geo5", "geo7", 8);
+  createEdge(graph, "geo6", "geo8", 15);
+  createEdge(graph, "geo7", "geo8", 26);
 
   printf("\n\n");
-  printf("25/05/2023:\n");
+  printf("27/05/2023:\n");
+  float distances[SIZE] = {0};
+  dijkstra(graph, "Vertex1", "Vertex8", distances);
+  printf("\n\n");
 
-  dijkstra(graph, "1", "8");
+  locationsBelowDistance(graph, vehicles, "Vertex1", 18.0);
 
   /* Tirar de comentar
-   // Menu
-   loginOrReg(&clients, &managers, &vehicles, &graph, &history);
+  // Menu
+  loginOrReg(&clients, &managers, &vehicles, &graph, &history);
 
-   // Save data
-   saveVehiclesBinary(vehicles);
-   saveClientsBinary(clients);
-   saveManagersBinary(managers);
+  // Save data
+  saveVehiclesBinary(vehicles);
+  saveClientsBinary(clients);
+  saveManagersBinary(managers);
 
-   // Test values for history function test
-   // history->init.tm_year = 11; // Year since 1900 (2021 - 1900)
-   // history->init.tm_mon = 4;   // Month (May)
-   // history->init.tm_mday = 5;  // Day of the month
-   // history->init.tm_hour = 10; // Hour
-   // history->init.tm_min = 30;  // Minute
-   // history->init.tm_sec = 0;   // Second
+  // Test values for history function test
+  // history->init.tm_year = 11; // Year since 1900 (2021 - 1900)
+  // history->init.tm_mon = 4;   // Month (May)
+  // history->init.tm_mday = 5;  // Day of the month
+  // history->init.tm_hour = 10; // Hour
+  // history->init.tm_min = 30;  // Minute
+  // history->init.tm_sec = 0;   // Second
 
-   listHistory(&history);
-   Até aqui*/
+  listHistory(&history);
+  Até aqui*/
 
   return 0;
 }

@@ -266,6 +266,9 @@ void clientMenu(Client **head, Vehicle **vehicle, Client *c, Manager **manager, 
 		clearConsole();
 		checkUserData(c);
 		break;
+	case 7:
+		// List vehicles in x geocode;
+		break;
 	case 0:
 		loginOrReg(head, manager, vehicle, g, hist);
 		return;

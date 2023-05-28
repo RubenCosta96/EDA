@@ -148,6 +148,7 @@ Vehicle *insertVehicle(Vehicle *head, int id, char type[], int autonomy, int max
 		strcpy(new->type, type);
 		new->autonomy = autonomy;
 		new->maxAutonomy = maxAutonomy;
+		new->battery = battery;
 		new->cost = cost;
 		strcpy(new->location, location);
 		new->rentedBy = rentedBy;
@@ -219,7 +220,7 @@ void vehicleReg(Vehicle **head, Graph **g)
 void changeVehicleData(Vehicle **head, Graph **g, int id)
 {
 	Vehicle *aux = *head;
-	int opt, newLocation;
+	int opt;
 	char newType[20];
 	int newAutonomy, newRentedBy, newLocationID;
 	float newCost;
@@ -266,10 +267,11 @@ void changeVehicleData(Vehicle **head, Graph **g, int id)
 			case 4:
 				while ((getchar()) != '\n')
 					;
+				char newLocation[SIZE];
 				printf("Enter new location: ");
 				listVertexes(g);
-				scanf("%d", &newLocation);
-				aux->id = convertIdToLocation(g, newLocation); // receber localização converter para ID
+				scanf("%d", &newLocationID);
+				aux->id = convertIdToLocation(g, newLocationID, newLocation); // receber localização converter para ID
 				break;
 			case 5:
 				while ((getchar()) != '\n')
@@ -423,6 +425,7 @@ int rentVehicle(Vehicle **head, int vehicleID, Client *c, History **hist)
  */
 void cancelRental(Vehicle **head, Graph **graph, int vehicleID)
 {
+	Graph *aux = *graph;
 	Vehicle *currentV = *head;
 
 	while (currentV != NULL && currentV->id != vehicleID)
@@ -437,18 +440,46 @@ void cancelRental(Vehicle **head, Graph **graph, int vehicleID)
 	}
 	else
 	{
-		int finalLocation;
-		char finalVertex;
-		printf("Where are you right now?");
-		listVertexes(graph);
-		scanf("%d", &finalLocation);
-		// finalVertex = convertIdToLocation(&graph, finalLocation);
-		// float distance = dijkstra(&graph, currentV->location, finalLocation);
+		int vehicleID;
+		printf("Your vehicle ID: ");
+		scanf("%d", &vehicleID);
 
-		// float totalCost = distance * currentV->cost;
+		int finalId;
+		char finalVertex[SIZE];
+		char finalGeocode[SIZE];
 
-		// currentV->autonomy -= distance;
-		// currentV->battery -= ((100 * distance) / currentV->maxAutonomy);
+		printf("Where are you right now? ");
+		scanf("%d", &finalId);
+
+		// Convert the ID to the location and store the result in finalVertex
+		convertIdToLocation(&aux, finalId, finalVertex);
+
+		// Get the geocode by vertex and store the result in finalLocation
+		getGeocodeByVertex(&aux, finalVertex, finalGeocode);
+
+		float dist[SIZE] = {0};
+		int distance = dijkstra(aux, currentV->location, finalGeocode, dist);
+
+		currentV->autonomy = currentV->autonomy - ((100.00 * distance) / currentV->maxAutonomy);
+		printf("New autonomy. %d\n", currentV->autonomy);
+	}
+}
+
+void findVehicleInVertex(Vehicle **v, char *vertex, char *newType)
+{
+	Vehicle *vAux = *v;
+
+	while (vAux != NULL)
+	{
+		// If the location is equal
+		if (strcmp(vertex, vAux->location) == 0)
+		{
+			// Copy info of the vehicle
+			strcpy(newType, vAux->type);
+			printf("Type: %s\n", newType);
+		}
+
+		vAux = vAux->next;
 	}
 }
 
@@ -488,7 +519,7 @@ Vehicle *readVehicles()
 	FILE *fp;
 	int id, autonomy, maxAutonomy;
 	float cost, battery;
-	char type[15], location[20];
+	char type[30], location[SIZE];
 	int rentedBy;
 
 	Vehicle *aux = NULL;
@@ -498,7 +529,7 @@ Vehicle *readVehicles()
 		char line[MAX_LINE];
 		while (fgets(line, sizeof(line), fp))
 		{
-			sscanf(line, "%d,%[^,],%d,%f,%f,%d,%[^\r\n]", &id, type, &autonomy, &battery, &cost, &rentedBy, location);
+			sscanf(line, "%d,%[^,],%d,%d,%f,%f,%d,%[^,\r\n]", &id, type, &autonomy, &maxAutonomy, &battery, &cost, &rentedBy, location);
 			aux = insertVehicle(aux, id, type, autonomy, maxAutonomy, battery, cost, rentedBy, location);
 		}
 		fclose(fp);

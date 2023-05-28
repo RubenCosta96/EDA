@@ -3,6 +3,9 @@
 
 typedef struct listVehicles Vehicle;
 typedef struct listManagers Manager;
+typedef struct history History;
+typedef struct graph1 Adjacent;
+typedef struct graph2 Graph;
 
 #define SIZE 50
 
@@ -24,12 +27,6 @@ typedef struct graph2
      struct graph2 *next;
 } Graph;
 
-typedef struct
-{
-     float distance;
-     int previous;
-} PathData;
-
 // Creates a new vertex
 int createVertex(Graph **g, int id, char *newVertex, char *newGeocode);
 
@@ -46,9 +43,13 @@ int getIdByVertex(Graph *graph, char *vertex);
 
 int getIdByGeocode(Graph *graph, char *geocode);
 
+int getGeocodeByVertex(Graph **graph, char *vertex, char *geocode);
+
 Graph *findMinWeightVertex(Graph *graph);
 
-float dijkstra(Graph *graph, char *initial, char *final);
+float dijkstra(Graph *graph, char *initial, char *final, float *dist);
+
+void locationsBelowDistance(Graph *graph, Vehicle *v, char *initial, float distance);
 
 int printRoute(int *route, float *weight, int finalIndex);
 // --
@@ -57,7 +58,7 @@ void listVertexes(Graph **graph);
 
 int convertVertexToID(Graph **g, char *vertex);
 
-int convertIdToLocation(Graph **g, int locationID);
+int convertIdToLocation(Graph **g, int locationID, char *location);
 
 int convertCodeToVertex(Graph **g, char *geocode, char *respVertex);
 
@@ -66,8 +67,6 @@ int addVehicleLoc(Graph *g, char geocode[], int vehicleID);
 int getMaxVertexId(Graph *head);
 
 Graph *insertGraph(Graph *head, int id, char vertex[SIZE], char geocode[SIZE], float minCost);
-
-Graph *findMinWeightVertex(Graph *graph);
 
 Graph *readGraphBinary();
 
