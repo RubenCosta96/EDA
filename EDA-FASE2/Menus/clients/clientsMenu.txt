@@ -1,0 +1,14 @@
+┌───────────────────────┐
+│  Client options   	│
+│                   	│
+│ 1 - Rent Vehicle  	│
+│ 2 - Add funds     	│
+│ 3 - Cancel rental 	│
+│ 4 - Change data   	│
+│ 5 - Delete account	│
+│ 6 - Check my data	│
+│ 7 - Vehicles in radius│
+│ 8 - Vehicles in locat.│
+│ 0 - Exit          	│
+└───────────────────────┘
+-> 

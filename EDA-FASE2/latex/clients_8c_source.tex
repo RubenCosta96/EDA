@@ -1,0 +1,427 @@
+\hypertarget{clients_8c_source}{}\doxysection{clients.\+c}
+\mbox{\hyperlink{clients_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{clients_8h}{clients.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{managers_8h}{managers.h}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vehicles_8h}{vehicles.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{menu_funcs_8h}{menuFuncs.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{history_8h}{history.h}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{graph_8h}{graph.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ MAX\_LINE\ 250}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ MAX\_LENGTH\_NAME\ 50}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ MAX\_LENGTH\_ADDRESS\ 50}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ MAX\_LENGTH\_EMAIL\ 50}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{clients_8c_a929c0dae3e9fa04b4ea4a57b648a9114}{getMaxClientId}}(\mbox{\hyperlink{structlist_clients}{Client}}\ *head)}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ maxId\ =\ 0;}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{structlist_clients}{Client}}\ *current\ =\ head;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{structlist_clients_a7441ef0865bcb3db9b8064dd7375c1ea}{id}}\ >\ maxId)}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ maxId\ =\ current-\/>\mbox{\hyperlink{structlist_clients_a7441ef0865bcb3db9b8064dd7375c1ea}{id}};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{structlist_clients_aec8cc0d96fb8ca40b87f4d590e9b7fda}{next}};}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{return}\ maxId;}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structlist_clients}{listClients}}(\mbox{\hyperlink{structlist_clients}{Client}}\ **client)}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{structlist_clients}{Client}}\ *head\ =\ *client;}
+\DoxyCodeLine{00046\ \ \ \ \ printf(\textcolor{stringliteral}{"{}ID\(\backslash\)tName\(\backslash\)t\(\backslash\)tAge\(\backslash\)tNIF\(\backslash\)t\(\backslash\)tBalance\(\backslash\)t\(\backslash\)tAddress\(\backslash\)t\(\backslash\)t\(\backslash\)tEmail\(\backslash\)t\(\backslash\)t\(\backslash\)t\(\backslash\)tPassword\(\backslash\)n"{}});}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ head\ !=\ NULL;\ head\ =\ head-\/>\mbox{\hyperlink{structlist_clients_aec8cc0d96fb8ca40b87f4d590e9b7fda}{next}})}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%d\(\backslash\)t\%s\(\backslash\)t\%d\(\backslash\)t\%s\(\backslash\)t\%.2f\(\backslash\)t\(\backslash\)t\%s\(\backslash\)t\%s\(\backslash\)t\(\backslash\)t\%s\(\backslash\)n"{}},\ head-\/>\mbox{\hyperlink{structlist_clients_a7441ef0865bcb3db9b8064dd7375c1ea}{id}},\ head-\/>\mbox{\hyperlink{structlist_clients_ae5cb967283dbbdf75cb2032c1fa08fee}{name}},\ head-\/>\mbox{\hyperlink{structlist_clients_a91d98a856bbd96810b40af3ca5cc901a}{age}},}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ head-\/>\mbox{\hyperlink{structlist_clients_ab78d0fd2e859cf004c9f2584278add22}{NIF}},\ head-\/>\mbox{\hyperlink{structlist_clients_a52a01a1ee7bb0cfab931fc44ec76da87}{balance}},\ head-\/>\mbox{\hyperlink{structlist_clients_ad0901e096b9f3bd4aec771a7cfe5c06a}{address}},\ head-\/>\mbox{\hyperlink{structlist_clients_a5085115a00fe617fcb4a3f38157e33df}{email}},\ head-\/>\mbox{\hyperlink{structlist_clients_ae0cb2dbe68703575bb17c43c9d2efe52}{password}});}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00068\ \mbox{\hyperlink{structlist_clients}{Client}}\ *\mbox{\hyperlink{clients_8c_ac96a02e47d60c574abefe6c8a21e8e48}{insertClient}}(\mbox{\hyperlink{structlist_clients}{Client}}\ *head,\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{char}\ name[],\ \textcolor{keywordtype}{int}\ age,\ \textcolor{keywordtype}{char}\ NIF[],\ \textcolor{keywordtype}{float}\ balance,\ \textcolor{keywordtype}{char}\ address[],\ \textcolor{keywordtype}{char}\ email[],\ \textcolor{keywordtype}{char}\ pw[])}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{structlist_clients}{Client}}\ *\textcolor{keyword}{new}\ =\ malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structlist_clients}{listClients}}));}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{new}\ !=\ NULL)}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}-\/>id\ =\ id;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ strcpy(new-\/>name,\ name);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}-\/>age\ =\ age;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ strcpy(new-\/>NIF,\ NIF);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}-\/>balance\ =\ balance;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ strcpy(new-\/>address,\ address);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ strcpy(new-\/>email,\ email);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ strcpy(new-\/>password,\ pw);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}-\/>next\ =\ head;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{new});}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (head);}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00093\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{clients_8c_a1c112de4e6211a1db80a52bdf672e148}{clientReg}}(\mbox{\hyperlink{structlist_clients}{Client}}\ **head)}
+\DoxyCodeLine{00094\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{int}\ age;}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{char}\ name[\mbox{\hyperlink{clients_8c_abef4053348c46a9128f0e29738918c3e}{MAX\_LENGTH\_NAME}}],\ NIF[10],\ address[\mbox{\hyperlink{clients_8c_a40e35634df327788474e1143d4228672}{MAX\_LENGTH\_ADDRESS}}],\ email[\mbox{\hyperlink{clients_8c_a56fa1e99c8b7ebac3495c24e26a375ab}{MAX\_LENGTH\_EMAIL}}],\ password[16];}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{float}\ balance;}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{int}\ maxID\ =\ \mbox{\hyperlink{clients_8c_a929c0dae3e9fa04b4ea4a57b648a9114}{getMaxClientId}}(*head)\ +\ 1;}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Your\ ID\ is:\ \%d\(\backslash\)n"{}},\ maxID);}
+\DoxyCodeLine{00101\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Name:\ "{}});}
+\DoxyCodeLine{00102\ \ \ \ \ getchar();}
+\DoxyCodeLine{00103\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%[\string^\(\backslash\)n]"{}},\ name);}
+\DoxyCodeLine{00104\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Age:\ "{}});}
+\DoxyCodeLine{00105\ \ \ \ \ getchar();}
+\DoxyCodeLine{00106\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&age);}
+\DoxyCodeLine{00107\ \ \ \ \ printf(\textcolor{stringliteral}{"{}NIF:\ "{}});}
+\DoxyCodeLine{00108\ \ \ \ \ getchar();}
+\DoxyCodeLine{00109\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%9[\string^\(\backslash\)n]"{}},\ NIF);}
+\DoxyCodeLine{00110\ \ \ \ \ balance\ =\ 0;}
+\DoxyCodeLine{00111\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Address:\ "{}});}
+\DoxyCodeLine{00112\ \ \ \ \ getchar();}
+\DoxyCodeLine{00113\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%[\string^\(\backslash\)n]"{}},\ address);}
+\DoxyCodeLine{00114\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Email:\ "{}});}
+\DoxyCodeLine{00115\ \ \ \ \ getchar();}
+\DoxyCodeLine{00116\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%[\string^\(\backslash\)n]"{}},\ email);}
+\DoxyCodeLine{00117\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Password:\ "{}});}
+\DoxyCodeLine{00118\ \ \ \ \ getchar();}
+\DoxyCodeLine{00119\ \ \ \ \ fflush(stdout);\ \textcolor{comment}{//\ Use\ on\ windows}}
+\DoxyCodeLine{00120\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%[\string^\(\backslash\)n]"{}},\ password);}
+\DoxyCodeLine{00121\ \ \ \ \ *head\ =\ \mbox{\hyperlink{clients_8c_ac96a02e47d60c574abefe6c8a21e8e48}{insertClient}}(*head,\ maxID,\ name,\ age,\ NIF,\ balance,\ address,\ email,\ password);}
+\DoxyCodeLine{00122\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00130\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{clients_8c_aede676c43f8a08499f613c49b1ee61d2}{removeClient}}(\mbox{\hyperlink{structlist_clients}{Client}}\ **head,\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00131\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{structlist_clients}{Client}}\ *previous\ =\ *head,\ *current\ =\ *head;}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{if}\ (current\ ==\ NULL)}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>id\ ==\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00137\ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ *head\ =\ current-\/>\mbox{\hyperlink{structlist_clients_aec8cc0d96fb8ca40b87f4d590e9b7fda}{next}};}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ free(current);}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00142\ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((current\ !=\ NULL)\ \&\&\ (current-\/>id\ !=\ \textcolor{keywordtype}{id}))}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ previous\ =\ current;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{structlist_clients_aec8cc0d96fb8ca40b87f4d590e9b7fda}{next}};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current\ ==\ NULL)}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ ID!"{}});}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ previous-\/>\mbox{\hyperlink{structlist_clients_aec8cc0d96fb8ca40b87f4d590e9b7fda}{next}}\ =\ current-\/>\mbox{\hyperlink{structlist_clients_aec8cc0d96fb8ca40b87f4d590e9b7fda}{next}};}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ free(current);}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00167\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{clients_8c_a9735aa4a5c739730b5e47504ea2ff733}{addFundsClient}}(\mbox{\hyperlink{structlist_clients}{Client}}\ *c,\ \textcolor{keywordtype}{float}\ balance)}
+\DoxyCodeLine{00168\ \{}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{if}\ (balance\ <=\ 0)}
+\DoxyCodeLine{00171\ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ amount.\(\backslash\)n"{}});}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ getchar();}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \ \ \ \ c-\/>\mbox{\hyperlink{structlist_clients_a52a01a1ee7bb0cfab931fc44ec76da87}{balance}}\ +=\ balance;}
+\DoxyCodeLine{00177\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%.2f\ added\ to\ your\ balance.\(\backslash\)nYou\ currently\ have\ \%.2f€.\(\backslash\)n"{}},\ balance,\ c-\/>\mbox{\hyperlink{structlist_clients_a52a01a1ee7bb0cfab931fc44ec76da87}{balance}});}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00179\ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00189\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{clients_8c_ab1a054d3f9e8d53fa0fcac516f94b79a}{clientMenu}}(\mbox{\hyperlink{structlist_clients}{Client}}\ **head,\ \mbox{\hyperlink{structlist_vehicles}{Vehicle}}\ **vehicle,\ \mbox{\hyperlink{structlist_clients}{Client}}\ *c,\ \mbox{\hyperlink{structlist_managers}{Manager}}\ **manager,\ \mbox{\hyperlink{structgraph2}{Graph}}\ **g,\ \mbox{\hyperlink{structhistory}{History}}\ **hist)}
+\DoxyCodeLine{00190\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordtype}{int}\ opt;}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{float}\ balance\ =\ 0;}
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{structlist_vehicles}{Vehicle}}\ *vAux\ =\ *vehicle;}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \mbox{\hyperlink{menu_funcs_8c_aff6c831918692405e75fc55c43424304}{clearConsole}}();}
+\DoxyCodeLine{00196\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Welcome,\ \%s!\(\backslash\)n"{}},\ c-\/>\mbox{\hyperlink{structlist_clients_ae5cb967283dbbdf75cb2032c1fa08fee}{name}});}
+\DoxyCodeLine{00197\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Current\ balance:\ \%.2f\ €\(\backslash\)n"{}},\ c-\/>\mbox{\hyperlink{structlist_clients_a52a01a1ee7bb0cfab931fc44ec76da87}{balance}});}
+\DoxyCodeLine{00198\ \ \ \ \ system(\textcolor{stringliteral}{"{}cat\ ./Menus/clients/clientsMenu.txt"{}});}
+\DoxyCodeLine{00199\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00200\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&opt);}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordflow}{switch}\ (opt)}
+\DoxyCodeLine{00203\ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Rent\ vehicle\ function;}}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{menu_funcs_8c_aff6c831918692405e75fc55c43424304}{clearConsole}}();}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ freeVehicles;}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ freeVehicles\ =\ \mbox{\hyperlink{vehicles_8c_a573b3ace2fc2f491c11c765f5ac4a0df}{listVehiclesNotRented}}(vehicle);}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (freeVehicles\ >\ 0)}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Which\ vehicle\ do\ you\ wish\ to\ rent?\(\backslash\)nID:\ "{}});}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ vehicleID;}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&vehicleID);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ newBalance\ =\ \mbox{\hyperlink{vehicles_8c_acfde5ddb7cbb72df6df33e6504d92b90}{rentVehicle}}(vehicle,\ vehicleID,\ c,\ hist);}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (newBalance\ >=\ 0)}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c-\/>\mbox{\hyperlink{structlist_clients_a52a01a1ee7bb0cfab931fc44ec76da87}{balance}}\ =\ newBalance;}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}No\ available\ vehicles\ to\ rent.\(\backslash\)n"{}});}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{menu_funcs_8c_aff6c831918692405e75fc55c43424304}{clearConsole}}();}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}What\ is\ the\ value\ of\ funds\ you\ want\ to\ add?\(\backslash\)n"{}});}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Value:\ "{}});}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%f"{}},\ \&balance);}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{clients_8c_a9735aa4a5c739730b5e47504ea2ff733}{addFundsClient}}(c,\ balance);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{menu_funcs_8c_aff6c831918692405e75fc55c43424304}{clearConsole}}();}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ rentedVehicles\ =\ \mbox{\hyperlink{vehicles_8c_aea88c6f47892c9ac051a72a8db043f5b}{listVehiclesRentedByClient}}(vehicle,\ c-\/>\mbox{\hyperlink{structlist_clients_a7441ef0865bcb3db9b8064dd7375c1ea}{id}});}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rentedVehicles\ ==\ 0)}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}You\ don't\ have\ any\ vehicles\ rented.\(\backslash\)n"{}});}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Which\ vehicle\ do\ you\ want\ to\ cancel\ your\ rental?\(\backslash\)nID:\ "{}});}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ vehicleID,\ locationID;}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&vehicleID);}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graph_8c_a72d1d3858787c835ba0fea5f6765daff}{listVertexes}}(g);}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&locationID);}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ c-\/>\mbox{\hyperlink{structlist_clients_a52a01a1ee7bb0cfab931fc44ec76da87}{balance}}\ -\/=\ \mbox{\hyperlink{vehicles_8c_a9f95a15dc43daa1affd96812782fce7b}{cancelRental}}(vehicle,\ g,\ vehicleID);}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{history_8c_aab91c4c09f1ffc502566e6757affeb70}{cancelRentHist}}(hist,\ g,\ vehicleID,\ c-\/>\mbox{\hyperlink{structlist_clients_a7441ef0865bcb3db9b8064dd7375c1ea}{id}},\ locationID);}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ c\ =\ \mbox{\hyperlink{clients_8c_a1c9bdc213f46be6fc70ac4b7d2ccf593}{changeClientData}}(c);}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordflow}{case}\ 5:}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{clients_8c_aede676c43f8a08499f613c49b1ee61d2}{removeClient}}(head,\ c-\/>\mbox{\hyperlink{structlist_clients_a7441ef0865bcb3db9b8064dd7375c1ea}{id}});}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Account\ removed\ with\ success.\(\backslash\)n"{}});}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{menu_funcs_8c_a511eec8ea96683d3e1e5fe52318f725c}{enterToContinue}}();}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{menu_funcs_8c_abdb99021d4a47d00709df35e6dcbd7ae}{loginOrReg}}(head,\ manager,\ vehicle,\ g,\ hist);}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{case}\ 6:}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{menu_funcs_8c_aff6c831918692405e75fc55c43424304}{clearConsole}}();}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{clients_8c_a80770e167c7f362d1ffa4113375ebd9f}{checkUserData}}(c);}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordflow}{case}\ 7:}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ distance;}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ location[\mbox{\hyperlink{graph_8h_a70ed59adcb4159ac551058053e649640}{SIZE}}],\ clientLoc[\mbox{\hyperlink{graph_8h_a70ed59adcb4159ac551058053e649640}{SIZE}}];}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgraph2}{Graph}}\ *gAux\ =\ *g;}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structlist_vehicles}{Vehicle}}\ *vAux\ =\ *vehicle;}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{menu_funcs_8c_aff6c831918692405e75fc55c43424304}{clearConsole}}();}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ spot;}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Where\ are\ you\ at\ the\ moment?\ (Answer\ with\ the\ Location\ ID)\(\backslash\)n"{}});}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graph_8c_a72d1d3858787c835ba0fea5f6765daff}{listVertexes}}(g);}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&spot);}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Within\ which\ distance\ you\ want\ to\ find\ a\ vehicle:\ "{}});}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%f"{}},\ \&distance);}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graph_8c_a7d817e8a5435137205b3a379df907700}{convertIdToLocation}}(\&gAux,\ spot,\ location);}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ strcpy(clientLoc,\ location);}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graph_8c_adb06fff88e76da758f9a137c05a5a397}{locationsBelowDistance}}(gAux,\ vAux,\ location,\ distance);}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{menu_funcs_8c_abdb99021d4a47d00709df35e6dcbd7ae}{loginOrReg}}(head,\ manager,\ vehicle,\ g,\ hist);}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ Option!\(\backslash\)n"{}});}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00292\ \ \ \ \ \}}
+\DoxyCodeLine{00293\ \ \ \ \ \mbox{\hyperlink{menu_funcs_8c_a511eec8ea96683d3e1e5fe52318f725c}{enterToContinue}}();}
+\DoxyCodeLine{00294\ \ \ \ \ \mbox{\hyperlink{clients_8c_ab1a054d3f9e8d53fa0fcac516f94b79a}{clientMenu}}(head,\ vehicle,\ c,\ manager,\ g,\ hist);}
+\DoxyCodeLine{00295\ \}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00303\ \mbox{\hyperlink{structlist_clients}{Client}}\ *\mbox{\hyperlink{clients_8c_a1c9bdc213f46be6fc70ac4b7d2ccf593}{changeClientData}}(\mbox{\hyperlink{structlist_clients}{Client}}\ *c)}
+\DoxyCodeLine{00304\ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keywordtype}{int}\ opt;}
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keywordtype}{char}\ newName[\mbox{\hyperlink{clients_8c_abef4053348c46a9128f0e29738918c3e}{MAX\_LENGTH\_NAME}}],\ newEmail[\mbox{\hyperlink{clients_8c_a56fa1e99c8b7ebac3495c24e26a375ab}{MAX\_LENGTH\_EMAIL}}],\ newPassword[16],\ newAddress[\mbox{\hyperlink{clients_8c_a40e35634df327788474e1143d4228672}{MAX\_LENGTH\_ADDRESS}}];}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keywordtype}{char}\ newNIF[10];}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordtype}{int}\ newAge;}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00311\ \ \ \ \ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{menu_funcs_8c_aff6c831918692405e75fc55c43424304}{clearConsole}}();}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ system(\textcolor{stringliteral}{"{}cat\ ./Menus/clients/clientsMenu2.txt"{}});}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Current\ data:\(\backslash\)n"{}});}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{clients_8c_a80770e167c7f362d1ffa4113375ebd9f}{checkUserData}}(c);}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nEnter\ option:\ "{}});}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&opt);}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (opt)}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((getchar())\ !=\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Enter\ new\ name:\ "{}});}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%[\string^\(\backslash\)n]"{}},\ newName);}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(c-\/>\mbox{\hyperlink{structlist_clients_ae5cb967283dbbdf75cb2032c1fa08fee}{name}},\ newName);}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((getchar())\ !=\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Enter\ new\ age:\ "{}});}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&newAge);}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ c-\/>\mbox{\hyperlink{structlist_clients_a91d98a856bbd96810b40af3ca5cc901a}{age}}\ =\ newAge;}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((getchar())\ !=\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Enter\ new\ NIF:\ "{}});}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%[\string^\(\backslash\)n]"{}},\ newNIF);}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(c-\/>\mbox{\hyperlink{structlist_clients_ab78d0fd2e859cf004c9f2584278add22}{NIF}},\ newNIF);}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((getchar())\ !=\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Enter\ new\ address:\ "{}});}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%[\string^\(\backslash\)n]"{}},\ newAddress);}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(c-\/>\mbox{\hyperlink{structlist_clients_ad0901e096b9f3bd4aec771a7cfe5c06a}{address}},\ newAddress);}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 5:}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((getchar())\ !=\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Enter\ new\ email:\ "{}});}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%[\string^\(\backslash\)n]"{}},\ newEmail);}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(c-\/>\mbox{\hyperlink{structlist_clients_a5085115a00fe617fcb4a3f38157e33df}{email}},\ newEmail);}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 6:}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((getchar())\ !=\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Enter\ new\ password:\ "{}});}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%[\string^\(\backslash\)n]"{}},\ newAddress);}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(c-\/>\mbox{\hyperlink{structlist_clients_ae0cb2dbe68703575bb17c43c9d2efe52}{password}},\ newPassword);}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ option.\ Please\ select\ again.\(\backslash\)n"{}});}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00373\ \ \ \ \ \}\ \textcolor{keywordflow}{while}\ (opt\ !=\ 0);}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keywordflow}{return}\ c;}
+\DoxyCodeLine{00375\ \}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00382\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{clients_8c_a80770e167c7f362d1ffa4113375ebd9f}{checkUserData}}(\mbox{\hyperlink{structlist_clients}{Client}}\ *c)}
+\DoxyCodeLine{00383\ \{}
+\DoxyCodeLine{00384\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Name:\ \%s\(\backslash\)n"{}},\ c-\/>\mbox{\hyperlink{structlist_clients_ae5cb967283dbbdf75cb2032c1fa08fee}{name}});}
+\DoxyCodeLine{00385\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Age:\ \%d\(\backslash\)n"{}},\ c-\/>\mbox{\hyperlink{structlist_clients_a91d98a856bbd96810b40af3ca5cc901a}{age}});}
+\DoxyCodeLine{00386\ \ \ \ \ printf(\textcolor{stringliteral}{"{}NIF:\ \%s\(\backslash\)n"{}},\ c-\/>\mbox{\hyperlink{structlist_clients_ab78d0fd2e859cf004c9f2584278add22}{NIF}});}
+\DoxyCodeLine{00387\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Address:\ \%s\(\backslash\)n"{}},\ c-\/>\mbox{\hyperlink{structlist_clients_ad0901e096b9f3bd4aec771a7cfe5c06a}{address}});}
+\DoxyCodeLine{00388\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Email:\ \%s\(\backslash\)n"{}},\ c-\/>\mbox{\hyperlink{structlist_clients_a5085115a00fe617fcb4a3f38157e33df}{email}});}
+\DoxyCodeLine{00389\ \}}
+\DoxyCodeLine{00390\ }
+\DoxyCodeLine{00397\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{clients_8c_accdec7187493eae81aa51e75b9dc0769}{saveClients}}(\mbox{\hyperlink{structlist_clients}{Client}}\ *head)}
+\DoxyCodeLine{00398\ \{}
+\DoxyCodeLine{00399\ \ \ \ \ FILE\ *fp;}
+\DoxyCodeLine{00400\ \ \ \ \ fp\ =\ fopen(\textcolor{stringliteral}{"{}clients.txt"{}},\ \textcolor{stringliteral}{"{}w"{}});}
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ !=\ NULL)}
+\DoxyCodeLine{00402\ \ \ \ \ \{}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structlist_clients}{Client}}\ *aux\ =\ head;}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (aux\ !=\ NULL)}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(fp,\ \textcolor{stringliteral}{"{}\%d,\%s,\%d,\%s,\%.2f,\%s,\%s,\%s\(\backslash\)n"{}},\ aux-\/>\mbox{\hyperlink{structlist_clients_a7441ef0865bcb3db9b8064dd7375c1ea}{id}},\ aux-\/>\mbox{\hyperlink{structlist_clients_ae5cb967283dbbdf75cb2032c1fa08fee}{name}},}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aux-\/>\mbox{\hyperlink{structlist_clients_a91d98a856bbd96810b40af3ca5cc901a}{age}},\ aux-\/>\mbox{\hyperlink{structlist_clients_ab78d0fd2e859cf004c9f2584278add22}{NIF}},\ aux-\/>\mbox{\hyperlink{structlist_clients_a52a01a1ee7bb0cfab931fc44ec76da87}{balance}},\ aux-\/>\mbox{\hyperlink{structlist_clients_ad0901e096b9f3bd4aec771a7cfe5c06a}{address}},\ aux-\/>\mbox{\hyperlink{structlist_clients_a5085115a00fe617fcb4a3f38157e33df}{email}},\ aux-\/>\mbox{\hyperlink{structlist_clients_ae0cb2dbe68703575bb17c43c9d2efe52}{password}});}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ aux\ =\ aux-\/>\mbox{\hyperlink{structlist_clients_aec8cc0d96fb8ca40b87f4d590e9b7fda}{next}};}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ fclose(fp);}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (1);}
+\DoxyCodeLine{00414\ \ \ \ \ \}}
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (0);}
+\DoxyCodeLine{00417\ \}}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00424\ \mbox{\hyperlink{structlist_clients}{Client}}\ *\mbox{\hyperlink{clients_8c_a4a7c16eb76c46913cdc5dca3f0ffdffb}{readClients}}()}
+\DoxyCodeLine{00425\ \{}
+\DoxyCodeLine{00426\ \ \ \ \ FILE\ *fp;}
+\DoxyCodeLine{00427\ \ \ \ \ \textcolor{keywordtype}{int}\ id,\ age;}
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keywordtype}{float}\ balance;}
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keywordtype}{char}\ name[\mbox{\hyperlink{clients_8c_abef4053348c46a9128f0e29738918c3e}{MAX\_LENGTH\_NAME}}],\ NIF[10],\ address[\mbox{\hyperlink{clients_8c_a40e35634df327788474e1143d4228672}{MAX\_LENGTH\_ADDRESS}}],\ email[\mbox{\hyperlink{clients_8c_a40e35634df327788474e1143d4228672}{MAX\_LENGTH\_ADDRESS}}],\ password[16];}
+\DoxyCodeLine{00430\ \ \ \ \ \mbox{\hyperlink{structlist_clients}{Client}}\ *aux\ =\ NULL;}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \ \ fp\ =\ fopen(\textcolor{stringliteral}{"{}clients.txt"{}},\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ !=\ NULL)}
+\DoxyCodeLine{00434\ \ \ \ \ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ line[\mbox{\hyperlink{clients_8c_a842ed03f27719bc87666bfd1f75415b8}{MAX\_LINE}}];}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (fgets(line,\ \textcolor{keyword}{sizeof}(line),\ fp))}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ sscanf(line,\ \textcolor{stringliteral}{"{}\%d,\%[\string^,],\%d,\%[\string^,],\%f,\%[\string^,],\%[\string^,],\%[\string^,\(\backslash\)r\(\backslash\)n]"{}},\ \&\textcolor{keywordtype}{id},\ name,\ \&age,\ NIF,\ \&balance,\ address,\ email,\ password);}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ aux\ =\ \mbox{\hyperlink{clients_8c_ac96a02e47d60c574abefe6c8a21e8e48}{insertClient}}(aux,\ \textcolor{keywordtype}{id},\ name,\ age,\ NIF,\ balance,\ address,\ email,\ password);}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ fclose(fp);}
+\DoxyCodeLine{00444\ \ \ \ \ \}}
+\DoxyCodeLine{00445\ \ \ \ \ \textcolor{keywordflow}{return}\ (aux);}
+\DoxyCodeLine{00446\ \}}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00454\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{clients_8c_affca879ddc7b060de3aa22f50aa37082}{saveClientsBinary}}(\mbox{\hyperlink{structlist_clients}{Client}}\ *head)}
+\DoxyCodeLine{00455\ \{}
+\DoxyCodeLine{00456\ \ \ \ \ FILE\ *fp;}
+\DoxyCodeLine{00457\ \ \ \ \ fp\ =\ fopen(\textcolor{stringliteral}{"{}clientBinary.bin"{}},\ \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ ==\ NULL)}
+\DoxyCodeLine{00459\ \ \ \ \ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ ficheiro.\(\backslash\)n"{}});}
+\DoxyCodeLine{00461\ \ \ \ \ \}}
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (fp\ !=\ NULL)}
+\DoxyCodeLine{00463\ \ \ \ \ \{}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structlist_clients}{Client}}\ *aux\ =\ head;}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (aux\ !=\ NULL)}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ fwrite(aux,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlist_clients}{Client}}),\ 1,\ fp);}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ aux\ =\ aux-\/>\mbox{\hyperlink{structlist_clients_aec8cc0d96fb8ca40b87f4d590e9b7fda}{next}};}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ fclose(fp);}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (1);}
+\DoxyCodeLine{00472\ \ \ \ \ \}}
+\DoxyCodeLine{00473\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (0);}
+\DoxyCodeLine{00475\ \}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00482\ \mbox{\hyperlink{structlist_clients}{Client}}\ *\mbox{\hyperlink{clients_8c_a3a3a589da3a95579c1e7928b3602e082}{readClientsBinary}}()}
+\DoxyCodeLine{00483\ \{}
+\DoxyCodeLine{00484\ \ \ \ \ FILE\ *fp;}
+\DoxyCodeLine{00485\ }
+\DoxyCodeLine{00486\ \ \ \ \ \mbox{\hyperlink{structlist_clients}{Client}}\ *aux\ =\ NULL;}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ \ \ \ \ fp\ =\ fopen(\textcolor{stringliteral}{"{}clientBinary.bin"{}},\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{00489\ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ ==\ NULL)}
+\DoxyCodeLine{00490\ \ \ \ \ \{}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ ficheiro."{}});}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00493\ \ \ \ \ \}}
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{keywordflow}{while}\ (!feof(fp))}
+\DoxyCodeLine{00495\ \ \ \ \ \{}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structlist_clients}{Client}}\ client;}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bytes\_read\ =\ fread(\&client,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlist_clients}{Client}}),\ 1,\ fp);}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bytes\_read\ ==\ 1)}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ aux\ =\ \mbox{\hyperlink{clients_8c_ac96a02e47d60c574abefe6c8a21e8e48}{insertClient}}(aux,\ client.\mbox{\hyperlink{structlist_clients_a7441ef0865bcb3db9b8064dd7375c1ea}{id}},\ client.\mbox{\hyperlink{structlist_clients_ae5cb967283dbbdf75cb2032c1fa08fee}{name}},\ client.\mbox{\hyperlink{structlist_clients_a91d98a856bbd96810b40af3ca5cc901a}{age}},\ client.\mbox{\hyperlink{structlist_clients_ab78d0fd2e859cf004c9f2584278add22}{NIF}},\ client.\mbox{\hyperlink{structlist_clients_a52a01a1ee7bb0cfab931fc44ec76da87}{balance}},\ client.\mbox{\hyperlink{structlist_clients_ad0901e096b9f3bd4aec771a7cfe5c06a}{address}},\ client.\mbox{\hyperlink{structlist_clients_a5085115a00fe617fcb4a3f38157e33df}{email}},\ client.\mbox{\hyperlink{structlist_clients_ae0cb2dbe68703575bb17c43c9d2efe52}{password}});}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00502\ \ \ \ \ \}}
+\DoxyCodeLine{00503\ \ \ \ \ fclose(fp);}
+\DoxyCodeLine{00504\ \ \ \ \ \textcolor{keywordflow}{return}\ (aux);}
+\DoxyCodeLine{00505\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,42 @@
+\hypertarget{history_8h_source}{}\doxysection{history.\+h}
+\mbox{\hyperlink{history_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ HISTORY}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ HISTORY}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ MAX\_LENGTH\_NAME\ 50}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structlist_vehicles}{listVehicles}}\ \mbox{\hyperlink{structlist_vehicles}{Vehicle}};}
+\DoxyCodeLine{00009\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structlist_managers}{listManagers}}\ \mbox{\hyperlink{structlist_managers}{Manager}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structhistory}{history}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structhistory_a2e938cd63a2404d0902c57205706872a}{clientID}},\ \mbox{\hyperlink{structhistory_ae00cd305ab9994864144f2f9aabd488e}{vehicleID}};}
+\DoxyCodeLine{00014\ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhistory_a8f9450ec0a591829b05b6a04e2d19614}{cost}};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structhistory_a94d93ebd3da76c31d3cb1f94e1cc3df8}{clientName}}[\mbox{\hyperlink{history_8h_abef4053348c46a9128f0e29738918c3e}{MAX\_LENGTH\_NAME}}],\ \mbox{\hyperlink{structhistory_aba8bce2ca7b96e1747bfd08819fcf631}{vehicleType}}[\mbox{\hyperlink{history_8h_abef4053348c46a9128f0e29738918c3e}{MAX\_LENGTH\_NAME}}];}
+\DoxyCodeLine{00016\ \ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structhistory_a1d7024dfb3efe722ab1e8372252a7f87}{initLocation}}[\mbox{\hyperlink{vehicles_8h_a7a9a231e30b47bc0345749c8bd1e5077}{MAX\_LENGTH}}],\ \mbox{\hyperlink{structhistory_afe68b331c72a899296ce22ecd1024f5e}{finalLocation}}[\mbox{\hyperlink{vehicles_8h_a7a9a231e30b47bc0345749c8bd1e5077}{MAX\_LENGTH}}];}
+\DoxyCodeLine{00017\ \ \ \ \ \ \textcolor{keyword}{struct\ }tm\ \mbox{\hyperlink{structhistory_ab8786145740c59c29cd9d475b2dd57fd}{init}};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \textcolor{keyword}{struct\ }tm\ \mbox{\hyperlink{structhistory_a1b114f1503d9c504cef0774504d3e1ca}{end}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structhistory}{history}}\ *\mbox{\hyperlink{structhistory_a6bad528b02c3b70434848bef3b66dab2}{next}};}
+\DoxyCodeLine{00020\ \}\ \mbox{\hyperlink{history_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \mbox{\hyperlink{structhistory}{History}}\ *\mbox{\hyperlink{history_8h_a91c243b48a8d539c28e679c5bfaea33c}{insertHistory}}(\mbox{\hyperlink{structhistory}{History}}\ *head,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structhistory_a2e938cd63a2404d0902c57205706872a}{clientID}},\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structhistory_a94d93ebd3da76c31d3cb1f94e1cc3df8}{clientName}}[],\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structhistory_ae00cd305ab9994864144f2f9aabd488e}{vehicleID}},\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structhistory_aba8bce2ca7b96e1747bfd08819fcf631}{vehicleType}}[],}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhistory_a8f9450ec0a591829b05b6a04e2d19614}{cost}},\ \textcolor{keywordtype}{char}\ initialLocation[],\ \textcolor{keyword}{struct}\ tm\ \mbox{\hyperlink{structhistory_ab8786145740c59c29cd9d475b2dd57fd}{init}});}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{history_8h_aab91c4c09f1ffc502566e6757affeb70}{cancelRentHist}}(\mbox{\hyperlink{structhistory}{History}}\ **\mbox{\hyperlink{structhistory}{history}},\ \mbox{\hyperlink{structgraph2}{Graph}}\ **g,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structhistory_ae00cd305ab9994864144f2f9aabd488e}{vehicleID}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structhistory_a2e938cd63a2404d0902c57205706872a}{clientID}},\ \textcolor{keywordtype}{int}\ locationID);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{history_8h_a6934f92b0809747d09b35a4dd8af683e}{listHistory}}(\mbox{\hyperlink{structhistory}{History}}\ **\mbox{\hyperlink{structhistory}{history}});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{history_8h_a73ae08b11e6c290151cb1fdb5e302c73}{saveHistory}}(\mbox{\hyperlink{structhistory}{History}}\ *head);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \mbox{\hyperlink{structhistory}{History}}\ *\mbox{\hyperlink{history_8h_a6c8cf3d68c3a2eae703c283f7efc4fb1}{readHistory}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{history_8h_a161c7c5d333cfd71793ffdfa20b5b9b6}{saveHistoryBinary}}(\mbox{\hyperlink{structhistory}{History}}\ *head);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \mbox{\hyperlink{structhistory}{History}}\ *\mbox{\hyperlink{history_8h_a36c848441103d96153883a924a707a9c}{readHistoryBinary}}();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

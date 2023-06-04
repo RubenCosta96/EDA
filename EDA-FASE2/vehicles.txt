@@ -1,0 +1,8 @@
+2,Bicicleta,200,300,66.67,1.00,0,IPCA
+1,Trotinete,100,300,33.33,0.70,0,Alcaides Faria
+3,Trotinete,55,300,18.33,0.70,0,Continente
+4,Trotinete,300,300,100.00,0.70,0,Rotunda Galo
+5,Bicicleta,100,400,25.00,1.00,0,Rotunda Professor
+6,Bicicleta,55,200,27.5,1.00,0,Jardim Velho
+7,Bicicleta,400,400,100.00,1.00,0,Jardim Velho
+8,Trotinete,150,150,100.00,0.70,0,McDonald's

@@ -1,0 +1,381 @@
+\hypertarget{vehicles_8c}{}\doxysection{vehicles.\+c File Reference}
+\label{vehicles_8c}\index{vehicles.c@{vehicles.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}vehicles.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}menu\+Funcs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}clients.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}history.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}graph.\+h\char`\"{}}\newline
+Include dependency graph for vehicles.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vehicles_8c__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=145pt]{vehicles_8c__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{vehicles_8c_a842ed03f27719bc87666bfd1f75415b8}{MAX\+\_\+\+LINE}}~250
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{vehicles_8c_a83a93b279a6dcf0e5c5a4511d12c6155}{compare}} (int aut1, int aut2)
+\begin{DoxyCompactList}\small\item\em Function that recieves values of the autonomy from 2 vehicles and compares them. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vehicles_8c_a3f4aef58afcba5712d8bb73430c078f2}{get\+Max\+Vehicle\+Id}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Gets the highest value of the IDs of the vehicles registered. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vehicles_8c_adc684c6fc71b4a772447ac47c70e7ee1}{list\+Vehicles}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$v)
+\begin{DoxyCompactList}\small\item\em Prints on the terminal the list of vehicles registered. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vehicles_8c_aea88c6f47892c9ac051a72a8db043f5b}{list\+Vehicles\+Rented\+By\+Client}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$vehicle, int client\+ID)
+\begin{DoxyCompactList}\small\item\em Prints on the terminal the list of vehicles that are rented by the client that\textquotesingle{}s logged in. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vehicles_8c_a573b3ace2fc2f491c11c765f5ac4a0df}{list\+Vehicles\+Not\+Rented}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$vehicle)
+\begin{DoxyCompactList}\small\item\em Prints on the terminal the list of vehicles that are available to be rented. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vehicles_8c_a3760f5709162dbf58500a1d5e8fdffdf}{vehicle\+Id\+Exists}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$head, int id)
+\item 
+\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$ \mbox{\hyperlink{vehicles_8c_a2664c828cec7ed8ad5846402dfd93884}{insert\+Vehicle}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$head, int id, char type\mbox{[}$\,$\mbox{]}, int autonomy, int max\+Autonomy, float battery, float cost, int rented\+By, char location\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Function to insert a new vehicle into the already existing linked list of vehicles. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vehicles_8c_abd7a28949cc80b9dc67e70537b74ec2a}{vehicle\+Reg}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$head, \mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$g)
+\begin{DoxyCompactList}\small\item\em Function that will recieve the inputs of the user to register a new vehicle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vehicles_8c_a63c20a16d3a0b6871f42d1575bbd086d}{change\+Vehicle\+Data}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$head, \mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$g, int id)
+\begin{DoxyCompactList}\small\item\em Function that allows the manager to change any of the fields of the selected vehicle\textquotesingle{}s data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vehicles_8c_a50c51f683d752175035e847492690cee}{remove\+Vehicle}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$head, int id)
+\begin{DoxyCompactList}\small\item\em Removes a vehicle from the linked list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vehicles_8c_a25a97a1ca69896c6e797d2301b7a36fd}{sort\+Vehicles\+By\+Autonomy}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Sorts all the vehicles in descending order of their respective autonomy, presenting a list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vehicles_8c_acfde5ddb7cbb72df6df33e6504d92b90}{rent\+Vehicle}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$head, int vehicle\+ID, \mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$c, \mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$hist)
+\begin{DoxyCompactList}\small\item\em Function that allows a vehicle to be rented by a client. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{vehicles_8c_a9f95a15dc43daa1affd96812782fce7b}{cancel\+Rental}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$head, \mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$graph, int vehicle\+ID)
+\begin{DoxyCompactList}\small\item\em Function that allows a client to cancel a rental that was made. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vehicles_8c_a4d8b0ed4e392545f62cec6c9602df280}{find\+Vehicle\+In\+Vertex}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$v, char $\ast$vertex, char $\ast$new\+Type)
+\item 
+int \mbox{\hyperlink{vehicles_8c_ad58189e2ce1dd8e36dd35e160e70648c}{save\+Vehicles}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Saves all the data of the vehicles in a .txt file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$ \mbox{\hyperlink{vehicles_8c_a126cfac100a571ba950208df86cbc5e8}{read\+Vehicles}} ()
+\begin{DoxyCompactList}\small\item\em Reads the data present on the .txt file that has all the vehicles data saved. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vehicles_8c_a40d972610378fd43e35cb61e3e961385}{save\+Vehicles\+Binary}} (\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Saves all the data of the vehicles in a binary file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$ \mbox{\hyperlink{vehicles_8c_a2751209d6981e1c876a4ff8a06f1c967}{read\+Vehicles\+Binary}} ()
+\begin{DoxyCompactList}\small\item\em Reads the data present on the binary file that has all the vehicles data saved. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{vehicles_8c_a842ed03f27719bc87666bfd1f75415b8}\label{vehicles_8c_a842ed03f27719bc87666bfd1f75415b8} 
+\index{vehicles.c@{vehicles.c}!MAX\_LINE@{MAX\_LINE}}
+\index{MAX\_LINE@{MAX\_LINE}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_LINE}{MAX\_LINE}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+LINE~250}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{vehicles_8c_a9f95a15dc43daa1affd96812782fce7b}\label{vehicles_8c_a9f95a15dc43daa1affd96812782fce7b} 
+\index{vehicles.c@{vehicles.c}!cancelRental@{cancelRental}}
+\index{cancelRental@{cancelRental}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{cancelRental()}{cancelRental()}}
+{\footnotesize\ttfamily float cancel\+Rental (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{head,  }\item[{\mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$}]{graph,  }\item[{int}]{vehicle\+ID }\end{DoxyParamCaption})}
+
+
+
+Function that allows a client to cancel a rental that was made. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+{\em vehicle\+ID} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{vehicles_8c_a63c20a16d3a0b6871f42d1575bbd086d}\label{vehicles_8c_a63c20a16d3a0b6871f42d1575bbd086d} 
+\index{vehicles.c@{vehicles.c}!changeVehicleData@{changeVehicleData}}
+\index{changeVehicleData@{changeVehicleData}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{changeVehicleData()}{changeVehicleData()}}
+{\footnotesize\ttfamily void change\+Vehicle\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{head,  }\item[{\mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$}]{g,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Function that allows the manager to change any of the fields of the selected vehicle\textquotesingle{}s data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{vehicles_8c_a83a93b279a6dcf0e5c5a4511d12c6155}\label{vehicles_8c_a83a93b279a6dcf0e5c5a4511d12c6155} 
+\index{vehicles.c@{vehicles.c}!compare@{compare}}
+\index{compare@{compare}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{compare()}{compare()}}
+{\footnotesize\ttfamily int compare (\begin{DoxyParamCaption}\item[{int}]{aut1,  }\item[{int}]{aut2 }\end{DoxyParamCaption})}
+
+
+
+Function that recieves values of the autonomy from 2 vehicles and compares them. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aut1} & \\
+\hline
+{\em aut2} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{vehicles_8c_a4d8b0ed4e392545f62cec6c9602df280}\label{vehicles_8c_a4d8b0ed4e392545f62cec6c9602df280} 
+\index{vehicles.c@{vehicles.c}!findVehicleInVertex@{findVehicleInVertex}}
+\index{findVehicleInVertex@{findVehicleInVertex}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{findVehicleInVertex()}{findVehicleInVertex()}}
+{\footnotesize\ttfamily void find\+Vehicle\+In\+Vertex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{v,  }\item[{char $\ast$}]{vertex,  }\item[{char $\ast$}]{new\+Type }\end{DoxyParamCaption})}
+
+\Hypertarget{vehicles_8c_a3f4aef58afcba5712d8bb73430c078f2}\label{vehicles_8c_a3f4aef58afcba5712d8bb73430c078f2} 
+\index{vehicles.c@{vehicles.c}!getMaxVehicleId@{getMaxVehicleId}}
+\index{getMaxVehicleId@{getMaxVehicleId}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{getMaxVehicleId()}{getMaxVehicleId()}}
+{\footnotesize\ttfamily int get\+Max\+Vehicle\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Gets the highest value of the IDs of the vehicles registered. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{vehicles_8c_a2664c828cec7ed8ad5846402dfd93884}\label{vehicles_8c_a2664c828cec7ed8ad5846402dfd93884} 
+\index{vehicles.c@{vehicles.c}!insertVehicle@{insertVehicle}}
+\index{insertVehicle@{insertVehicle}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{insertVehicle()}{insertVehicle()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$ insert\+Vehicle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$}]{head,  }\item[{int}]{id,  }\item[{char}]{type\mbox{[}$\,$\mbox{]},  }\item[{int}]{autonomy,  }\item[{int}]{max\+Autonomy,  }\item[{float}]{battery,  }\item[{float}]{cost,  }\item[{int}]{rented\+By,  }\item[{char}]{location\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Function to insert a new vehicle into the already existing linked list of vehicles. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+{\em id} & \\
+\hline
+{\em type} & \\
+\hline
+{\em autonomy} & \\
+\hline
+{\em cost} & \\
+\hline
+{\em rented\+By} & \\
+\hline
+{\em location} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vehicle$\ast$ 
+\end{DoxyReturn}
+\Hypertarget{vehicles_8c_adc684c6fc71b4a772447ac47c70e7ee1}\label{vehicles_8c_adc684c6fc71b4a772447ac47c70e7ee1} 
+\index{vehicles.c@{vehicles.c}!listVehicles@{listVehicles}}
+\index{listVehicles@{listVehicles}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{listVehicles()}{listVehicles()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{structlist_vehicles}{list\+Vehicles}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{v }\end{DoxyParamCaption})}
+
+
+
+Prints on the terminal the list of vehicles registered. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{vehicles_8c_a573b3ace2fc2f491c11c765f5ac4a0df}\label{vehicles_8c_a573b3ace2fc2f491c11c765f5ac4a0df} 
+\index{vehicles.c@{vehicles.c}!listVehiclesNotRented@{listVehiclesNotRented}}
+\index{listVehiclesNotRented@{listVehiclesNotRented}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{listVehiclesNotRented()}{listVehiclesNotRented()}}
+{\footnotesize\ttfamily int list\+Vehicles\+Not\+Rented (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{vehicle }\end{DoxyParamCaption})}
+
+
+
+Prints on the terminal the list of vehicles that are available to be rented. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vehicle} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{vehicles_8c_aea88c6f47892c9ac051a72a8db043f5b}\label{vehicles_8c_aea88c6f47892c9ac051a72a8db043f5b} 
+\index{vehicles.c@{vehicles.c}!listVehiclesRentedByClient@{listVehiclesRentedByClient}}
+\index{listVehiclesRentedByClient@{listVehiclesRentedByClient}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{listVehiclesRentedByClient()}{listVehiclesRentedByClient()}}
+{\footnotesize\ttfamily int list\+Vehicles\+Rented\+By\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{vehicle,  }\item[{int}]{client\+ID }\end{DoxyParamCaption})}
+
+
+
+Prints on the terminal the list of vehicles that are rented by the client that\textquotesingle{}s logged in. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vehicle} & \\
+\hline
+{\em client\+ID} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{vehicles_8c_a126cfac100a571ba950208df86cbc5e8}\label{vehicles_8c_a126cfac100a571ba950208df86cbc5e8} 
+\index{vehicles.c@{vehicles.c}!readVehicles@{readVehicles}}
+\index{readVehicles@{readVehicles}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{readVehicles()}{readVehicles()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$ read\+Vehicles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads the data present on the .txt file that has all the vehicles data saved. 
+
+\begin{DoxyReturn}{Returns}
+Vehicle$\ast$ 
+\end{DoxyReturn}
+\Hypertarget{vehicles_8c_a2751209d6981e1c876a4ff8a06f1c967}\label{vehicles_8c_a2751209d6981e1c876a4ff8a06f1c967} 
+\index{vehicles.c@{vehicles.c}!readVehiclesBinary@{readVehiclesBinary}}
+\index{readVehiclesBinary@{readVehiclesBinary}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{readVehiclesBinary()}{readVehiclesBinary()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$ read\+Vehicles\+Binary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads the data present on the binary file that has all the vehicles data saved. 
+
+\begin{DoxyReturn}{Returns}
+Vehicle$\ast$ 
+\end{DoxyReturn}
+\Hypertarget{vehicles_8c_a50c51f683d752175035e847492690cee}\label{vehicles_8c_a50c51f683d752175035e847492690cee} 
+\index{vehicles.c@{vehicles.c}!removeVehicle@{removeVehicle}}
+\index{removeVehicle@{removeVehicle}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{removeVehicle()}{removeVehicle()}}
+{\footnotesize\ttfamily void remove\+Vehicle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{head,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Removes a vehicle from the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{vehicles_8c_acfde5ddb7cbb72df6df33e6504d92b90}\label{vehicles_8c_acfde5ddb7cbb72df6df33e6504d92b90} 
+\index{vehicles.c@{vehicles.c}!rentVehicle@{rentVehicle}}
+\index{rentVehicle@{rentVehicle}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{rentVehicle()}{rentVehicle()}}
+{\footnotesize\ttfamily int rent\+Vehicle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{head,  }\item[{int}]{vehicle\+ID,  }\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$}]{c,  }\item[{\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$}]{hist }\end{DoxyParamCaption})}
+
+
+
+Function that allows a vehicle to be rented by a client. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+{\em vehicle\+ID} & \\
+\hline
+{\em c} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{vehicles_8c_ad58189e2ce1dd8e36dd35e160e70648c}\label{vehicles_8c_ad58189e2ce1dd8e36dd35e160e70648c} 
+\index{vehicles.c@{vehicles.c}!saveVehicles@{saveVehicles}}
+\index{saveVehicles@{saveVehicles}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{saveVehicles()}{saveVehicles()}}
+{\footnotesize\ttfamily int save\+Vehicles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Saves all the data of the vehicles in a .txt file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{vehicles_8c_a40d972610378fd43e35cb61e3e961385}\label{vehicles_8c_a40d972610378fd43e35cb61e3e961385} 
+\index{vehicles.c@{vehicles.c}!saveVehiclesBinary@{saveVehiclesBinary}}
+\index{saveVehiclesBinary@{saveVehiclesBinary}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{saveVehiclesBinary()}{saveVehiclesBinary()}}
+{\footnotesize\ttfamily int save\+Vehicles\+Binary (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Saves all the data of the vehicles in a binary file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{vehicles_8c_a25a97a1ca69896c6e797d2301b7a36fd}\label{vehicles_8c_a25a97a1ca69896c6e797d2301b7a36fd} 
+\index{vehicles.c@{vehicles.c}!sortVehiclesByAutonomy@{sortVehiclesByAutonomy}}
+\index{sortVehiclesByAutonomy@{sortVehiclesByAutonomy}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{sortVehiclesByAutonomy()}{sortVehiclesByAutonomy()}}
+{\footnotesize\ttfamily void sort\+Vehicles\+By\+Autonomy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Sorts all the vehicles in descending order of their respective autonomy, presenting a list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{vehicles_8c_a3760f5709162dbf58500a1d5e8fdffdf}\label{vehicles_8c_a3760f5709162dbf58500a1d5e8fdffdf} 
+\index{vehicles.c@{vehicles.c}!vehicleIdExists@{vehicleIdExists}}
+\index{vehicleIdExists@{vehicleIdExists}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{vehicleIdExists()}{vehicleIdExists()}}
+{\footnotesize\ttfamily int vehicle\+Id\+Exists (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$}]{head,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+\Hypertarget{vehicles_8c_abd7a28949cc80b9dc67e70537b74ec2a}\label{vehicles_8c_abd7a28949cc80b9dc67e70537b74ec2a} 
+\index{vehicles.c@{vehicles.c}!vehicleReg@{vehicleReg}}
+\index{vehicleReg@{vehicleReg}!vehicles.c@{vehicles.c}}
+\doxysubsubsection{\texorpdfstring{vehicleReg()}{vehicleReg()}}
+{\footnotesize\ttfamily void vehicle\+Reg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{head,  }\item[{\mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$}]{g }\end{DoxyParamCaption})}
+
+
+
+Function that will recieve the inputs of the user to register a new vehicle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,268 @@
+\hypertarget{managers_8c_source}{}\doxysection{managers.\+c}
+\mbox{\hyperlink{managers_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{managers_8h}{managers.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{menu_funcs_8h}{menuFuncs.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ MAX\_LINE\ 250}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ MAX\_LENGTH\_NAME\ 50}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ MAX\_LENGTH\_ADDRESS\ 50}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ MAX\_LENGTH\_EMAIL\ 50}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00020\ \mbox{\hyperlink{structlist_managers}{Manager}}\ *\mbox{\hyperlink{managers_8c_ab30d31a7d6e4ff5f2f3823beaab3faa3}{loginManager}}(\mbox{\hyperlink{structlist_managers}{Manager}}\ *head,\ \textcolor{keywordtype}{char}\ email[],\ \textcolor{keywordtype}{char}\ pw[])}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{structlist_managers}{Manager}}\ *login\ =\ head;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(login-\/>\mbox{\hyperlink{structlist_managers_a5085115a00fe617fcb4a3f38157e33df}{email}},\ email)\ \&\&\ strcmp(login-\/>\mbox{\hyperlink{structlist_managers_ae0cb2dbe68703575bb17c43c9d2efe52}{password}},\ pw)\ ==\ 0)}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Login\ successfull!\(\backslash\)n\ Welcome\ \%s\(\backslash\)n"{}},\ login-\/>\mbox{\hyperlink{structlist_managers_ae5cb967283dbbdf75cb2032c1fa08fee}{name}});}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(login-\/>\mbox{\hyperlink{structlist_managers_a5085115a00fe617fcb4a3f38157e33df}{email}},\ email)\ ||\ strcmp(login-\/>\mbox{\hyperlink{structlist_managers_ae0cb2dbe68703575bb17c43c9d2efe52}{password}},\ pw)\ !=\ 0)}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Email\ or\ password\ invalid.\(\backslash\)n"{}});}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00044\ \mbox{\hyperlink{structlist_managers}{Manager}}\ *\mbox{\hyperlink{managers_8c_a291759d422f04882dce49977b33c2cd7}{insertManager}}(\mbox{\hyperlink{structlist_managers}{Manager}}\ *head,\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},\ \textcolor{keywordtype}{char}\ name[],\ \textcolor{keywordtype}{char}\ email[],\ \textcolor{keywordtype}{char}\ pw[])}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{structlist_managers}{Manager}}\ *\textcolor{keyword}{new}\ =\ malloc(\textcolor{keyword}{sizeof}(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structlist_managers}{listManagers}}));}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{new}\ !=\ NULL)}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}-\/>id\ =\ id;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ strcpy(new-\/>name,\ name);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ strcpy(new-\/>email,\ email);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ strcpy(new-\/>password,\ pw);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}-\/>next\ =\ head;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keyword}{new});}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (head);}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00066\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{managers_8c_a273ba1ac7fd05eeddaefb7c0dda08a0c}{managerReg}}(\mbox{\hyperlink{structlist_managers}{Manager}}\ **head)}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{char}\ name[\mbox{\hyperlink{managers_8c_abef4053348c46a9128f0e29738918c3e}{MAX\_LENGTH\_NAME}}],\ email[\mbox{\hyperlink{managers_8c_a56fa1e99c8b7ebac3495c24e26a375ab}{MAX\_LENGTH\_EMAIL}}],\ password[16];}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{int}\ maxID\ =\ \mbox{\hyperlink{managers_8c_ac52453047c850d5d4e2d1aece7c1b87f}{getMaxManagerId}}(*head)\ +\ 1;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Your\ ID\ is:\ \%d\(\backslash\)n"{}},\ maxID);}
+\DoxyCodeLine{00073\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Name:\ "{}});}
+\DoxyCodeLine{00074\ \ \ \ \ getchar();}
+\DoxyCodeLine{00075\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%[\string^\(\backslash\)n]"{}},\ name);}
+\DoxyCodeLine{00076\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Email:\ "{}});}
+\DoxyCodeLine{00077\ \ \ \ \ getchar();}
+\DoxyCodeLine{00078\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%[\string^\(\backslash\)n]"{}},\ email);}
+\DoxyCodeLine{00079\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Password:\ "{}});}
+\DoxyCodeLine{00080\ \ \ \ \ getchar();}
+\DoxyCodeLine{00081\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%[\string^\(\backslash\)n]"{}},\ password);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ *head\ =\ \mbox{\hyperlink{managers_8c_a291759d422f04882dce49977b33c2cd7}{insertManager}}(*head,\ maxID,\ name,\ email,\ password);}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{menu_funcs_8c_aff6c831918692405e75fc55c43424304}{clearConsole}}();}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structlist_managers}{listManagers}}(\mbox{\hyperlink{structlist_managers}{Manager}}\ **manager)}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{structlist_managers}{Manager}}\ *head\ =\ *manager;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{while}\ (head\ !=\ NULL)}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%d\ \%s\ \%s\(\backslash\)n"{}},\ head-\/>\mbox{\hyperlink{structlist_managers_a7441ef0865bcb3db9b8064dd7375c1ea}{id}},\ head-\/>\mbox{\hyperlink{structlist_managers_ae5cb967283dbbdf75cb2032c1fa08fee}{name}},\ head-\/>\mbox{\hyperlink{structlist_managers_a5085115a00fe617fcb4a3f38157e33df}{email}});}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ head\ =\ head-\/>\mbox{\hyperlink{structlist_managers_aecf708c573b9d38c627505da00c443d3}{next}};}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00108\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{managers_8c_aa15c74afcf7b725ee69b2003fef7201d}{changeManagerData}}(\mbox{\hyperlink{structlist_managers}{Manager}}\ *m)}
+\DoxyCodeLine{00109\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{int}\ opt;}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{char}\ newName[\mbox{\hyperlink{managers_8c_abef4053348c46a9128f0e29738918c3e}{MAX\_LENGTH\_NAME}}];}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{char}\ newEmail[\mbox{\hyperlink{managers_8c_a56fa1e99c8b7ebac3495c24e26a375ab}{MAX\_LENGTH\_EMAIL}}];}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{char}\ newPassword[16];}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{menu_funcs_8c_aff6c831918692405e75fc55c43424304}{clearConsole}}();}
+\DoxyCodeLine{00116\ \ \ \ \ system(\textcolor{stringliteral}{"{}cat\ Menus/managers/managersMenu2.txt"{}});}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00119\ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Enter\ option:\ "{}});}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&opt);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (opt)}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((getchar())\ !=\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Enter\ new\ name:\ "{}});}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ fgets(newName,\ \mbox{\hyperlink{managers_8c_abef4053348c46a9128f0e29738918c3e}{MAX\_LENGTH\_NAME}},\ stdin);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ newName[strcspn(newName,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}})]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(m-\/>\mbox{\hyperlink{structlist_managers_ae5cb967283dbbdf75cb2032c1fa08fee}{name}},\ newName);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((getchar())\ !=\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Enter\ new\ email:\ "{}});}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ fgets(newEmail,\ \mbox{\hyperlink{managers_8c_a56fa1e99c8b7ebac3495c24e26a375ab}{MAX\_LENGTH\_EMAIL}},\ stdin);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ newEmail[strcspn(newEmail,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}})]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(m-\/>\mbox{\hyperlink{structlist_managers_a5085115a00fe617fcb4a3f38157e33df}{email}},\ newEmail);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((getchar())\ !=\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Enter\ new\ password:\ "{}});}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ fgets(newPassword,\ 16,\ stdin);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ newPassword[strcspn(newPassword,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}})]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(m-\/>\mbox{\hyperlink{structlist_managers_ae0cb2dbe68703575bb17c43c9d2efe52}{password}},\ newPassword);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ option.\ Please\ select\ again.\(\backslash\)n"{}});}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \}\ \textcolor{keywordflow}{while}\ (opt\ !=\ 0);}
+\DoxyCodeLine{00159\ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00167\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{managers_8c_a30dccd4e07e57e2b9c469936ac3a3562}{removeManager}}(\mbox{\hyperlink{structlist_managers}{Manager}}\ **head,\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00168\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{structlist_managers}{Manager}}\ *previous\ =\ *head,\ *current\ =\ *head;}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{if}\ (current\ ==\ NULL)}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (current-\/>id\ ==\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00174\ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ *head\ =\ current-\/>\mbox{\hyperlink{structlist_managers_aecf708c573b9d38c627505da00c443d3}{next}};}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ free(current);}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00179\ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((current\ !=\ NULL)\ \&\&\ (current-\/>id\ !=\ \textcolor{keywordtype}{id}))}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ previous\ =\ current;}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{structlist_managers_aecf708c573b9d38c627505da00c443d3}{next}};}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current\ ==\ NULL)}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ ID!"{}});}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ previous-\/>\mbox{\hyperlink{structlist_managers_aecf708c573b9d38c627505da00c443d3}{next}}\ =\ current-\/>\mbox{\hyperlink{structlist_managers_aecf708c573b9d38c627505da00c443d3}{next}};}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ free(current);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00205\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{managers_8c_a15b310b6d6193f6e3eb867acd983ca44}{saveManagers}}(\mbox{\hyperlink{structlist_managers}{Manager}}\ *head)}
+\DoxyCodeLine{00206\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ FILE\ *fp;}
+\DoxyCodeLine{00208\ \ \ \ \ fp\ =\ fopen(\textcolor{stringliteral}{"{}managers.txt"{}},\ \textcolor{stringliteral}{"{}w"{}});}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ !=\ NULL)}
+\DoxyCodeLine{00210\ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structlist_managers}{Manager}}\ *aux\ =\ head;}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (aux\ !=\ NULL)}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(fp,\ \textcolor{stringliteral}{"{}\%d,\%s,\%s,\%s\(\backslash\)n"{}},\ aux-\/>\mbox{\hyperlink{structlist_managers_a7441ef0865bcb3db9b8064dd7375c1ea}{id}},\ aux-\/>\mbox{\hyperlink{structlist_managers_ae5cb967283dbbdf75cb2032c1fa08fee}{name}},}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aux-\/>\mbox{\hyperlink{structlist_managers_a5085115a00fe617fcb4a3f38157e33df}{email}},\ aux-\/>\mbox{\hyperlink{structlist_managers_ae0cb2dbe68703575bb17c43c9d2efe52}{password}});}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ aux\ =\ aux-\/>\mbox{\hyperlink{structlist_managers_aecf708c573b9d38c627505da00c443d3}{next}};}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ fclose(fp);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (1);}
+\DoxyCodeLine{00221\ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (0);}
+\DoxyCodeLine{00224\ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00231\ \mbox{\hyperlink{structlist_managers}{Manager}}\ *\mbox{\hyperlink{managers_8c_ad758b71beafb9500c2d84b9f4e3cd75f}{readManagers}}()}
+\DoxyCodeLine{00232\ \{}
+\DoxyCodeLine{00233\ \ \ \ \ FILE\ *fp;}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordtype}{char}\ name[40],\ email[50],\ password[16];}
+\DoxyCodeLine{00236\ \ \ \ \ \mbox{\hyperlink{structlist_managers}{Manager}}\ *aux\ =\ NULL;}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ fp\ =\ fopen(\textcolor{stringliteral}{"{}managers.txt"{}},\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ !=\ NULL)}
+\DoxyCodeLine{00240\ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ line[\mbox{\hyperlink{managers_8c_a842ed03f27719bc87666bfd1f75415b8}{MAX\_LINE}}];}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (fgets(line,\ \textcolor{keyword}{sizeof}(line),\ fp))}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ sscanf(line,\ \textcolor{stringliteral}{"{}\%d,\%[\string^,],\%[\string^,],\%[\string^,\(\backslash\)r\(\backslash\)n]"{}},\ \&\textcolor{keywordtype}{id},\ name,\ email,\ password);}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ aux\ =\ \mbox{\hyperlink{managers_8c_a291759d422f04882dce49977b33c2cd7}{insertManager}}(aux,\ \textcolor{keywordtype}{id},\ name,\ email,\ password);}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ fclose(fp);}
+\DoxyCodeLine{00248\ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordflow}{return}\ (aux);}
+\DoxyCodeLine{00250\ \}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00258\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{managers_8c_ac52453047c850d5d4e2d1aece7c1b87f}{getMaxManagerId}}(\mbox{\hyperlink{structlist_managers}{Manager}}\ *head)}
+\DoxyCodeLine{00259\ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordtype}{int}\ maxId\ =\ 0;}
+\DoxyCodeLine{00261\ \ \ \ \ \mbox{\hyperlink{structlist_managers}{Manager}}\ *current\ =\ head;}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)}
+\DoxyCodeLine{00263\ \ \ \ \ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{structlist_managers_a7441ef0865bcb3db9b8064dd7375c1ea}{id}}\ >\ maxId)}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ maxId\ =\ current-\/>\mbox{\hyperlink{structlist_managers_a7441ef0865bcb3db9b8064dd7375c1ea}{id}};}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{structlist_managers_aecf708c573b9d38c627505da00c443d3}{next}};}
+\DoxyCodeLine{00269\ \ \ \ \ \}}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordflow}{return}\ maxId;}
+\DoxyCodeLine{00271\ \}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00280\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{managers_8c_a9270f9eb0e7e2f1e81633b8c3cd2f8f9}{saveManagersBinary}}(\mbox{\hyperlink{structlist_managers}{Manager}}\ *head)}
+\DoxyCodeLine{00281\ \{}
+\DoxyCodeLine{00282\ \ \ \ \ FILE\ *fp;}
+\DoxyCodeLine{00283\ \ \ \ \ fp\ =\ fopen(\textcolor{stringliteral}{"{}managerBinary.bin"{}},\ \textcolor{stringliteral}{"{}wb"{}});}
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ ==\ NULL)}
+\DoxyCodeLine{00285\ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ ficheiro.\(\backslash\)n"{}});}
+\DoxyCodeLine{00287\ \ \ \ \ \}}
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (fp\ !=\ NULL)}
+\DoxyCodeLine{00289\ \ \ \ \ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structlist_managers}{Manager}}\ *aux\ =\ head;}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (aux\ !=\ NULL)}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ fwrite(aux,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlist_managers}{Manager}}),\ 1,\ fp);}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ aux\ =\ aux-\/>\mbox{\hyperlink{structlist_managers_aecf708c573b9d38c627505da00c443d3}{next}};}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ fclose(fp);}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (1);}
+\DoxyCodeLine{00298\ \ \ \ \ \}}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (0);}
+\DoxyCodeLine{00301\ \}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00308\ \mbox{\hyperlink{structlist_managers}{Manager}}\ *\mbox{\hyperlink{managers_8c_a7e2d00d6341af968e90b62b4c522b938}{readManagersBinary}}()}
+\DoxyCodeLine{00309\ \{}
+\DoxyCodeLine{00310\ \ \ \ \ FILE\ *fp;}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \mbox{\hyperlink{structlist_managers}{Manager}}\ *aux\ =\ NULL;}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ fp\ =\ fopen(\textcolor{stringliteral}{"{}managerBinary.bin"{}},\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ ==\ NULL)}
+\DoxyCodeLine{00316\ \ \ \ \ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Erro\ ao\ abrir\ o\ ficheiro."{}});}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00319\ \ \ \ \ \}}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keywordflow}{while}\ (!feof(fp))}
+\DoxyCodeLine{00321\ \ \ \ \ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structlist_managers}{Manager}}\ manager;}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bytes\_read\ =\ fread(\&manager,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlist_managers}{Manager}}),\ 1,\ fp);}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bytes\_read\ ==\ 1)}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ aux\ =\ \mbox{\hyperlink{managers_8c_a291759d422f04882dce49977b33c2cd7}{insertManager}}(aux,\ manager.\mbox{\hyperlink{structlist_managers_a7441ef0865bcb3db9b8064dd7375c1ea}{id}},\ manager.\mbox{\hyperlink{structlist_managers_ae5cb967283dbbdf75cb2032c1fa08fee}{name}},\ manager.\mbox{\hyperlink{structlist_managers_a5085115a00fe617fcb4a3f38157e33df}{email}},\ manager.\mbox{\hyperlink{structlist_managers_ae0cb2dbe68703575bb17c43c9d2efe52}{password}});}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00328\ \ \ \ \ \}}
+\DoxyCodeLine{00329\ \ \ \ \ fclose(fp);}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keywordflow}{return}\ (aux);}
+\DoxyCodeLine{00331\ \}}
+
+\end{DoxyCode}

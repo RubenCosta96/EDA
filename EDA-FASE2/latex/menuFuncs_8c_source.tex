@@ -1,0 +1,312 @@
+\hypertarget{menuFuncs_8c_source}{}\doxysection{menu\+Funcs.\+c}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}vehicles.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}clients.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}managers.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}menuFuncs.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}graph.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}history.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ MAX\_LENGTH\_NAME\ 50}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ MAX\_LENGTH\_ADDRESS\ 50}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ MAX\_LENGTH\_EMAIL\ 50}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ loginOrReg(\mbox{\hyperlink{structlistClients}{Client}}\ **client,\ \mbox{\hyperlink{structlistManagers}{Manager}}\ **manager,\ \mbox{\hyperlink{structlistVehicles}{Vehicle}}\ **vehicle,\ \mbox{\hyperlink{structgraph2}{Graph}}\ **g,\ \mbox{\hyperlink{structhistory}{History}}\ **hist)}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordtype}{int}\ opt;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ clearConsole();}
+\DoxyCodeLine{00027\ \ \ system(\textcolor{stringliteral}{"{}cat\ ./Menus/general/menu1.txt"{}});}
+\DoxyCodeLine{00028\ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&opt);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordflow}{switch}\ (opt)}
+\DoxyCodeLine{00031\ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00033\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00034\ \ \ \ \ clientOrManagerLogin(client,\ manager,\ vehicle,\ g,\ hist);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00037\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00038\ \ \ \ \ clientOrManagerRegistration(client,\ manager,\ vehicle,\ g,\ hist);}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00044\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ option.\(\backslash\)n"{}});}
+\DoxyCodeLine{00045\ \ \ \ \ enterToContinue();}
+\DoxyCodeLine{00046\ \ \ \ \ loginOrReg(client,\ manager,\ vehicle,\ g,\ hist);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00048\ \ \ \}}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \textcolor{keywordtype}{void}\ enterToContinue()}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \ \ getchar();}
+\DoxyCodeLine{00058\ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nPress\ enter\ to\ continue..."{}});}
+\DoxyCodeLine{00059\ \ \ fflush(stdout);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordflow}{while}\ (getchar()\ !=\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{00062\ \ \ \ \ ;}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00069\ \textcolor{keywordtype}{void}\ clearConsole()}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ system(\textcolor{stringliteral}{"{}clear\ ||\ cls"{}});}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00081\ \textcolor{keywordtype}{void}\ clientOrManagerLogin(\mbox{\hyperlink{structlistClients}{Client}}\ **client,\ \mbox{\hyperlink{structlistManagers}{Manager}}\ **manager,\ \mbox{\hyperlink{structlistVehicles}{Vehicle}}\ **vehicle,\ \mbox{\hyperlink{structgraph2}{Graph}}\ **g,\ \mbox{\hyperlink{structhistory}{History}}\ **hist)}
+\DoxyCodeLine{00082\ \{}
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordtype}{int}\ opt;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ clearConsole();}
+\DoxyCodeLine{00086\ \ \ system(\textcolor{stringliteral}{"{}cat\ ./Menus/general/menuLog.txt"{}});}
+\DoxyCodeLine{00087\ \ \ fflush(stdout);}
+\DoxyCodeLine{00088\ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&opt);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordflow}{switch}\ (opt)}
+\DoxyCodeLine{00091\ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00093\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00094\ \ \ \ \ clientLogin(client,\ vehicle,\ manager,\ g,\ hist);}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00097\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00098\ \ \ \ \ managerLogin(manager,\ vehicle,\ client,\ g,\ hist);}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00100\ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00101\ \ \ \ \ loginOrReg(client,\ manager,\ vehicle,\ g,\ hist);}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00103\ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00104\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ Option!\(\backslash\)n"{}});}
+\DoxyCodeLine{00105\ \ \ \ \ enterToContinue();}
+\DoxyCodeLine{00106\ \ \ \ \ clientOrManagerLogin(client,\ manager,\ vehicle,\ g,\ hist);}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00108\ \ \ \}}
+\DoxyCodeLine{00109\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00118\ \textcolor{keywordtype}{void}\ clientOrManagerRegistration(\mbox{\hyperlink{structlistClients}{Client}}\ **client,\ \mbox{\hyperlink{structlistManagers}{Manager}}\ **manager,\ \mbox{\hyperlink{structlistVehicles}{Vehicle}}\ **vehicle,\ \mbox{\hyperlink{structgraph2}{Graph}}\ **g,\ \mbox{\hyperlink{structhistory}{History}}\ **hist)}
+\DoxyCodeLine{00119\ \{}
+\DoxyCodeLine{00120\ \ \ \textcolor{keywordtype}{int}\ opt;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ clearConsole();}
+\DoxyCodeLine{00123\ \ \ system(\textcolor{stringliteral}{"{}cat\ ./Menus/general/menuReg.txt"{}});}
+\DoxyCodeLine{00124\ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&opt);}
+\DoxyCodeLine{00125\ \ \ \textcolor{keywordflow}{switch}\ (opt)}
+\DoxyCodeLine{00126\ \ \ \{}
+\DoxyCodeLine{00127\ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00128\ \ \ \ \ clientReg(client);}
+\DoxyCodeLine{00129\ \ \ \ \ loginOrReg(client,\ manager,\ vehicle,\ g,\ hist);}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00131\ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00132\ \ \ \ \ managerReg(manager);}
+\DoxyCodeLine{00133\ \ \ \ \ loginOrReg(client,\ manager,\ vehicle,\ g,\ hist);}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00135\ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00136\ \ \ \ \ loginOrReg(client,\ manager,\ vehicle,\ g,\ hist);}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00139\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ Option!\(\backslash\)n"{}});}
+\DoxyCodeLine{00140\ \ \ \ \ enterToContinue();}
+\DoxyCodeLine{00141\ \ \ \ \ clientOrManagerRegistration(client,\ manager,\ vehicle,\ g,\ hist);}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00143\ \ \ \}}
+\DoxyCodeLine{00144\ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00153\ \textcolor{keywordtype}{void}\ clientLogin(\mbox{\hyperlink{structlistClients}{Client}}\ **client,\ \mbox{\hyperlink{structlistVehicles}{Vehicle}}\ **vehicle,\ \mbox{\hyperlink{structlistManagers}{Manager}}\ **manager,\ \mbox{\hyperlink{structgraph2}{Graph}}\ **g,\ \mbox{\hyperlink{structhistory}{History}}\ **hist)}
+\DoxyCodeLine{00154\ \{}
+\DoxyCodeLine{00155\ \ \ \textcolor{keywordtype}{char}\ email[MAX\_LENGTH\_EMAIL],\ password[16];}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ printf(\textcolor{stringliteral}{"{}Email:\ "{}});}
+\DoxyCodeLine{00158\ \ \ scanf(\textcolor{stringliteral}{"{}\%s"{}},\ email);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ printf(\textcolor{stringliteral}{"{}Password:\ "{}});}
+\DoxyCodeLine{00161\ \ \ scanf(\textcolor{stringliteral}{"{}\%s"{}},\ password);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \mbox{\hyperlink{structlistClients}{Client}}\ *current\ =\ *client;}
+\DoxyCodeLine{00164\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)}
+\DoxyCodeLine{00165\ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(current-\/>email,\ email)\ ==\ 0\ \&\&\ strcmp(current-\/>password,\ password)\ ==\ 0)}
+\DoxyCodeLine{00167\ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ clientMenu(client,\ vehicle,\ current,\ manager,\ g,\ hist);}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ current\ =\ current-\/>next;}
+\DoxyCodeLine{00172\ \ \ \}}
+\DoxyCodeLine{00173\ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ email\ or\ password.\(\backslash\)n"{}});}
+\DoxyCodeLine{00174\ \ \ clientLogin(client,\ vehicle,\ manager,\ g,\ hist);}
+\DoxyCodeLine{00175\ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00184\ \textcolor{keywordtype}{void}\ managerLogin(\mbox{\hyperlink{structlistManagers}{Manager}}\ **manager,\ \mbox{\hyperlink{structlistVehicles}{Vehicle}}\ **vehicle,\ \mbox{\hyperlink{structlistClients}{Client}}\ **client,\ \mbox{\hyperlink{structgraph2}{Graph}}\ **g,\ \mbox{\hyperlink{structhistory}{History}}\ **hist)}
+\DoxyCodeLine{00185\ \{}
+\DoxyCodeLine{00186\ \ \ \textcolor{keywordtype}{char}\ email[MAX\_LENGTH\_EMAIL],\ password[16];}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ printf(\textcolor{stringliteral}{"{}Email:\ "{}});}
+\DoxyCodeLine{00189\ \ \ scanf(\textcolor{stringliteral}{"{}\%s"{}},\ email);}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ printf(\textcolor{stringliteral}{"{}Password:\ "{}});}
+\DoxyCodeLine{00192\ \ \ scanf(\textcolor{stringliteral}{"{}\%s"{}},\ password);}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \mbox{\hyperlink{structlistManagers}{Manager}}\ *current\ =\ *manager;}
+\DoxyCodeLine{00195\ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)}
+\DoxyCodeLine{00196\ \ \ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(current-\/>email,\ email)\ ==\ 0\ \&\&\ strcmp(current-\/>password,\ password)\ ==\ 0)}
+\DoxyCodeLine{00198\ \ \ \ \ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ managerMenu(manager,\ vehicle,\ client,\ current,\ g,\ hist);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ current\ =\ current-\/>next;}
+\DoxyCodeLine{00203\ \ \ \}}
+\DoxyCodeLine{00204\ \ \ printf(\textcolor{stringliteral}{"{}Invalid\ email\ or\ password.\(\backslash\)n"{}});}
+\DoxyCodeLine{00205\ \ \ managerLogin(manager,\ vehicle,\ client,\ g,\ hist);}
+\DoxyCodeLine{00206\ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00216\ \textcolor{keywordtype}{void}\ managerMenu(\mbox{\hyperlink{structlistManagers}{Manager}}\ **head,\ \mbox{\hyperlink{structlistVehicles}{Vehicle}}\ **vehicle,\ \mbox{\hyperlink{structlistClients}{Client}}\ **client,\ \mbox{\hyperlink{structlistManagers}{Manager}}\ *m,\ \mbox{\hyperlink{structgraph2}{Graph}}\ **g,\ \mbox{\hyperlink{structhistory}{History}}\ **hist)}
+\DoxyCodeLine{00217\ \{}
+\DoxyCodeLine{00218\ \ \ \textcolor{keywordtype}{int}\ opt;}
+\DoxyCodeLine{00219\ \ \ \mbox{\hyperlink{structlistManagers}{Manager}}\ *current\ =\ *head;}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ clearConsole();}
+\DoxyCodeLine{00222\ \ \ printf(\textcolor{stringliteral}{"{}Welcome\ \%s\(\backslash\)n"{}},\ m-\/>name);}
+\DoxyCodeLine{00223\ \ \ system(\textcolor{stringliteral}{"{}cat\ ./Menus/managers/managersMenu.txt"{}});}
+\DoxyCodeLine{00224\ \ \ fflush(stdout);}
+\DoxyCodeLine{00225\ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&opt);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \textcolor{keywordflow}{switch}\ (opt)}
+\DoxyCodeLine{00228\ \ \ \{}
+\DoxyCodeLine{00229\ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{comment}{//\ Add\ vehicle}}
+\DoxyCodeLine{00231\ \ \ \ \ clearConsole();}
+\DoxyCodeLine{00232\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Vehicle\ to\ add:\(\backslash\)n"{}});}
+\DoxyCodeLine{00233\ \ \ \ \ vehicleReg(vehicle,\ g);}
+\DoxyCodeLine{00234\ \ \ \ \ getchar();}
+\DoxyCodeLine{00235\ \ \ \ \ enterToContinue();}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00237\ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{comment}{//\ Check\ history}}
+\DoxyCodeLine{00239\ \ \ \ \ clearConsole();}
+\DoxyCodeLine{00240\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00241\ \ \ \ \ listHistory(hist);}
+\DoxyCodeLine{00242\ \ \ \ \ enterToContinue();}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00244\ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{comment}{//\ Change\ vehicle}}
+\DoxyCodeLine{00246\ \ \ \ \ clearConsole();}
+\DoxyCodeLine{00247\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00248\ \ \ \ \ \mbox{\hyperlink{structlistVehicles}{listVehicles}}(vehicle);}
+\DoxyCodeLine{00249\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00250\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Which\ vehicle\ do\ u\ use\ wish\ to\ change\ data\ from?\(\backslash\)nID:\ "{}});}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordtype}{int}\ vehicleID;}
+\DoxyCodeLine{00252\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&vehicleID);}
+\DoxyCodeLine{00253\ \ \ \ \ clearConsole();}
+\DoxyCodeLine{00254\ \ \ \ \ changeVehicleData(vehicle,\ g,\ vehicleID);}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00256\ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{comment}{//\ Change\ data}}
+\DoxyCodeLine{00258\ \ \ \ \ clearConsole();}
+\DoxyCodeLine{00259\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00260\ \ \ \ \ current\ =\ changeManagerData(current);}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00262\ \ \ \textcolor{keywordflow}{case}\ 5:}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{comment}{//\ List\ vehicles}}
+\DoxyCodeLine{00264\ \ \ \ \ clearConsole();}
+\DoxyCodeLine{00265\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00266\ \ \ \ \ \mbox{\hyperlink{structlistVehicles}{listVehicles}}(vehicle);}
+\DoxyCodeLine{00267\ \ \ \ \ enterToContinue();}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00269\ \ \ \textcolor{keywordflow}{case}\ 6:}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{comment}{//\ List\ clients}}
+\DoxyCodeLine{00271\ \ \ \ \ clearConsole();}
+\DoxyCodeLine{00272\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00273\ \ \ \ \ \mbox{\hyperlink{structlistClients}{listClients}}(client);}
+\DoxyCodeLine{00274\ \ \ \ \ enterToContinue();}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00276\ \ \ \textcolor{keywordflow}{case}\ 7:}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{comment}{//\ Remove\ clients}}
+\DoxyCodeLine{00278\ \ \ \ \ clearConsole();}
+\DoxyCodeLine{00279\ \ \ \ \ \mbox{\hyperlink{structlistClients}{listClients}}(client);}
+\DoxyCodeLine{00280\ \ \ \ \ printf(\textcolor{stringliteral}{"{}What\ is\ the\ ID\ of\ the\ client\ you\ wish\ to\ remove?\(\backslash\)n"{}});}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keywordtype}{int}\ remClient;}
+\DoxyCodeLine{00282\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&remClient);}
+\DoxyCodeLine{00283\ \ \ \ \ removeClient(client,\ remClient);}
+\DoxyCodeLine{00284\ \ \ \ \ enterToContinue();}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00286\ \ \ \textcolor{keywordflow}{case}\ 8:}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{comment}{//\ Remove\ vehicle}}
+\DoxyCodeLine{00288\ \ \ \ \ clearConsole();}
+\DoxyCodeLine{00289\ \ \ \ \ \mbox{\hyperlink{structlistVehicles}{listVehicles}}(vehicle);}
+\DoxyCodeLine{00290\ \ \ \ \ printf(\textcolor{stringliteral}{"{}What\ is\ the\ ID\ of\ the\ client\ you\ wish\ to\ remove?\(\backslash\)n"{}});}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordtype}{int}\ remVehicle;}
+\DoxyCodeLine{00292\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&remVehicle);}
+\DoxyCodeLine{00293\ \ \ \ \ removeVehicle(vehicle,\ remVehicle);}
+\DoxyCodeLine{00294\ \ \ \ \ enterToContinue();}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00296\ \ \ \textcolor{keywordflow}{case}\ 9:}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{comment}{//\ Sort\ vehicles\ by\ autonomy}}
+\DoxyCodeLine{00298\ \ \ \ \ clearConsole();}
+\DoxyCodeLine{00299\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00300\ \ \ \ \ sortVehiclesByAutonomy(vehicle);}
+\DoxyCodeLine{00301\ \ \ \ \ \mbox{\hyperlink{structlistVehicles}{listVehicles}}(vehicle);}
+\DoxyCodeLine{00302\ \ \ \ \ enterToContinue();}
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00304\ \ \ \textcolor{keywordflow}{case}\ 10:}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{comment}{//\ Delete\ account}}
+\DoxyCodeLine{00306\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00307\ \ \ \ \ removeManager(head,\ m-\/>id);}
+\DoxyCodeLine{00308\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Account\ removed\ with\ success.\(\backslash\)n"{}});}
+\DoxyCodeLine{00309\ \ \ \ \ enterToContinue();}
+\DoxyCodeLine{00310\ \ \ \ \ clearConsole();}
+\DoxyCodeLine{00311\ \ \ \ \ loginOrReg(client,\ head,\ vehicle,\ g,\ hist);}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00314\ \ \ \textcolor{keywordflow}{case}\ 11:}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{comment}{//\ Find\ shortest\ route\ with\ given\ vertexes;}}
+\DoxyCodeLine{00316\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00317\ \ \ \ \ clearConsole();}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keywordtype}{float}\ dist[SIZE];}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keywordtype}{char}\ location[SIZE];}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordtype}{int}\ initial,\ \textcolor{keyword}{final};}
+\DoxyCodeLine{00322\ \ \ \ \ \mbox{\hyperlink{structgraph2}{Graph}}\ *gAux\ =\ *g;}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ printf(\textcolor{stringliteral}{"{}You\ want\ to\ go\ from\ what\ location\ to\ what\ location?\(\backslash\)n"{}});}
+\DoxyCodeLine{00325\ \ \ \ \ listVertexes(g);}
+\DoxyCodeLine{00326\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Start:\ "{}});}
+\DoxyCodeLine{00327\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&initial);}
+\DoxyCodeLine{00328\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Finish:\ "{}});}
+\DoxyCodeLine{00331\ \ \ \ \ scanf(\textcolor{stringliteral}{"{}\%d"{}},\ \&\textcolor{keyword}{final});}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \ \ convertIdToLocation(\&gAux,\ initial,\ location);}
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keywordtype}{char}\ initialLocation[SIZE];}
+\DoxyCodeLine{00335\ \ \ \ \ strcpy(initialLocation,\ location);}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \ \ \ \ convertIdToLocation(\&gAux,\ \textcolor{keyword}{final},\ location);}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keywordtype}{char}\ finalLocation[SIZE];}
+\DoxyCodeLine{00339\ \ \ \ \ strcpy(finalLocation,\ location);}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ dijkstra(gAux,\ initialLocation,\ finalLocation,\ dist,\ 0);}
+\DoxyCodeLine{00342\ \ \ \ \ enterToContinue();}
+\DoxyCodeLine{00343\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00344\ \ \ \textcolor{keywordflow}{case}\ 12:}
+\DoxyCodeLine{00345\ \ \ \ \ clearConsole();}
+\DoxyCodeLine{00346\ \ \ \ \ printf(\textcolor{stringliteral}{"{}All\ available\ vertexes:\(\backslash\)n"{}});}
+\DoxyCodeLine{00347\ \ \ \ \ listVertexes(g);}
+\DoxyCodeLine{00348\ \ \ \ \ enterToContinue();}
+\DoxyCodeLine{00349\ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00350\ \ \ \ \ clearConsole();}
+\DoxyCodeLine{00351\ \ \ \ \ loginOrReg(client,\ head,\ vehicle,\ g,\ hist);}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00354\ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00356\ \ \ \}}
+\DoxyCodeLine{00357\ \ \ managerMenu(head,\ vehicle,\ client,\ m,\ g,\ hist);}
+\DoxyCodeLine{00358\ \}}
+
+\end{DoxyCode}

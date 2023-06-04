@@ -1,0 +1,12 @@
+<map id="vehicles.c" name="vehicles.c">
+<area shape="rect" id="node1" title=" " alt="" coords="338,5,425,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,79,72,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="97,79,167,104"/>
+<area shape="rect" id="node4" title=" " alt="" coords="191,79,262,104"/>
+<area shape="rect" id="node5" title=" " alt="" coords="479,152,543,177"/>
+<area shape="rect" id="node6" href="$vehicles_8h.html" title=" " alt="" coords="337,79,425,104"/>
+<area shape="rect" id="node7" href="$menu_funcs_8h.html" title=" " alt="" coords="450,79,558,104"/>
+<area shape="rect" id="node8" href="$clients_8h.html" title=" " alt="" coords="583,79,660,104"/>
+<area shape="rect" id="node9" href="$history_8h.html" title=" " alt="" coords="684,79,761,104"/>
+<area shape="rect" id="node10" href="$graph_8h.html" title=" " alt="" coords="786,79,857,104"/>
+</map>

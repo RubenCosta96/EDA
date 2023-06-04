@@ -1,0 +1,242 @@
+\hypertarget{managers_8h}{}\doxysection{managers.\+h File Reference}
+\label{managers_8h}\index{managers.h@{managers.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{managers_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlist_managers}{list\+Managers}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structlist_vehicles}{list\+Vehicles}} \mbox{\hyperlink{managers_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}}
+\item 
+typedef struct \mbox{\hyperlink{structlist_managers}{list\+Managers}} \mbox{\hyperlink{managers_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{managers_8h_ac52453047c850d5d4e2d1aece7c1b87f}{get\+Max\+Manager\+Id}} (\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Gets the highest value of the IDs of the managers registered. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$ \mbox{\hyperlink{managers_8h_a291759d422f04882dce49977b33c2cd7}{insert\+Manager}} (\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$head, int id, char name\mbox{[}$\,$\mbox{]}, char email\mbox{[}$\,$\mbox{]}, char pw\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Function to insert a new manager into the already existing linked list of manager. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{managers_8h_a273ba1ac7fd05eeddaefb7c0dda08a0c}{manager\+Reg}} (\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function that will recieve the inputs of the user to register a new manager. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{managers_8h_a8adb78f2a0cd8507f882a6f3b631ddfd}{list\+Managers}} (\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Prints on the terminal the list of managers registered. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{managers_8h_aa15c74afcf7b725ee69b2003fef7201d}{change\+Manager\+Data}} (\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$m)
+\begin{DoxyCompactList}\small\item\em Function that allows the manager to change any of the fields of his data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{managers_8h_a30dccd4e07e57e2b9c469936ac3a3562}{remove\+Manager}} (\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$head, int id)
+\begin{DoxyCompactList}\small\item\em Removes an existing manager from the linked list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$ \mbox{\hyperlink{managers_8h_a9c17c331705c4ba669532d0f33585d2d}{order\+Managers}} (\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$head)
+\item 
+int \mbox{\hyperlink{managers_8h_a15b310b6d6193f6e3eb867acd983ca44}{save\+Managers}} (\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Saves all the data of the managers in a .txt file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$ \mbox{\hyperlink{managers_8h_ad758b71beafb9500c2d84b9f4e3cd75f}{read\+Managers}} ()
+\begin{DoxyCompactList}\small\item\em Reads the data present on the .txt file that has all the managers data saved. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{managers_8h_a9270f9eb0e7e2f1e81633b8c3cd2f8f9}{save\+Managers\+Binary}} (\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Saves all the data of the managers in a binary file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$ \mbox{\hyperlink{managers_8h_a7e2d00d6341af968e90b62b4c522b938}{read\+Managers\+Binary}} ()
+\begin{DoxyCompactList}\small\item\em Reads the data present on the binary file that has all the clients data saved. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{managers_8h_abdd4590baf468b61e9096b3a98582c9e}\label{managers_8h_abdd4590baf468b61e9096b3a98582c9e} 
+\index{managers.h@{managers.h}!Manager@{Manager}}
+\index{Manager@{Manager}!managers.h@{managers.h}}
+\doxysubsubsection{\texorpdfstring{Manager}{Manager}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structlist_managers}{list\+Managers}} \mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}}}
+
+\Hypertarget{managers_8h_af8856623ee755b3d7f4c675fb119ae32}\label{managers_8h_af8856623ee755b3d7f4c675fb119ae32} 
+\index{managers.h@{managers.h}!Vehicle@{Vehicle}}
+\index{Vehicle@{Vehicle}!managers.h@{managers.h}}
+\doxysubsubsection{\texorpdfstring{Vehicle}{Vehicle}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structlist_vehicles}{list\+Vehicles}} \mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{managers_8h_aa15c74afcf7b725ee69b2003fef7201d}\label{managers_8h_aa15c74afcf7b725ee69b2003fef7201d} 
+\index{managers.h@{managers.h}!changeManagerData@{changeManagerData}}
+\index{changeManagerData@{changeManagerData}!managers.h@{managers.h}}
+\doxysubsubsection{\texorpdfstring{changeManagerData()}{changeManagerData()}}
+{\footnotesize\ttfamily void $\ast$ change\+Manager\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$}]{m }\end{DoxyParamCaption})}
+
+
+
+Function that allows the manager to change any of the fields of his data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void$\ast$ 
+\end{DoxyReturn}
+\Hypertarget{managers_8h_ac52453047c850d5d4e2d1aece7c1b87f}\label{managers_8h_ac52453047c850d5d4e2d1aece7c1b87f} 
+\index{managers.h@{managers.h}!getMaxManagerId@{getMaxManagerId}}
+\index{getMaxManagerId@{getMaxManagerId}!managers.h@{managers.h}}
+\doxysubsubsection{\texorpdfstring{getMaxManagerId()}{getMaxManagerId()}}
+{\footnotesize\ttfamily int get\+Max\+Manager\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Gets the highest value of the IDs of the managers registered. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{managers_8h_a291759d422f04882dce49977b33c2cd7}\label{managers_8h_a291759d422f04882dce49977b33c2cd7} 
+\index{managers.h@{managers.h}!insertManager@{insertManager}}
+\index{insertManager@{insertManager}!managers.h@{managers.h}}
+\doxysubsubsection{\texorpdfstring{insertManager()}{insertManager()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$ insert\+Manager (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$}]{head,  }\item[{int}]{id,  }\item[{char}]{name\mbox{[}$\,$\mbox{]},  }\item[{char}]{email\mbox{[}$\,$\mbox{]},  }\item[{char}]{pw\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Function to insert a new manager into the already existing linked list of manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+{\em id} & \\
+\hline
+{\em name} & \\
+\hline
+{\em email} & \\
+\hline
+{\em pw} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Manager$\ast$ 
+\end{DoxyReturn}
+\Hypertarget{managers_8h_a8adb78f2a0cd8507f882a6f3b631ddfd}\label{managers_8h_a8adb78f2a0cd8507f882a6f3b631ddfd} 
+\index{managers.h@{managers.h}!listManagers@{listManagers}}
+\index{listManagers@{listManagers}!managers.h@{managers.h}}
+\doxysubsubsection{\texorpdfstring{listManagers()}{listManagers()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{structlist_managers}{list\+Managers}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$}]{manager }\end{DoxyParamCaption})}
+
+
+
+Prints on the terminal the list of managers registered. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em manager} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{managers_8h_a273ba1ac7fd05eeddaefb7c0dda08a0c}\label{managers_8h_a273ba1ac7fd05eeddaefb7c0dda08a0c} 
+\index{managers.h@{managers.h}!managerReg@{managerReg}}
+\index{managerReg@{managerReg}!managers.h@{managers.h}}
+\doxysubsubsection{\texorpdfstring{managerReg()}{managerReg()}}
+{\footnotesize\ttfamily void manager\+Reg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function that will recieve the inputs of the user to register a new manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{managers_8h_a9c17c331705c4ba669532d0f33585d2d}\label{managers_8h_a9c17c331705c4ba669532d0f33585d2d} 
+\index{managers.h@{managers.h}!orderManagers@{orderManagers}}
+\index{orderManagers@{orderManagers}!managers.h@{managers.h}}
+\doxysubsubsection{\texorpdfstring{orderManagers()}{orderManagers()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$ order\+Managers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+\Hypertarget{managers_8h_ad758b71beafb9500c2d84b9f4e3cd75f}\label{managers_8h_ad758b71beafb9500c2d84b9f4e3cd75f} 
+\index{managers.h@{managers.h}!readManagers@{readManagers}}
+\index{readManagers@{readManagers}!managers.h@{managers.h}}
+\doxysubsubsection{\texorpdfstring{readManagers()}{readManagers()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$ read\+Managers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads the data present on the .txt file that has all the managers data saved. 
+
+\begin{DoxyReturn}{Returns}
+Manager$\ast$ 
+\end{DoxyReturn}
+\Hypertarget{managers_8h_a7e2d00d6341af968e90b62b4c522b938}\label{managers_8h_a7e2d00d6341af968e90b62b4c522b938} 
+\index{managers.h@{managers.h}!readManagersBinary@{readManagersBinary}}
+\index{readManagersBinary@{readManagersBinary}!managers.h@{managers.h}}
+\doxysubsubsection{\texorpdfstring{readManagersBinary()}{readManagersBinary()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$ read\+Managers\+Binary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads the data present on the binary file that has all the clients data saved. 
+
+\begin{DoxyReturn}{Returns}
+Vehicle$\ast$ 
+\end{DoxyReturn}
+\Hypertarget{managers_8h_a30dccd4e07e57e2b9c469936ac3a3562}\label{managers_8h_a30dccd4e07e57e2b9c469936ac3a3562} 
+\index{managers.h@{managers.h}!removeManager@{removeManager}}
+\index{removeManager@{removeManager}!managers.h@{managers.h}}
+\doxysubsubsection{\texorpdfstring{removeManager()}{removeManager()}}
+{\footnotesize\ttfamily void remove\+Manager (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$}]{head,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Removes an existing manager from the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{managers_8h_a15b310b6d6193f6e3eb867acd983ca44}\label{managers_8h_a15b310b6d6193f6e3eb867acd983ca44} 
+\index{managers.h@{managers.h}!saveManagers@{saveManagers}}
+\index{saveManagers@{saveManagers}!managers.h@{managers.h}}
+\doxysubsubsection{\texorpdfstring{saveManagers()}{saveManagers()}}
+{\footnotesize\ttfamily int save\+Managers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Saves all the data of the managers in a .txt file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{managers_8h_a9270f9eb0e7e2f1e81633b8c3cd2f8f9}\label{managers_8h_a9270f9eb0e7e2f1e81633b8c3cd2f8f9} 
+\index{managers.h@{managers.h}!saveManagersBinary@{saveManagersBinary}}
+\index{saveManagersBinary@{saveManagersBinary}!managers.h@{managers.h}}
+\doxysubsubsection{\texorpdfstring{saveManagersBinary()}{saveManagersBinary()}}
+{\footnotesize\ttfamily int save\+Managers\+Binary (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Saves all the data of the managers in a binary file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}

@@ -1,0 +1,214 @@
+\hypertarget{menu_funcs_8h}{}\doxysection{menu\+Funcs.\+h File Reference}
+\label{menu_funcs_8h}\index{menuFuncs.h@{menuFuncs.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{menu_funcs_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structlist_managers}{list\+Managers}} \mbox{\hyperlink{menu_funcs_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}}
+\item 
+typedef struct \mbox{\hyperlink{structlist_clients}{list\+Clients}} \mbox{\hyperlink{menu_funcs_8h_a535214410d319689b7198224e21a4061}{Client}}
+\item 
+typedef struct \mbox{\hyperlink{structgraph1}{graph1}} \mbox{\hyperlink{menu_funcs_8h_a22657211d6b5826a4b142b7e98bfa165}{Adjacent}}
+\item 
+typedef struct \mbox{\hyperlink{structgraph2}{graph2}} \mbox{\hyperlink{menu_funcs_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}}
+\item 
+typedef struct \mbox{\hyperlink{structhistory}{history}} \mbox{\hyperlink{menu_funcs_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{menu_funcs_8h_abdb99021d4a47d00709df35e6dcbd7ae}{login\+Or\+Reg}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$client, \mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$manager, \mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$vehicle, \mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$g, \mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$hist)
+\begin{DoxyCompactList}\small\item\em Menu that allows the user either to choose if he wants to \char`\"{}\+Login\char`\"{} or \char`\"{}\+Register\char`\"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menu_funcs_8h_a511eec8ea96683d3e1e5fe52318f725c}{enter\+To\+Continue}} ()
+\begin{DoxyCompactList}\small\item\em Function to display a message that only goes to the next screen after the key \char`\"{}\+ENTER\char`\"{} is pressed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menu_funcs_8h_aff6c831918692405e75fc55c43424304}{clear\+Console}} ()
+\begin{DoxyCompactList}\small\item\em Function to clear the terminal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menu_funcs_8h_a7e48207a14b657f4025c3a8654b5c2c3}{client\+Or\+Manager\+Login}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$client, \mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$manager, \mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$vehicle, \mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$g, \mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$hist)
+\begin{DoxyCompactList}\small\item\em Function that allows the user to decide if he\textquotesingle{}s logging in as a \char`\"{}\+Client\char`\"{} or a \char`\"{}\+Manager\char`\"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menu_funcs_8h_a062bb2df0ee15785ae4e1d28eeb06942}{client\+Or\+Manager\+Registration}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$client, \mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$manager, \mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$vehicle, \mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$g, \mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$hist)
+\begin{DoxyCompactList}\small\item\em Function that allows the user to decide if he\textquotesingle{}s registering as a \char`\"{}\+Client\char`\"{} or a \char`\"{}\+Manager\char`\"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menu_funcs_8h_a17f2032f1250636dc0a6310ac593e274}{client\+Login}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$client, \mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$vehicle, \mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$manager, \mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$g, \mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$hist)
+\begin{DoxyCompactList}\small\item\em Function that allows a client to login. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menu_funcs_8h_a93313d5c13deead2666e101e68a84126}{manager\+Login}} (\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$manager, \mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$vehicle, \mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$client, \mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$g, \mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$hist)
+\begin{DoxyCompactList}\small\item\em Function that allows the manager to login. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{menu_funcs_8h_aa8c5592795f4934940282f9cc1fab17a}{manager\+Menu}} (\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$head, \mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$vehicle, \mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$client, \mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$m, \mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$g, \mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$hist)
+\begin{DoxyCompactList}\small\item\em Function that prints the menu of the manager and recieves the option he wishes to execute. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{menu_funcs_8h_a22657211d6b5826a4b142b7e98bfa165}\label{menu_funcs_8h_a22657211d6b5826a4b142b7e98bfa165} 
+\index{menuFuncs.h@{menuFuncs.h}!Adjacent@{Adjacent}}
+\index{Adjacent@{Adjacent}!menuFuncs.h@{menuFuncs.h}}
+\doxysubsubsection{\texorpdfstring{Adjacent}{Adjacent}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structgraph1}{graph1}} \mbox{\hyperlink{clients_8h_a22657211d6b5826a4b142b7e98bfa165}{Adjacent}}}
+
+\Hypertarget{menu_funcs_8h_a535214410d319689b7198224e21a4061}\label{menu_funcs_8h_a535214410d319689b7198224e21a4061} 
+\index{menuFuncs.h@{menuFuncs.h}!Client@{Client}}
+\index{Client@{Client}!menuFuncs.h@{menuFuncs.h}}
+\doxysubsubsection{\texorpdfstring{Client}{Client}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structlist_clients}{list\+Clients}} \mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}}}
+
+\Hypertarget{menu_funcs_8h_a0c831e24f52bb4ba83d1da5df7b020b8}\label{menu_funcs_8h_a0c831e24f52bb4ba83d1da5df7b020b8} 
+\index{menuFuncs.h@{menuFuncs.h}!Graph@{Graph}}
+\index{Graph@{Graph}!menuFuncs.h@{menuFuncs.h}}
+\doxysubsubsection{\texorpdfstring{Graph}{Graph}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structgraph2}{graph2}} \mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}}}
+
+\Hypertarget{menu_funcs_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}\label{menu_funcs_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50} 
+\index{menuFuncs.h@{menuFuncs.h}!History@{History}}
+\index{History@{History}!menuFuncs.h@{menuFuncs.h}}
+\doxysubsubsection{\texorpdfstring{History}{History}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structhistory}{history}} \mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}}}
+
+\Hypertarget{menu_funcs_8h_abdd4590baf468b61e9096b3a98582c9e}\label{menu_funcs_8h_abdd4590baf468b61e9096b3a98582c9e} 
+\index{menuFuncs.h@{menuFuncs.h}!Manager@{Manager}}
+\index{Manager@{Manager}!menuFuncs.h@{menuFuncs.h}}
+\doxysubsubsection{\texorpdfstring{Manager}{Manager}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structlist_managers}{list\+Managers}} \mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{menu_funcs_8h_aff6c831918692405e75fc55c43424304}\label{menu_funcs_8h_aff6c831918692405e75fc55c43424304} 
+\index{menuFuncs.h@{menuFuncs.h}!clearConsole@{clearConsole}}
+\index{clearConsole@{clearConsole}!menuFuncs.h@{menuFuncs.h}}
+\doxysubsubsection{\texorpdfstring{clearConsole()}{clearConsole()}}
+{\footnotesize\ttfamily void clear\+Console (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to clear the terminal. 
+
+\Hypertarget{menu_funcs_8h_a17f2032f1250636dc0a6310ac593e274}\label{menu_funcs_8h_a17f2032f1250636dc0a6310ac593e274} 
+\index{menuFuncs.h@{menuFuncs.h}!clientLogin@{clientLogin}}
+\index{clientLogin@{clientLogin}!menuFuncs.h@{menuFuncs.h}}
+\doxysubsubsection{\texorpdfstring{clientLogin()}{clientLogin()}}
+{\footnotesize\ttfamily void client\+Login (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$}]{client,  }\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{vehicle,  }\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$}]{manager,  }\item[{\mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$}]{g,  }\item[{\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$}]{hist }\end{DoxyParamCaption})}
+
+
+
+Function that allows a client to login. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & \\
+\hline
+{\em vehicle} & \\
+\hline
+{\em manager} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{menu_funcs_8h_a7e48207a14b657f4025c3a8654b5c2c3}\label{menu_funcs_8h_a7e48207a14b657f4025c3a8654b5c2c3} 
+\index{menuFuncs.h@{menuFuncs.h}!clientOrManagerLogin@{clientOrManagerLogin}}
+\index{clientOrManagerLogin@{clientOrManagerLogin}!menuFuncs.h@{menuFuncs.h}}
+\doxysubsubsection{\texorpdfstring{clientOrManagerLogin()}{clientOrManagerLogin()}}
+{\footnotesize\ttfamily void client\+Or\+Manager\+Login (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$}]{client,  }\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$}]{manager,  }\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{vehicle,  }\item[{\mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$}]{g,  }\item[{\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$}]{hist }\end{DoxyParamCaption})}
+
+
+
+Function that allows the user to decide if he\textquotesingle{}s logging in as a \char`\"{}\+Client\char`\"{} or a \char`\"{}\+Manager\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & \\
+\hline
+{\em manager} & \\
+\hline
+{\em vehicle} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{menu_funcs_8h_a062bb2df0ee15785ae4e1d28eeb06942}\label{menu_funcs_8h_a062bb2df0ee15785ae4e1d28eeb06942} 
+\index{menuFuncs.h@{menuFuncs.h}!clientOrManagerRegistration@{clientOrManagerRegistration}}
+\index{clientOrManagerRegistration@{clientOrManagerRegistration}!menuFuncs.h@{menuFuncs.h}}
+\doxysubsubsection{\texorpdfstring{clientOrManagerRegistration()}{clientOrManagerRegistration()}}
+{\footnotesize\ttfamily void client\+Or\+Manager\+Registration (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$}]{client,  }\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$}]{manager,  }\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{vehicle,  }\item[{\mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$}]{g,  }\item[{\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$}]{hist }\end{DoxyParamCaption})}
+
+
+
+Function that allows the user to decide if he\textquotesingle{}s registering as a \char`\"{}\+Client\char`\"{} or a \char`\"{}\+Manager\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & \\
+\hline
+{\em manager} & \\
+\hline
+{\em vehicle} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{menu_funcs_8h_a511eec8ea96683d3e1e5fe52318f725c}\label{menu_funcs_8h_a511eec8ea96683d3e1e5fe52318f725c} 
+\index{menuFuncs.h@{menuFuncs.h}!enterToContinue@{enterToContinue}}
+\index{enterToContinue@{enterToContinue}!menuFuncs.h@{menuFuncs.h}}
+\doxysubsubsection{\texorpdfstring{enterToContinue()}{enterToContinue()}}
+{\footnotesize\ttfamily void enter\+To\+Continue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to display a message that only goes to the next screen after the key \char`\"{}\+ENTER\char`\"{} is pressed. 
+
+\Hypertarget{menu_funcs_8h_abdb99021d4a47d00709df35e6dcbd7ae}\label{menu_funcs_8h_abdb99021d4a47d00709df35e6dcbd7ae} 
+\index{menuFuncs.h@{menuFuncs.h}!loginOrReg@{loginOrReg}}
+\index{loginOrReg@{loginOrReg}!menuFuncs.h@{menuFuncs.h}}
+\doxysubsubsection{\texorpdfstring{loginOrReg()}{loginOrReg()}}
+{\footnotesize\ttfamily void login\+Or\+Reg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$}]{client,  }\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$}]{manager,  }\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{vehicle,  }\item[{\mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$}]{g,  }\item[{\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$}]{hist }\end{DoxyParamCaption})}
+
+
+
+Menu that allows the user either to choose if he wants to \char`\"{}\+Login\char`\"{} or \char`\"{}\+Register\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & \\
+\hline
+{\em manager} & \\
+\hline
+{\em vehicle} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{menu_funcs_8h_a93313d5c13deead2666e101e68a84126}\label{menu_funcs_8h_a93313d5c13deead2666e101e68a84126} 
+\index{menuFuncs.h@{menuFuncs.h}!managerLogin@{managerLogin}}
+\index{managerLogin@{managerLogin}!menuFuncs.h@{menuFuncs.h}}
+\doxysubsubsection{\texorpdfstring{managerLogin()}{managerLogin()}}
+{\footnotesize\ttfamily void manager\+Login (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$}]{manager,  }\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{vehicle,  }\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$}]{client,  }\item[{\mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$}]{g,  }\item[{\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$}]{hist }\end{DoxyParamCaption})}
+
+
+
+Function that allows the manager to login. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em manager} & \\
+\hline
+{\em vehicle} & \\
+\hline
+{\em client} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{menu_funcs_8h_aa8c5592795f4934940282f9cc1fab17a}\label{menu_funcs_8h_aa8c5592795f4934940282f9cc1fab17a} 
+\index{menuFuncs.h@{menuFuncs.h}!managerMenu@{managerMenu}}
+\index{managerMenu@{managerMenu}!menuFuncs.h@{menuFuncs.h}}
+\doxysubsubsection{\texorpdfstring{managerMenu()}{managerMenu()}}
+{\footnotesize\ttfamily void manager\+Menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$}]{head,  }\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{vehicle,  }\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$}]{client,  }\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$}]{m,  }\item[{\mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$}]{g,  }\item[{\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$}]{hist }\end{DoxyParamCaption})}
+
+
+
+Function that prints the menu of the manager and recieves the option he wishes to execute. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+{\em vehicle} & \\
+\hline
+{\em client} & \\
+\hline
+{\em m} & \\
+\hline
+\end{DoxyParams}

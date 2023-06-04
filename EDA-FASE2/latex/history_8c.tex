@@ -1,0 +1,124 @@
+\hypertarget{history_8c}{}\doxysection{history.\+c File Reference}
+\label{history_8c}\index{history.c@{history.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}history.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}graph.\+h\char`\"{}}\newline
+Include dependency graph for history.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{history_8c__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=137pt]{history_8c__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{history_8c_abef4053348c46a9128f0e29738918c3e}{MAX\+\_\+\+LENGTH\+\_\+\+NAME}}~50
+\item 
+\#define \mbox{\hyperlink{history_8c_a40e35634df327788474e1143d4228672}{MAX\+\_\+\+LENGTH\+\_\+\+ADDRESS}}~50
+\item 
+\#define \mbox{\hyperlink{history_8c_a56fa1e99c8b7ebac3495c24e26a375ab}{MAX\+\_\+\+LENGTH\+\_\+\+EMAIL}}~50
+\item 
+\#define \mbox{\hyperlink{history_8c_a842ed03f27719bc87666bfd1f75415b8}{MAX\+\_\+\+LINE}}~250
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$ \mbox{\hyperlink{history_8c_a58d99c226bf37144974ab0691a058138}{insert\+History}} (\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$head, int client\+ID, char client\+Name\mbox{[}$\,$\mbox{]}, int vehicle\+ID, char vehicle\+Type\mbox{[}$\,$\mbox{]}, float cost, char init\+Location\mbox{[}$\,$\mbox{]}, struct tm init)
+\item 
+void \mbox{\hyperlink{history_8c_a6934f92b0809747d09b35a4dd8af683e}{list\+History}} (\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$\mbox{\hyperlink{structhistory}{history}})
+\item 
+void \mbox{\hyperlink{history_8c_aab91c4c09f1ffc502566e6757affeb70}{cancel\+Rent\+Hist}} (\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$\mbox{\hyperlink{structhistory}{history}}, \mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$g, int vehicle\+ID, int client\+ID, int location\+ID)
+\item 
+int \mbox{\hyperlink{history_8c_a73ae08b11e6c290151cb1fdb5e302c73}{save\+History}} (\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$head)
+\item 
+\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$ \mbox{\hyperlink{history_8c_a6c8cf3d68c3a2eae703c283f7efc4fb1}{read\+History}} ()
+\item 
+int \mbox{\hyperlink{history_8c_a161c7c5d333cfd71793ffdfa20b5b9b6}{save\+History\+Binary}} (\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$head)
+\item 
+\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$ \mbox{\hyperlink{history_8c_a36c848441103d96153883a924a707a9c}{read\+History\+Binary}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{history_8c_a40e35634df327788474e1143d4228672}\label{history_8c_a40e35634df327788474e1143d4228672} 
+\index{history.c@{history.c}!MAX\_LENGTH\_ADDRESS@{MAX\_LENGTH\_ADDRESS}}
+\index{MAX\_LENGTH\_ADDRESS@{MAX\_LENGTH\_ADDRESS}!history.c@{history.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_LENGTH\_ADDRESS}{MAX\_LENGTH\_ADDRESS}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+LENGTH\+\_\+\+ADDRESS~50}
+
+\Hypertarget{history_8c_a56fa1e99c8b7ebac3495c24e26a375ab}\label{history_8c_a56fa1e99c8b7ebac3495c24e26a375ab} 
+\index{history.c@{history.c}!MAX\_LENGTH\_EMAIL@{MAX\_LENGTH\_EMAIL}}
+\index{MAX\_LENGTH\_EMAIL@{MAX\_LENGTH\_EMAIL}!history.c@{history.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_LENGTH\_EMAIL}{MAX\_LENGTH\_EMAIL}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+LENGTH\+\_\+\+EMAIL~50}
+
+\Hypertarget{history_8c_abef4053348c46a9128f0e29738918c3e}\label{history_8c_abef4053348c46a9128f0e29738918c3e} 
+\index{history.c@{history.c}!MAX\_LENGTH\_NAME@{MAX\_LENGTH\_NAME}}
+\index{MAX\_LENGTH\_NAME@{MAX\_LENGTH\_NAME}!history.c@{history.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_LENGTH\_NAME}{MAX\_LENGTH\_NAME}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+LENGTH\+\_\+\+NAME~50}
+
+\Hypertarget{history_8c_a842ed03f27719bc87666bfd1f75415b8}\label{history_8c_a842ed03f27719bc87666bfd1f75415b8} 
+\index{history.c@{history.c}!MAX\_LINE@{MAX\_LINE}}
+\index{MAX\_LINE@{MAX\_LINE}!history.c@{history.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_LINE}{MAX\_LINE}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+LINE~250}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{history_8c_aab91c4c09f1ffc502566e6757affeb70}\label{history_8c_aab91c4c09f1ffc502566e6757affeb70} 
+\index{history.c@{history.c}!cancelRentHist@{cancelRentHist}}
+\index{cancelRentHist@{cancelRentHist}!history.c@{history.c}}
+\doxysubsubsection{\texorpdfstring{cancelRentHist()}{cancelRentHist()}}
+{\footnotesize\ttfamily void cancel\+Rent\+Hist (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$}]{history,  }\item[{\mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$}]{g,  }\item[{int}]{vehicle\+ID,  }\item[{int}]{client\+ID,  }\item[{int}]{location\+ID }\end{DoxyParamCaption})}
+
+\Hypertarget{history_8c_a58d99c226bf37144974ab0691a058138}\label{history_8c_a58d99c226bf37144974ab0691a058138} 
+\index{history.c@{history.c}!insertHistory@{insertHistory}}
+\index{insertHistory@{insertHistory}!history.c@{history.c}}
+\doxysubsubsection{\texorpdfstring{insertHistory()}{insertHistory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$ insert\+History (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$}]{head,  }\item[{int}]{client\+ID,  }\item[{char}]{client\+Name\mbox{[}$\,$\mbox{]},  }\item[{int}]{vehicle\+ID,  }\item[{char}]{vehicle\+Type\mbox{[}$\,$\mbox{]},  }\item[{float}]{cost,  }\item[{char}]{init\+Location\mbox{[}$\,$\mbox{]},  }\item[{struct tm}]{init }\end{DoxyParamCaption})}
+
+\Hypertarget{history_8c_a6934f92b0809747d09b35a4dd8af683e}\label{history_8c_a6934f92b0809747d09b35a4dd8af683e} 
+\index{history.c@{history.c}!listHistory@{listHistory}}
+\index{listHistory@{listHistory}!history.c@{history.c}}
+\doxysubsubsection{\texorpdfstring{listHistory()}{listHistory()}}
+{\footnotesize\ttfamily void list\+History (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$}]{history }\end{DoxyParamCaption})}
+
+\Hypertarget{history_8c_a6c8cf3d68c3a2eae703c283f7efc4fb1}\label{history_8c_a6c8cf3d68c3a2eae703c283f7efc4fb1} 
+\index{history.c@{history.c}!readHistory@{readHistory}}
+\index{readHistory@{readHistory}!history.c@{history.c}}
+\doxysubsubsection{\texorpdfstring{readHistory()}{readHistory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$ read\+History (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{history_8c_a36c848441103d96153883a924a707a9c}\label{history_8c_a36c848441103d96153883a924a707a9c} 
+\index{history.c@{history.c}!readHistoryBinary@{readHistoryBinary}}
+\index{readHistoryBinary@{readHistoryBinary}!history.c@{history.c}}
+\doxysubsubsection{\texorpdfstring{readHistoryBinary()}{readHistoryBinary()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$ read\+History\+Binary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{history_8c_a73ae08b11e6c290151cb1fdb5e302c73}\label{history_8c_a73ae08b11e6c290151cb1fdb5e302c73} 
+\index{history.c@{history.c}!saveHistory@{saveHistory}}
+\index{saveHistory@{saveHistory}!history.c@{history.c}}
+\doxysubsubsection{\texorpdfstring{saveHistory()}{saveHistory()}}
+{\footnotesize\ttfamily int save\+History (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+\Hypertarget{history_8c_a161c7c5d333cfd71793ffdfa20b5b9b6}\label{history_8c_a161c7c5d333cfd71793ffdfa20b5b9b6} 
+\index{history.c@{history.c}!saveHistoryBinary@{saveHistoryBinary}}
+\index{saveHistoryBinary@{saveHistoryBinary}!history.c@{history.c}}
+\doxysubsubsection{\texorpdfstring{saveHistoryBinary()}{saveHistoryBinary()}}
+{\footnotesize\ttfamily int save\+History\+Binary (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$}]{head }\end{DoxyParamCaption})}
+

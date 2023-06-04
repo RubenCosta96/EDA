@@ -1,0 +1,11 @@
+┌─────────────────────┐
+│  Change vehicle data│
+│                     │
+│ 1 - Type            │
+│ 2 - Autonomy        │
+│ 3 - Cost            │
+│ 4 - Location        │
+│ 5 - Client renting  │
+│ 0 - Exit            │ 
+└─────────────────────┘
+-> 

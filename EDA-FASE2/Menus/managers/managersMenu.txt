@@ -1,0 +1,16 @@
+┌──────────────────────────────┐
+│        Manager options       │
+│                              │
+│ 1 - Add vehicle              │
+│ 2 - Check history            │
+│ 3 - Change vehicle           │
+│ 4 - Change data              │
+│ 5 - List vehicles            │
+│ 6 - List clients             │
+│ 7 - Remove clients           │
+│ 8 - Remove vehicle           │
+│ 9 - Sort vehicles by autonomy│
+│ 10 - Delete account          │
+│ 11 - Shortest route by vertex│ 
+│ 0 - Logout                   │
+└──────────────────────────────┘

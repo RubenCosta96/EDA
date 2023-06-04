@@ -1,0 +1,333 @@
+\hypertarget{clients_8h}{}\doxysection{clients.\+h File Reference}
+\label{clients_8h}\index{clients.h@{clients.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{clients_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlist_clients}{list\+Clients}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structlist_vehicles}{list\+Vehicles}} \mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}}
+\item 
+typedef struct \mbox{\hyperlink{structlist_managers}{list\+Managers}} \mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}}
+\item 
+typedef struct \mbox{\hyperlink{structhistory}{history}} \mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}}
+\item 
+typedef struct \mbox{\hyperlink{structgraph1}{graph1}} \mbox{\hyperlink{clients_8h_a22657211d6b5826a4b142b7e98bfa165}{Adjacent}}
+\item 
+typedef struct \mbox{\hyperlink{structgraph2}{graph2}} \mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}}
+\item 
+typedef struct \mbox{\hyperlink{structlist_clients}{list\+Clients}} \mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{clients_8h_a929c0dae3e9fa04b4ea4a57b648a9114}{get\+Max\+Client\+Id}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Gets the highest value of the IDs of the clients registered. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{clients_8h_a1c112de4e6211a1db80a52bdf672e148}{client\+Reg}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function that will recieve the inputs of the user to register a new client. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{clients_8h_ae6f2becb1984aa46bd7feb9db877eded}{list\+Clients}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Prints on the terminal the list of clients registered. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$ \mbox{\hyperlink{clients_8h_ac96a02e47d60c574abefe6c8a21e8e48}{insert\+Client}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$head, int id, char name\mbox{[}$\,$\mbox{]}, int age, char NIF\mbox{[}$\,$\mbox{]}, float balance, char address\mbox{[}$\,$\mbox{]}, char email\mbox{[}$\,$\mbox{]}, char pw\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Function to insert a new client into the already existing linked list of clients. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{clients_8h_aede676c43f8a08499f613c49b1ee61d2}{remove\+Client}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$head, int id)
+\begin{DoxyCompactList}\small\item\em Removes an existing client from the linked list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{clients_8h_a9735aa4a5c739730b5e47504ea2ff733}{add\+Funds\+Client}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$c, float balance)
+\begin{DoxyCompactList}\small\item\em Function that recieves input from the user to add funds the respective user\textquotesingle{}s balance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{clients_8h_ab1a054d3f9e8d53fa0fcac516f94b79a}{client\+Menu}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$head, \mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$vehicle, \mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$c, \mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$manager, \mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$g, \mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$hist)
+\begin{DoxyCompactList}\small\item\em Function that presents to ther user the options that are available to the client after login. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{clients_8h_a80770e167c7f362d1ffa4113375ebd9f}{check\+User\+Data}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$c)
+\begin{DoxyCompactList}\small\item\em Prints on the terminal the info of the user that\textquotesingle{}s logged in. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$ \mbox{\hyperlink{clients_8h_a1c9bdc213f46be6fc70ac4b7d2ccf593}{change\+Client\+Data}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$c)
+\begin{DoxyCompactList}\small\item\em Function that allows the client to change any of the fields of his data. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{clients_8h_accdec7187493eae81aa51e75b9dc0769}{save\+Clients}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Saves all the data of the clients in a .txt file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$ \mbox{\hyperlink{clients_8h_a4a7c16eb76c46913cdc5dca3f0ffdffb}{read\+Clients}} ()
+\begin{DoxyCompactList}\small\item\em Reads the data present on the .txt file that has all the clients data saved. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{clients_8h_affca879ddc7b060de3aa22f50aa37082}{save\+Clients\+Binary}} (\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$head)
+\begin{DoxyCompactList}\small\item\em Saves all the data of the cilents in a binary file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$ \mbox{\hyperlink{clients_8h_a3a3a589da3a95579c1e7928b3602e082}{read\+Clients\+Binary}} ()
+\begin{DoxyCompactList}\small\item\em Reads the data present on the binary file that has all the clients data saved. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{clients_8h_a22657211d6b5826a4b142b7e98bfa165}\label{clients_8h_a22657211d6b5826a4b142b7e98bfa165} 
+\index{clients.h@{clients.h}!Adjacent@{Adjacent}}
+\index{Adjacent@{Adjacent}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{Adjacent}{Adjacent}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structgraph1}{graph1}} \mbox{\hyperlink{clients_8h_a22657211d6b5826a4b142b7e98bfa165}{Adjacent}}}
+
+\Hypertarget{clients_8h_a535214410d319689b7198224e21a4061}\label{clients_8h_a535214410d319689b7198224e21a4061} 
+\index{clients.h@{clients.h}!Client@{Client}}
+\index{Client@{Client}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{Client}{Client}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structlist_clients}{list\+Clients}} \mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}}}
+
+\Hypertarget{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}\label{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8} 
+\index{clients.h@{clients.h}!Graph@{Graph}}
+\index{Graph@{Graph}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{Graph}{Graph}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structgraph2}{graph2}} \mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}}}
+
+\Hypertarget{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}\label{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50} 
+\index{clients.h@{clients.h}!History@{History}}
+\index{History@{History}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{History}{History}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structhistory}{history}} \mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}}}
+
+\Hypertarget{clients_8h_abdd4590baf468b61e9096b3a98582c9e}\label{clients_8h_abdd4590baf468b61e9096b3a98582c9e} 
+\index{clients.h@{clients.h}!Manager@{Manager}}
+\index{Manager@{Manager}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{Manager}{Manager}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structlist_managers}{list\+Managers}} \mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}}}
+
+\Hypertarget{clients_8h_af8856623ee755b3d7f4c675fb119ae32}\label{clients_8h_af8856623ee755b3d7f4c675fb119ae32} 
+\index{clients.h@{clients.h}!Vehicle@{Vehicle}}
+\index{Vehicle@{Vehicle}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{Vehicle}{Vehicle}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structlist_vehicles}{list\+Vehicles}} \mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{clients_8h_a9735aa4a5c739730b5e47504ea2ff733}\label{clients_8h_a9735aa4a5c739730b5e47504ea2ff733} 
+\index{clients.h@{clients.h}!addFundsClient@{addFundsClient}}
+\index{addFundsClient@{addFundsClient}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{addFundsClient()}{addFundsClient()}}
+{\footnotesize\ttfamily void add\+Funds\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$}]{c,  }\item[{float}]{balance }\end{DoxyParamCaption})}
+
+
+
+Function that recieves input from the user to add funds the respective user\textquotesingle{}s balance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \\
+\hline
+{\em balance} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{clients_8h_a1c9bdc213f46be6fc70ac4b7d2ccf593}\label{clients_8h_a1c9bdc213f46be6fc70ac4b7d2ccf593} 
+\index{clients.h@{clients.h}!changeClientData@{changeClientData}}
+\index{changeClientData@{changeClientData}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{changeClientData()}{changeClientData()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$ change\+Client\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$}]{c }\end{DoxyParamCaption})}
+
+
+
+Function that allows the client to change any of the fields of his data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Client$\ast$ 
+\end{DoxyReturn}
+\Hypertarget{clients_8h_a80770e167c7f362d1ffa4113375ebd9f}\label{clients_8h_a80770e167c7f362d1ffa4113375ebd9f} 
+\index{clients.h@{clients.h}!checkUserData@{checkUserData}}
+\index{checkUserData@{checkUserData}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{checkUserData()}{checkUserData()}}
+{\footnotesize\ttfamily void check\+User\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$}]{c }\end{DoxyParamCaption})}
+
+
+
+Prints on the terminal the info of the user that\textquotesingle{}s logged in. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{clients_8h_ab1a054d3f9e8d53fa0fcac516f94b79a}\label{clients_8h_ab1a054d3f9e8d53fa0fcac516f94b79a} 
+\index{clients.h@{clients.h}!clientMenu@{clientMenu}}
+\index{clientMenu@{clientMenu}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{clientMenu()}{clientMenu()}}
+{\footnotesize\ttfamily void client\+Menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$}]{head,  }\item[{\mbox{\hyperlink{clients_8h_af8856623ee755b3d7f4c675fb119ae32}{Vehicle}} $\ast$$\ast$}]{vehicle,  }\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$}]{c,  }\item[{\mbox{\hyperlink{clients_8h_abdd4590baf468b61e9096b3a98582c9e}{Manager}} $\ast$$\ast$}]{manager,  }\item[{\mbox{\hyperlink{clients_8h_a0c831e24f52bb4ba83d1da5df7b020b8}{Graph}} $\ast$$\ast$}]{g,  }\item[{\mbox{\hyperlink{clients_8h_aa2ae19cb80bd5d7f83f28d0cd5854d50}{History}} $\ast$$\ast$}]{hist }\end{DoxyParamCaption})}
+
+
+
+Function that presents to ther user the options that are available to the client after login. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+{\em vehicle} & \\
+\hline
+{\em c} & \\
+\hline
+{\em manager} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{clients_8h_a1c112de4e6211a1db80a52bdf672e148}\label{clients_8h_a1c112de4e6211a1db80a52bdf672e148} 
+\index{clients.h@{clients.h}!clientReg@{clientReg}}
+\index{clientReg@{clientReg}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{clientReg()}{clientReg()}}
+{\footnotesize\ttfamily void client\+Reg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function that will recieve the inputs of the user to register a new client. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{clients_8h_a929c0dae3e9fa04b4ea4a57b648a9114}\label{clients_8h_a929c0dae3e9fa04b4ea4a57b648a9114} 
+\index{clients.h@{clients.h}!getMaxClientId@{getMaxClientId}}
+\index{getMaxClientId@{getMaxClientId}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{getMaxClientId()}{getMaxClientId()}}
+{\footnotesize\ttfamily int get\+Max\+Client\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Gets the highest value of the IDs of the clients registered. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{clients_8h_ac96a02e47d60c574abefe6c8a21e8e48}\label{clients_8h_ac96a02e47d60c574abefe6c8a21e8e48} 
+\index{clients.h@{clients.h}!insertClient@{insertClient}}
+\index{insertClient@{insertClient}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{insertClient()}{insertClient()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$ insert\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$}]{head,  }\item[{int}]{id,  }\item[{char}]{name\mbox{[}$\,$\mbox{]},  }\item[{int}]{age,  }\item[{char}]{NIF\mbox{[}$\,$\mbox{]},  }\item[{float}]{balance,  }\item[{char}]{address\mbox{[}$\,$\mbox{]},  }\item[{char}]{email\mbox{[}$\,$\mbox{]},  }\item[{char}]{pw\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Function to insert a new client into the already existing linked list of clients. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+{\em id} & \\
+\hline
+{\em name} & \\
+\hline
+{\em age} & \\
+\hline
+{\em NIF} & \\
+\hline
+{\em balance} & \\
+\hline
+{\em address} & \\
+\hline
+{\em email} & \\
+\hline
+{\em pw} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Client$\ast$ 
+\end{DoxyReturn}
+\Hypertarget{clients_8h_ae6f2becb1984aa46bd7feb9db877eded}\label{clients_8h_ae6f2becb1984aa46bd7feb9db877eded} 
+\index{clients.h@{clients.h}!listClients@{listClients}}
+\index{listClients@{listClients}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{listClients()}{listClients()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{structlist_clients}{list\+Clients}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$}]{client }\end{DoxyParamCaption})}
+
+
+
+Prints on the terminal the list of clients registered. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{clients_8h_a4a7c16eb76c46913cdc5dca3f0ffdffb}\label{clients_8h_a4a7c16eb76c46913cdc5dca3f0ffdffb} 
+\index{clients.h@{clients.h}!readClients@{readClients}}
+\index{readClients@{readClients}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{readClients()}{readClients()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$ read\+Clients (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads the data present on the .txt file that has all the clients data saved. 
+
+\begin{DoxyReturn}{Returns}
+Client$\ast$ 
+\end{DoxyReturn}
+\Hypertarget{clients_8h_a3a3a589da3a95579c1e7928b3602e082}\label{clients_8h_a3a3a589da3a95579c1e7928b3602e082} 
+\index{clients.h@{clients.h}!readClientsBinary@{readClientsBinary}}
+\index{readClientsBinary@{readClientsBinary}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{readClientsBinary()}{readClientsBinary()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$ read\+Clients\+Binary (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads the data present on the binary file that has all the clients data saved. 
+
+\begin{DoxyReturn}{Returns}
+Client$\ast$ 
+\end{DoxyReturn}
+\Hypertarget{clients_8h_aede676c43f8a08499f613c49b1ee61d2}\label{clients_8h_aede676c43f8a08499f613c49b1ee61d2} 
+\index{clients.h@{clients.h}!removeClient@{removeClient}}
+\index{removeClient@{removeClient}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{removeClient()}{removeClient()}}
+{\footnotesize\ttfamily void remove\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$$\ast$}]{head,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Removes an existing client from the linked list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{clients_8h_accdec7187493eae81aa51e75b9dc0769}\label{clients_8h_accdec7187493eae81aa51e75b9dc0769} 
+\index{clients.h@{clients.h}!saveClients@{saveClients}}
+\index{saveClients@{saveClients}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{saveClients()}{saveClients()}}
+{\footnotesize\ttfamily int save\+Clients (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Saves all the data of the clients in a .txt file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{clients_8h_affca879ddc7b060de3aa22f50aa37082}\label{clients_8h_affca879ddc7b060de3aa22f50aa37082} 
+\index{clients.h@{clients.h}!saveClientsBinary@{saveClientsBinary}}
+\index{saveClientsBinary@{saveClientsBinary}!clients.h@{clients.h}}
+\doxysubsubsection{\texorpdfstring{saveClientsBinary()}{saveClientsBinary()}}
+{\footnotesize\ttfamily int save\+Clients\+Binary (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{clients_8h_a535214410d319689b7198224e21a4061}{Client}} $\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Saves all the data of the cilents in a binary file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}

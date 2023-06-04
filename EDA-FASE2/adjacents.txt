@@ -1,0 +1,11 @@
+stew.foldable.somebody,hound.trendier.grander,2.00
+hound.trendier.grander,complain.poster.onwards,0.70
+hound.trendier.grander,paraded.advances.dance,0.70
+paraded.advances.dance,goggle.portable.husbands,0.45
+complain.poster.onwards,goggle.portable.husbands,0.20
+complain.poster.onwards,paraded.advances.dance,0.60
+goggle.portable.husbands,takers.wisdom.format,0.60
+takers.wisdom.format,fell.fruity.badly,0.30
+fell.fruity.badly,spotted.decency.jumbled,0.60
+spotted.decency.jumbled,stew.foldable.somebody,1.20
+spotted.decency.jumbled,paraded.advances.dance,0.80
