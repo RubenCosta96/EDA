@@ -1,9 +1,0 @@
-<map id="graph.h" name="graph.h">
-<area shape="rect" id="node1" title=" " alt="" coords="205,5,276,31"/>
-<area shape="rect" id="node2" href="$clients_8c.html" title=" " alt="" coords="5,79,81,104"/>
-<area shape="rect" id="node3" href="$main_8c.html" title=" " alt="" coords="207,152,274,177"/>
-<area shape="rect" id="node4" href="$graph_8c.html" title=" " alt="" coords="157,79,228,104"/>
-<area shape="rect" id="node5" href="$history_8c.html" title=" " alt="" coords="252,79,328,104"/>
-<area shape="rect" id="node6" href="$menu_funcs_8c.html" title=" " alt="" coords="353,79,459,104"/>
-<area shape="rect" id="node7" href="$vehicles_8c.html" title=" " alt="" coords="484,79,571,104"/>
-</map>

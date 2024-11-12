@@ -1,8 +1,0 @@
-<map id="vehicles.h" name="vehicles.h">
-<area shape="rect" id="node1" title=" " alt="" coords="149,5,237,31"/>
-<area shape="rect" id="node2" href="$clients_8c.html" title=" " alt="" coords="5,79,81,104"/>
-<area shape="rect" id="node3" href="$main_8c.html" title=" " alt="" coords="159,152,226,177"/>
-<area shape="rect" id="node4" href="$graph_8c.html" title=" " alt="" coords="157,79,228,104"/>
-<area shape="rect" id="node5" href="$menu_funcs_8c.html" title=" " alt="" coords="253,79,359,104"/>
-<area shape="rect" id="node6" href="$vehicles_8c.html" title=" " alt="" coords="384,79,471,104"/>
-</map>
